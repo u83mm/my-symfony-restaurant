@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DishDay index{% endblock %}
+
+{% block main %}
+    <h1>DishDay index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CategoryName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dish_day in dish_days %}
+            <tr>
+                <td>{{ dish_day.id }}</td>
+                <td>{{ dish_day.categoryName }}</td>
+                <td>
+                    <a href="{{ path('app_dish_day_show', {'id': dish_day.id}) }}">show</a>
+                    <a href="{{ path('app_dish_day_edit', {'id': dish_day.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dish_day_new') }}">Create new</a>
+{% endblock %}
