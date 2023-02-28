@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Dish;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -16,13 +18,16 @@ class DishType extends AbstractType
         $builder
             ->add('name')
             ->add('description')            
-            ->add('price')
-            ->add('available')
+            ->add('price', NumberType::class, [
+                'html5' => true,                
+            ])
+            ->add('available', CheckboxType::class, [
+                'label' => false,
+            ])
             ->add('dishDay')
             ->add('dishMenu')
             ->add('picture', FileType::class, [
-                'label'     => 'Select Image',
-                'mapped'    => false,
+                'label'     => 'Select Image',                
                 'required'  => false,
                 'constraints' => [
                     new File([
