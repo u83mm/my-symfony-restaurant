@@ -83,7 +83,7 @@ nav a {
 	text-decoration: none;
 }
 
-label{
+/*label{
 	display: inline-block;
 	margin-top: 5px;
 	margin-left: 5px;
@@ -92,7 +92,7 @@ label{
 	font-family: Arial;
 	width: 150px;
 	text-align: right;
-}
+}*/
 
 footer p{
 	text-align: center;	

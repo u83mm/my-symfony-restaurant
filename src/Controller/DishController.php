@@ -6,9 +6,11 @@ use App\Entity\Dish;
 use App\Form\DishType;
 use App\Repository\DishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/dish')]
 class DishController extends AbstractController
@@ -22,13 +24,35 @@ class DishController extends AbstractController
     }
 
     #[Route('/new', name: 'app_dish_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, DishRepository $dishRepository): Response
+    public function new(Request $request, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
         $dish = new Dish();
         $form = $this->createForm(DishType::class, $dish);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $img = $form->get('picture')->getData();
+
+            if ($img) {
+                $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$img->guessExtension();
+
+                // Move the file to the directory where products are stored
+                try {
+                    $img->move(
+                        $this->getParameter('dishes_pictures_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    echo "The image can't be uploaded.";
+                }
+
+                // updates the 'image' property to store the IMG file name
+                // instead of its contents
+                $dish->setPicture($newFilename);
+            }                
+                    
             $dishRepository->save($dish, true);
 
             return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);

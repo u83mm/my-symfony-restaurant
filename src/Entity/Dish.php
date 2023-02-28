@@ -26,7 +26,7 @@ class Dish
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $price = null;
 
-    #[ORM\Column(length: 2)]
+    #[ORM\Column(length:2)]
     private ?string $available = null;
 
     #[ORM\ManyToOne(inversedBy: 'dishes')]

@@ -3,20 +3,44 @@
     <div class="row {% if not field.vars.valid %}has-error{% endif %}">
         {% if field.vars.name != "_token" %}
             <div class="col-sm-4 mb-3">
+                {% if field.vars.name == "available" %}
+                    {{ form_label(field, "Availabe", {'label_attr': {'class': 'form-check-label'}}) }}
+                {% endif %}
                 {{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }} 
-            </div>                                               
+            </div>               
         {% endif %}
+                
+        {% if field.vars.name == "price" %}
+            {# Render field "price" #}
 
-        <div class="col-sm-8 mb-3">
-            {% if field.vars.name == "price" %}
-                {{ form_widget(field, { 'attr': {'class': 'product-imput-price ' }}) }}
-            {% else %}
-                {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }}
-            {% endif %}                       
+            <div class="col-sm-2 mb-3">
+                {{ form_widget(field, { 'attr': { 'class': 'form-control col-2' }}) }} 
+            </div> 
+        {% elseif field.vars.name == "dishDay" or field.vars.name == "dishMenu" %}
+            {# Render Select fields #}
+
+            <div class="col-sm-4 mb-3">
+                {{ form_widget(field, { 'attr': { 'class': 'form-select' }}) }} 
+            </div>
+        {% elseif field.vars.name == "available" %}
+            {# Render checkbox field #}
             
-        </div>                                                                                         
+            <div class="col-sm-4 mb-3 form-check form-switch form-check-reverse">
+                {{ form_widget(field, { 'attr': { 'class': 'form-check-input' }}) }} 
+            </div>            
+        {% else %}
+            <div class="col-sm-8 mb-3">
+                {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }} 
+            </div>                
+        {% endif %}
+        
         <div class="error">{{ form_errors(field) }}</div>    
     </div>             
-    {% endfor %}    
-    <button class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+    {% endfor %}
+    <div class="row">
+        <div class="col-sm-4 mb-3">&nbsp;</div>
+        <div class="col-sm-8 ma-3">
+            <button class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+        </div>  
+    </div>       
 {{ form_end(form) }}
