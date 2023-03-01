@@ -31,8 +31,9 @@ class DishController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $img = $form->get('picture')->getData();
-
+            $img = $form->get('picture')->getData();          
+            //$form->get('available')->getData() == false ? $dish->setAvailable("0") : $dish->setAvailable("1");
+        
             if ($img) {
                 $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
