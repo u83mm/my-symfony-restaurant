@@ -2,11 +2,12 @@
     {% for field in form.children %}
     <div class="row {% if not field.vars.valid %}has-error{% endif %}">
         {% if field.vars.name != "_token" %}
-            <div class="col-sm-4 mb-3">
+            <div class="col-sm-3 mb-3">
                 {% if field.vars.name == "available" %}
-                    {{ form_label(field, "Availabe", {'label_attr': {'class': 'form-check-label'}}) }}
-                {% endif %}
-                {{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }} 
+                    {{ form_label(form, "Available", {'label_attr': {'class': 'form-check-label'}}) }}
+                {% else %}
+                    {{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }} 
+                {% endif %}                
             </div>               
         {% endif %}
                 
@@ -23,11 +24,10 @@
                 {{ form_widget(field, { 'attr': { 'class': 'form-select' }}) }} 
             </div>
         {% elseif field.vars.name == "available" %}
-            {# Render checkbox field #}
-            
-            <div class="col-sm-4 mb-3 form-check form-switch form-check-reverse">
+            {# Render field "price" #}
+            <div class="col-sm-8 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-check-input' }}) }} 
-            </div>            
+            </div>             
         {% else %}
             <div class="col-sm-8 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }} 
@@ -37,6 +37,7 @@
         <div class="error">{{ form_errors(field) }}</div>    
     </div>             
     {% endfor %}
+
     <div class="row">
         <div class="col-sm-4 mb-3">&nbsp;</div>
         <div class="col-sm-8 ma-3">

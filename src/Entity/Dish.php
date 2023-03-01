@@ -25,10 +25,7 @@ class Dish
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $price = null;
-
-    #[ORM\Column(length:2)]
-    private ?string $available = null;
-
+   
     #[ORM\ManyToOne(inversedBy: 'dishes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?DishDay $dishDay = null;
@@ -37,6 +34,9 @@ class Dish
     #[ORM\JoinColumn(nullable: false)]
     private ?DishMenu $dishMenu = null;
 
+    #[ORM\Column(length: 1)]
+    private ?bool $available = null;
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -88,19 +88,7 @@ class Dish
         $this->price = $price;
 
         return $this;
-    }
-
-    public function getAvailable(): ?string
-    {
-        return $this->available;
-    }
-
-    public function setAvailable(string $available): self
-    {
-        $this->available = $available;
-
-        return $this;
-    }
+    } 
 
     public function getDishDay(): ?DishDay
     {
@@ -125,4 +113,16 @@ class Dish
 
         return $this;
     }
+
+    public function getAvailable(): ?bool
+    {
+        return $this->available;
+    }
+
+    public function setAvailable(bool $available): self
+    {
+        $this->available = $available;
+
+        return $this;
+    } 
 }

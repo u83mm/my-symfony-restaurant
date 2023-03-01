@@ -23,6 +23,10 @@ class DishType extends AbstractType
             ])
             ->add('available', CheckboxType::class, [
                 'label' => false,
+                'attr' => [
+                    'value' => 0,
+                ],
+                'required' => false,
             ])
             ->add('dishDay')
             ->add('dishMenu')
