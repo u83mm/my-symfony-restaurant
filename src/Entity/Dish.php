@@ -36,6 +36,11 @@ class Dish
 
     #[ORM\Column(length: 1)]
     private ?bool $available = null;
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
    
     public function getId(): ?int
     {

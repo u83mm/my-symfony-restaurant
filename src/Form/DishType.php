@@ -19,7 +19,12 @@ class DishType extends AbstractType
             ->add('name')
             ->add('description')            
             ->add('price', NumberType::class, [
-                'html5' => true,                
+                'html5' => true,
+                'attr' => [
+                    'step' => '0.01',
+                    'min' =>    "0",
+                    'max' =>    "5000",
+                ],               
             ])
             ->add('available', CheckboxType::class, [
                 'label' => false,
@@ -38,7 +43,8 @@ class DishType extends AbstractType
                         'maxSize' => '1024k',
                         'mimeTypesMessage' => 'Please upload a valid IMG',
                     ])
-                ]
+                ],
+                'data_class' => null,
             ])            
         ;
     }
