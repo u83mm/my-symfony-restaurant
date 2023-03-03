@@ -6,6 +6,8 @@ use App\Entity\Dish;
 use App\Form\DishType;
 use App\Repository\DishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,12 +78,23 @@ class DishController extends AbstractController
     public function edit(Request $request, Dish $dish, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(DishType::class, $dish);
-        $form->handleRequest($request);                                   
-
+        $form->handleRequest($request);       
+                      
         if ($form->isSubmitted() && $form->isValid()) {
-            $img = $form->get('picture')->getData();                        
-            
-            if ($img) {                                          
+            $img = $form->get('picture')->getData();
+                                                                                    
+            if($img) {
+                $filesystem = new Filesystem(); 
+                $imgToRemove = $dish->getPicture();                
+                            
+                if($imgToRemove) {
+                    try {
+                        $filesystem->remove($this->getParameter('dishes_pictures_directory') . "/". $imgToRemove);
+                    } catch (IOExceptionInterface $exception) {
+                        echo "An error occurred while delecting image at " . $exception->getPath();
+                    }
+                }                                                
+
                 $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$img->guessExtension();
