@@ -4,23 +4,24 @@
 
 {% block main %}
     <h1>DishDay</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ dish_day.id }}</td>
-            </tr>
-            <tr>
-                <th>CategoryName</th>
-                <td>{{ dish_day.categoryName }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_dish_day_index') }}">back to list</a>
-
-    <a href="{{ path('app_dish_day_edit', {'id': dish_day.id}) }}">edit</a>
-
-    {{ include('dish_day/_delete_form.html.twig') }}
+    <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ dish_day.id }}</td>
+                </tr>
+                <tr>
+                    <th>CategoryName</th>
+                    <td>{{ dish_day.categoryName }}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <a class="btn btn-primary" href="{{ path('app_dish_day_index') }}">back to list</a>
+    
+        <a class="btn btn-primary" href="{{ path('app_dish_day_edit', {'id': dish_day.id}) }}">edit</a>
+    
+        {{ include('dish_day/_delete_form.html.twig') }}
+    </div>    
 {% endblock %}

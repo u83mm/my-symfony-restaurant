@@ -63,4 +63,17 @@ class DishRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function returnPicture(string $id): string
+    {
+        $dbcon = $this->getEntityManager()->getConnection();
+
+        $query = "SELECT picture FROM dish WHERE id = :val";                         
+
+        $stm = $dbcon->prepare($query);
+        $stm->bindValue(":val", $id);                            
+        $resultSet = $stm->executeQuery(); 
+        $result =  $resultSet->fetchAllAssociative();
+
+        return $result[0]['picture'];
+    }
 }

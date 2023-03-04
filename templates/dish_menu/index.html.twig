@@ -5,31 +5,33 @@
 {% block main %}
     <h1>DishMenu index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>MenuCategory</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for dish_menu in dish_menus %}
-            <tr>
-                <td>{{ dish_menu.id }}</td>
-                <td>{{ dish_menu.menuCategory }}</td>
-                <td>
-                    <a href="{{ path('app_dish_menu_show', {'id': dish_menu.id}) }}">show</a>
-                    <a href="{{ path('app_dish_menu_edit', {'id': dish_menu.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_dish_menu_new') }}">Create new</a>
+    <div class="col-12 col-xl-9 mx-auto table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th>Id</th>
+                    <th>MenuCategory</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for dish_menu in dish_menus %}
+                <tr>
+                    <td>{{ dish_menu.id }}</td>
+                    <td>{{ dish_menu.menuCategory }}</td>
+                    <td class="text-center">
+                        <a class="btn btn-outline-success" href="{{ path('app_dish_menu_show', {'id': dish_menu.id}) }}">show</a>
+                        <a class="btn btn-outline-success" href="{{ path('app_dish_menu_edit', {'id': dish_menu.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <a class="btn btn-primary" href="{{ path('app_dish_menu_new') }}">Create new</a>
 {% endblock %}

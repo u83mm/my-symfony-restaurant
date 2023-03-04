@@ -35,9 +35,16 @@ class DishType extends AbstractType
             ])
             ->add('dishDay')
             ->add('dishMenu')
-            ->add('picture', FileType::class, [
+            ->add('picture', null, [
+                'label' => false,
+                'attr' => [
+                    'hidden' => true
+                ]
+            ])
+            ->add('select_picture', FileType::class, [
                 'label'     => 'Select Image',                
                 'required'  => false,
+                'mapped'    => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',

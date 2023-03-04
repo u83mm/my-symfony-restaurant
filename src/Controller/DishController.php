@@ -33,7 +33,7 @@ class DishController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $img = $form->get('picture')->getData();                      
+            $img = $form->get('select_picture')->getData();                      
         
             if ($img) {
                 $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
@@ -78,15 +78,15 @@ class DishController extends AbstractController
     public function edit(Request $request, Dish $dish, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(DishType::class, $dish);
-        $form->handleRequest($request);       
+        $form->handleRequest($request);                  
                       
         if ($form->isSubmitted() && $form->isValid()) {
-            $img = $form->get('picture')->getData();
+            $img = $form->get('select_picture')->getData();
                                                                                     
             if($img) {
                 $filesystem = new Filesystem(); 
-                $imgToRemove = $dish->getPicture();                
-                            
+                $dish->getPicture() != null ? $imgToRemove = $dish->getPicture() : $imgToRemove = "";
+
                 if($imgToRemove) {
                     try {
                         $filesystem->remove($this->getParameter('dishes_pictures_directory') . "/". $imgToRemove);
