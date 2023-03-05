@@ -3,11 +3,13 @@
 {% block title %}New DishDay{% endblock %}
 
 {% block main %}
-    <h1>Create new DishDay</h1>
-    <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto">
+    <div class="row">
+        <h1>Create new DishDay</h1>
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto">
+            
+            {{ include('dish_day/_form.html.twig') }}
         
-        {{ include('dish_day/_form.html.twig') }}
-    
-        <a class="btn btn-primary" href="{{ path('app_dish_day_index') }}">back to list</a>
-    </div>    
+            <a class="btn btn-primary" href="{{ path('app_dish_day_index') }}">back to list</a>
+        </div> 
+    </div>   
 {% endblock %}

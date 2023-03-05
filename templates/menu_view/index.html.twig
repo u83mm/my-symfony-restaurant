@@ -17,8 +17,8 @@
         {% for k, i in 1..groups %}
             <div class="col-6 col-md-4 col-lg-3">
                 <ul>
-                {% for id, section in sections|slice(k * groups, groups * i) %}
-                    {% if id <= 3 %}
+                {% for id, section in sections|slice(k * elements, elements * i) %}
+                    {% if id < elements  %}
                     <li><a href="#">{{ section }}</a></li> 
                     {% endif %}                                                                                                          
                 {% endfor %}

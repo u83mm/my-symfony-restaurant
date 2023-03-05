@@ -17,16 +17,16 @@ class MenuViewController extends AbstractController
         $dishMenuRepository = $mr->getRepository(DishMenu::class);
         $menuCategories = $dishMenuRepository->findAll();
 
+        /** We calculate how many "div" elements are necessary to show all the categories in Menu view */
         $total_categories = count($menuCategories);
         $elements_by_group = 4;
         $total_groups = number_format(ceil($total_categories / $elements_by_group), 0);
-        
-        if ($total_groups < 4) $total_groups = 4;
-
+           
         return $this->render('menu_view/index.html.twig', [
             'controller_name'   => 'MenuViewController',
             'sections'          => $menuCategories,
             'groups'            => $total_groups,
+            'elements'          => $elements_by_group,
         ]);
     }
 }
