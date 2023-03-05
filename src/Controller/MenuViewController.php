@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\DishMenu;
-use App\Entity\MenuDayPrice;
+use App\Repository\DishRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,10 +12,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class MenuViewController extends AbstractController
 {
     #[Route('/menu/view', name: 'app_menu_view')]
-    public function index(ManagerRegistry $mr): Response
+    public function index(ManagerRegistry $mr, DishRepository $disheRepository): Response
     {
-        $dishMenuRepository = $mr->getRepository(DishMenu::class);
+        $dishMenuRepository = $mr->getRepository(DishMenu::class);        
         $menuCategories = $dishMenuRepository->findAll();
+
+        /** Show diferent Day's menu dishes */
+        $primeros = $disheRepository->findDishesByDishday("primero");
+        $segundos = $disheRepository->findDishesByDishday("segundo");
+        $postres  = $disheRepository->findDishesByDishday("postre");  
 
         /** We calculate how many "div" elements are necessary to show all the categories in Menu view */
         $total_categories = count($menuCategories);
@@ -27,6 +32,9 @@ class MenuViewController extends AbstractController
             'sections'          => $menuCategories,
             'groups'            => $total_groups,
             'elements'          => $elements_by_group,
+            'primeros'          => $primeros,
+            'segundos'          => $segundos,
+            'postres'           => $postres,
         ]);
     }
 }
