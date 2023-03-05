@@ -63,6 +63,7 @@ class DishRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
     public function returnPicture(string $id): string
     {
         $dbcon = $this->getEntityManager()->getConnection();
@@ -75,5 +76,28 @@ class DishRepository extends ServiceEntityRepository
         $result =  $resultSet->fetchAllAssociative();
 
         return $result[0]['picture'];
+    }
+
+       
+    /**
+     * getDishesByDishday
+     *
+     * @param  mixed $dishday
+     * @return array
+     */
+    public function findDishesByDishday(string $dishday): array
+    {
+        $dbcon = $this->getEntityManager()->getConnection();
+
+        $query = "SELECT * FROM dish
+                INNER JOIN dish_day
+                ON dish.dish_day_id = dish_day.id
+                WHERE dish_day.category_name = :val";
+        
+        $stm = $dbcon->prepare($query);
+        $stm->bindValue(":val", $dishday);
+        $result = $stm->executeQuery()->fetchAllAssociative();
+
+        return $result;
     }
 }
