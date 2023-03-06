@@ -67,10 +67,18 @@ class DishController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_dish_show', methods: ['GET'])]
-    public function show(Dish $dish): Response
-    {
+    public function show(Dish $dish, DishRepository $dishRepository): Response
+    {     
+        /** Show diferent Day's menu dishes */
+        $primeros = $dishRepository->findDishesByDishday("primero");
+        $segundos = $dishRepository->findDishesByDishday("segundo");
+        $postres  = $dishRepository->findDishesByDishday("postre");      
+
         return $this->render('dish/show.html.twig', [
-            'dish' => $dish,
+            'dish'      => $dish,
+            'primeros'  => $primeros,
+            'segundos'  => $segundos,
+            'postres'   => $postres,
         ]);
     }
 
