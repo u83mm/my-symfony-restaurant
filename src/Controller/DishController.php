@@ -72,13 +72,13 @@ class DishController extends AbstractController
         /** Show diferent Day's menu dishes */
         $primeros = $dishRepository->findDishesByDishday("primero");
         $segundos = $dishRepository->findDishesByDishday("segundo");
-        $postres  = $dishRepository->findDishesByDishday("postre");      
+        $postres  = $dishRepository->findDishesByDishday("postre");          
 
         return $this->render('dish/show.html.twig', [
             'dish'      => $dish,
             'primeros'  => $primeros,
             'segundos'  => $segundos,
-            'postres'   => $postres,
+            'postres'   => $postres,            
         ]);
     }
 
@@ -121,8 +121,8 @@ class DishController extends AbstractController
                 // updates the 'image' property to store the IMG file name
                 // instead of its contents
                 $dish->setPicture($newFilename);               
-            }            
-                        
+            }                           
+            
             $dishRepository->save($dish, true);
 
             return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);

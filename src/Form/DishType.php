@@ -17,7 +17,12 @@ class DishType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')            
+            ->add('description', null, [
+                'attr' => [
+                    'cols'  => "30",
+                    'rows'  => "10",
+                ]
+            ])            
             ->add('price', NumberType::class, [
                 'html5' => true,
                 'attr' => [
