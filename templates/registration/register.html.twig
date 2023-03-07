@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block main %}
+    <h1 class="text-center">Register</h1>
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto">
+            {{ form_start(registrationForm) }}
+                {% for field in registrationForm.children %}
+                    <div class="row mb-3 {% if not field.vars.valid %}has-error{% endif %}">
+                        {% if field.vars.name != "_token" %}
+                            {% if field.vars.name == "agreeTerms" %}
+                                <div class="col-12 col-md-3">&nbsp;</div>
+                                <div class="col-12 col-md-8">
+                                    {{ form_label(field, null, {'label_attr': {'class': 'col-12 col-md-3 text-center text-md-end form-check-label'}}) }}              
+                                    {{ form_widget(field, { 'attr': { 'class': 'form-check-input' }}) }} 
+                                </div>                                
+                            {% else %}
+                                {{ form_label(field, null, {'label_attr': {'class': 'col-12 col-md-3 text-center text-md-end col-form-label'}}) }}               
+                                <div class="col-12 col-md-8">
+                                    {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }} 
+                                </div>
+                            {% endif %}                                                        
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                
+                <div class="row mb-3">
+                    <div class="col-12 col-md-3"></div>
+                    <div class="col-12 col-md-8">
+                        <button class="btn btn-outline-success" type="submit" class="btn">Register</button>
+                    </div>                    
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>        
+    </div>   
+{% endblock %}
