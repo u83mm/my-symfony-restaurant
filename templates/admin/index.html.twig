@@ -3,5 +3,31 @@
 {% block title %}My Restaurant | admin{% endblock %}
 
 {% block main %}
+<div class="row">
+    <h3 class="text-center pb-2">MENÚ PRINCIPAL</h3>
+    
+    <div class="mx-auto mb-3 bg-success bg-opacity-10 adminMenus">
+        <h4 class="text-center">PLATOS</h4>
+        <a class="btn btn-primary mb-5" href="{{ path('app_dish_index') }}">Listado</a>
+        <hr />
 
+        <h4 class="text-center">PRECIO MENÚ DÍA</h4>
+        <div class="row mb-3">
+            <form action="#" method="post">
+                <button class="btn btn-primary" name="action" value="index">Enviar</button>
+                <div class="col-4 col-md-3 col-lg-4 text-center text-sm-start d-inline-block ms-2">
+                    <input class="form-control" type="number" step="0.01" min="0" max="5000" name="price" id="price" value="#" required>
+                </div>                  
+            </form>                                             
+        </div>            
+    </div>
+    <div class="mx-auto mb-3 bg-success bg-opacity-10 adminMenus">
+        <h4 class="text-center">USUARIOS</h4>
+        <form action="#" method="post"><input type="submit" class="btn btn-primary mb-5" name="action" value="Listado"></form>
+    </div> 
+    <div class="mx-auto mb-3 bg-success bg-opacity-10 adminMenus">
+        <h4 class="text-center">CATEGORIAS</h4>
+        <a class="btn btn-primary mb-5" href="#">Listado</a>
+    </div>                                                                                   
+</div> 
 {% endblock %}
