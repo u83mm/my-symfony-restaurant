@@ -12,11 +12,13 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/dish')]
 class DishController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'app_dish_index', methods: ['GET'])]
     public function index(DishRepository $dishRepository): Response
     {
@@ -25,6 +27,7 @@ class DishController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_dish_new', methods: ['GET', 'POST'])]
     public function new(Request $request, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
@@ -82,6 +85,7 @@ class DishController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_dish_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Dish $dish, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
@@ -134,6 +138,7 @@ class DishController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_dish_delete', methods: ['POST'])]
     public function delete(Request $request, Dish $dish, DishRepository $dishRepository): Response
     {
