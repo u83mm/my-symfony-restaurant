@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 05-03-2023 a las 14:24:01
+-- Tiempo de generación: 08-03-2023 a las 21:12:52
 -- Versión del servidor: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Versión de PHP: 8.0.27
 
@@ -37,6 +37,21 @@ CREATE TABLE `dish` (
   `dish_menu_id` int(11) NOT NULL,
   `available` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `dish`
+--
+
+INSERT INTO `dish` (`id`, `name`, `description`, `picture`, `price`, `dish_day_id`, `dish_menu_id`, `available`) VALUES
+(1, 'macarrones a la boloñesa', 'Suspendisse bibendum velit at ex interdum lacinia. Nam bibendum tortor nisl, vel ultricies risus semper sed. Praesent efficitur tortor in pretium maximus. Sed nec mattis nulla. Donec eleifend in lectus in accumsan. Integer semper finibus sapien, lacinia aliquam leo varius in. Vivamus imperdiet lectus a massa imperdiet sollicitudin. \r\n\r\nSed pellentesque, mauris ut tempor dictum, libero ex malesuada ante, a commodo sem risus non felis. Maecenas venenatis pellentesque turpis eu suscipit.', 'macarrones-bolognesa-6404fe2603f1f.png', '11.75', 1, 2, 1),
+(2, 'ensalada catalana', 'Suspendisse bibendum velit at ex interdum lacinia. Nam bibendum tortor nisl, vel ultricies risus semper sed. Praesent efficitur tortor in pretium maximus. Sed nec mattis nulla. \r\n\r\nDonec eleifend in lectus in accumsan. Integer semper finibus sapien, lacinia aliquam leo varius in. Vivamus imperdiet lectus a massa imperdiet sollicitudin. Sed pellentesque, mauris ut tempor dictum, libero ex malesuada ante, a commodo sem risus non felis. Maecenas venenatis pellentesque turpis eu suscipit.', 'ensalada-catalana-640513571a216.png', '8.20', 1, 3, 0),
+(3, 'ensalada mixta', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'ensalada-mixta-6408f148d4d27.png', '8.50', 4, 3, 0),
+(4, 'paella valenciana', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'paella-valenciana-jpg-6408f190f338b.png', '11.25', 4, 6, 0),
+(5, 'bistec con patatas', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'bistec-patatas-6408f2785ab36.png', '9.50', 2, 4, 0),
+(6, 'arroz con setas', 'nteger malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'arroz-setas-6408f2c3eac89.png', '12.00', 2, 6, 0),
+(7, 'espaguetis a la carbonara', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'espagueti-carbo-6408f30e586cb.png', '8.50', 4, 2, 0),
+(8, 'crema catalana', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'crema-catalana-6408f362b203c.png', '6.00', 3, 7, 0),
+(9, 'entrecotte a la parrilla', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'entrecote-6408f396812a4.png', '12.30', 4, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -159,8 +174,24 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
+(1, 'admin@admin.com', '[\"ROLE_ADMIN\"]', '$2y$13$bVmNFfFMjVjwv/l5eR6t5.AYjOmUWdZBTmaNNzSEirpFyyCbF8BSG'),
+(2, 'pepe@pepe.com', '[]', '$2y$13$aoePxdNjNS65F2A6gIZE9eg2mQ4zhxNy7r1YcJjzFYhdvOLm7ocyu');
+
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `dish`
+--
+ALTER TABLE `dish`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_957D8CB81C54629` (`dish_day_id`),
+  ADD KEY `IDX_957D8CB85C60F384` (`dish_menu_id`);
 
 --
 -- Indices de la tabla `dish_day`
@@ -207,6 +238,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `dish`
+--
+ALTER TABLE `dish`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de la tabla `dish_day`
 --
 ALTER TABLE `dish_day`
@@ -234,7 +271,18 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `dish`
+--
+ALTER TABLE `dish`
+  ADD CONSTRAINT `FK_957D8CB81C54629` FOREIGN KEY (`dish_day_id`) REFERENCES `dish_day` (`id`),
+  ADD CONSTRAINT `FK_957D8CB85C60F384` FOREIGN KEY (`dish_menu_id`) REFERENCES `dish_menu` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
