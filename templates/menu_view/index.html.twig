@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MenuViewController!{% endblock %}
+{% block title %}My Restaurant | Menu{% endblock %}
 
 {% block section %}
                                             <!--- SECTION WITH INFO -->
@@ -19,7 +19,7 @@
                 <ul>
                 {% for id, section in sections|slice(k * elements, elements * i) %}
                     {% if id < elements  %}
-                    <li><a href="#">{{ section }}</a></li> 
+                    <li><a href="{{ path('' ~ section|lower, {'category': section|lower}) }}">{{ section }}</a></li> 
                     {% endif %}                                                                                                          
                 {% endfor %}
                 </ul>
