@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MenuCategoriesController!{% endblock %}
+
+{% block section %}
+
+<section class="col-12 col-lg-9 p-sm-0 pe-lg-3">
+    <div class="col mb-3 mainImg"></div>
+    <div class="row mb-3">
+        <div class="col d-flex justify-content-center align-items-center mb-3">
+            <h2 class="m-0 me-2">{{ category|capitalize }}</h2>
+            <img class="img-fluid mainLogo" src="{{ asset("images/menu.png") }}" alt="logo">
+        </div>
+    </div>
+    <div class="row">
+                                        <!--- SHOW MENU'S SECTIONS -->
+          
+    </div>               		     
+</section>
+
+{% endblock %}
