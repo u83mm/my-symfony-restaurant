@@ -39,6 +39,16 @@ class MenuDayPriceRepository extends ServiceEntityRepository
         }
     }
 
+    public function truncateTable(string $table): void
+    {
+        $dbcon = $this->getEntityManager()->getConnection();
+
+        $query = "TRUNCATE TABLE $table";
+
+        $stm = $dbcon->prepare($query);       
+        $stm->executeQuery();
+    }
+
 //    /**
 //     * @return MenuDayPrice[] Returns an array of MenuDayPrice objects
 //     */

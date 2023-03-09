@@ -122,7 +122,7 @@
 							</ul>
 						</div>
 												
-						<h4><strong>PRECIO: <?php echo number_format($menuDayPrice, 2, ",", "."); ?>&nbsp;€</strong></h4>
+						<h4><strong>PRECIO: {{ price|format_currency('EUR', locale='es') }}</strong></h4>
 						<p>*Bebida a elegir, agua, vino o refresco</p>
 					</aside>
 					{% endblock aside %}					

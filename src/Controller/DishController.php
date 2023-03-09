@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Dish;
+use App\Entity\MenuDayPrice;
 use App\Form\DishType;
 use App\Repository\DishRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -70,18 +72,23 @@ class DishController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_dish_show', methods: ['GET'])]
-    public function show(Dish $dish, DishRepository $dishRepository): Response
+    public function show(Dish $dish, DishRepository $dishRepository, ManagerRegistry $mr): Response
     {     
         /** Show diferent Day's menu dishes */
         $primeros = $dishRepository->findDishesByDishday("primero");
         $segundos = $dishRepository->findDishesByDishday("segundo");
-        $postres  = $dishRepository->findDishesByDishday("postre");          
+        $postres  = $dishRepository->findDishesByDishday("postre"); 
+        
+        /** We obtain the Menu's day price */
+        $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
+        $price = $priceObject->getPrice() ?? $price = 0;     
 
         return $this->render('dish/show.html.twig', [
             'dish'      => $dish,
             'primeros'  => $primeros,
             'segundos'  => $segundos,
-            'postres'   => $postres,            
+            'postres'   => $postres,
+            'price'     => $price,            
         ]);
     }
 
