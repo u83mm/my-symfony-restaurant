@@ -16,7 +16,11 @@
 
             <div class="col-sm-2 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-control col-2' }}) }} 
-            </div> 
+            </div>
+        {% elseif field.vars.name == "image" %} 
+            <div class="col-8 col-sm-5 mb-3">
+                <img class="float-start me-3 img-fluid" src="{{ asset('uploads/dishes_pictures/' ~ dish.picture) }}" alt="Image_dish"> 
+            </div>
         {% elseif field.vars.name == "dishDay" or field.vars.name == "dishMenu" %}
             {# Render Select fields #}
 

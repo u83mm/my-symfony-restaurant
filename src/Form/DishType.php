@@ -31,6 +31,9 @@ class DishType extends AbstractType
                     'max' =>    "5000",
                 ],               
             ])
+            ->add('image', null, [
+                'mapped'    => false,
+            ])
             ->add('available', CheckboxType::class, [
                 'label' => false,
                 'attr' => [
