@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Restaurant | admin{% endblock %}
+
+{% block main %}
+<div class="row">
+    <h3 class="text-center pb-2">BUSCAR PLATO</h3>
+    
+    <div class="mx-auto mb-3 bg-success bg-opacity-10 adminMenus">
+        <h4 class="text-center">Criterios de búsqueda</h4>
+        <h4 class="text-center">Por nombre</h4>
+        <div class="row mb-3">
+           {% include "/admin/dish_search_form.html.twig" %}                                           
+        </div>                   
+    </div>
+    <div class="mx-auto mb-3 bg-success bg-opacity-10 adminMenus">
+        <h4 class="text-center">TEXT</h4>
+        
+    </div> 
+    <div class="mx-auto mb-3 bg-success bg-opacity-10 adminMenus">
+        <h4 class="text-center">TEXT</h4>       
+    </div>                                                                                   
+</div> 
+{% endblock %}

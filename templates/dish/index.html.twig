@@ -28,7 +28,7 @@
                             <img class="img-fluid" type="image" src="{{ asset('uploads/dishes_pictures/' ~ dish.picture) }}" alt="dish_image">
                         </a>                        
                     </td>
-                    <td>{{ dish.name }}</td>
+                    <td>{{ dish.name|capitalize }}</td>
                     <td>{{ dish.dishday }}</td>
                     <td>{{ dish.dishmenu }}</td>                             
                     <td>{{ dish.price }}</td>
@@ -47,4 +47,5 @@
         </table>
     </div>    
     <a class="btn btn-primary" href="{{ path('app_dish_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('app_admin_search') }}">Search</a>
 {% endblock %}

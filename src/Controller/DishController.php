@@ -149,10 +149,24 @@ class DishController extends AbstractController
     #[Route('/{id}', name: 'app_dish_delete', methods: ['POST'])]
     public function delete(Request $request, Dish $dish, DishRepository $dishRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$dish->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$dish->getId(), $request->request->get('_token'))) {            
             $dishRepository->remove($dish, true);
         }
 
         return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/search/dishes', name: 'app_dish_search', methods: ['POST'])]
+    public function search(Request $request, DishRepository $dishRepository): Response
+    {
+        $critery = $request->request->get('critery');
+        $field = $request->request->get('field');       
+        
+        $dishes = $dishRepository->selectDishesByCritery($critery);            
+        
+        return $this->render('dish/index.html.twig', [
+            'dishes' => $dishes,
+        ]);
     }
 }
