@@ -99,5 +99,19 @@ class DishRepository extends ServiceEntityRepository
         $result = $stm->executeQuery()->fetchAllAssociative();
 
         return $result;
+    }  
+
+    /**
+     * @return Dish[] Returns an array of Dish objects
+     */
+    public function selectDishesByCritery(string $value): array
+    {
+        $searchTerm = $value;
+
+        return $this->createQueryBuilder('d')        
+        ->where('d.name LIKE :searchTerm')
+        ->setParameter('searchTerm', '%'.$searchTerm.'%')
+        ->getQuery()
+        ->getResult();
     }
 }
