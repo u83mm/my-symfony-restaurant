@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\DishMenuRepository;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,10 +26,13 @@ class AdminController extends AbstractController
 
     /** Show serch dish view */
     #[Route('/search', name: 'app_admin_search')]
-    public function dishSearchView(): Response
+    public function dishSearchView(DishMenuRepository $dishMenuRepository): Response
     {
+        $categoriesDishesMenu = $dishMenuRepository->findAll();      
+
         return $this->render('admin/dish_search_main_view.html.twig', [
             'controller_name' => 'AdminController',
+            'menu_categories' => $categoriesDishesMenu,
         ]);
     }
 }
