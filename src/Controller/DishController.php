@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Dish;
 use App\Entity\MenuDayPrice;
 use App\Form\DishType;
+use App\Repository\DishMenuRepository;
 use App\Repository\DishRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -157,16 +158,30 @@ class DishController extends AbstractController
     }
 
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/search/dishes', name: 'app_dish_search', methods: ['POST'])]
-    public function search(Request $request, DishRepository $dishRepository): Response
+    #[Route('/search/dishes/names', name: 'app_dish_search', methods: ['POST'])]
+    public function searchDishesName(Request $request, DishRepository $dishRepository): Response
     {
         $critery = $request->request->get('critery');
-        $field = $request->request->get('field');       
+        $field = $request->request->get('field');                 
         
         $dishes = $dishRepository->selectDishesByCritery($field, $critery);             
         
         return $this->render('dish/index.html.twig', [
             'dishes' => $dishes,
         ]);
-    }   
+    } 
+    
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/search/dishes/category', name: 'app_dish_search_menu_category', methods: ['POST'])]
+    public function searchDishesCategory(Request $request, DishRepository $dishRepository): Response
+    {
+        $critery = $request->request->get('critery');
+        $field = $request->request->get('field');      
+              
+        $dishes = $dishRepository->findBy(['dishMenu' => $critery]);             
+        
+        return $this->render('dish/index.html.twig', [
+            'dishes' => $dishes,
+        ]);
+    } 
 }
