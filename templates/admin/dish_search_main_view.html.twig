@@ -10,8 +10,14 @@
         <h4 class="text-center">Criterios de búsqueda</h4>
         <h4 class="text-center">Por nombre</h4>
         <div class="row mb-3">
-           {% include "/admin/dish_search_form.html.twig" %}                                           
-        </div>                   
+           {% include "/admin/_form_search_by_name.html.twig" %}                                           
+        </div>
+        <hr>
+        <h5 class="text-center">Por disponibilidad</h5> 
+        <div class="row mb-3">
+            {% include "/admin/_form_search_by_availability.html.twig" %}
+        </div>
+        <hr>                  
     </div>
     <div class="mx-auto mb-3 bg-success bg-opacity-10 adminMenus">
         <h4 class="text-center">TEXT</h4>
