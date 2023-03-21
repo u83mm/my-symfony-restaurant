@@ -163,10 +163,10 @@ class DishController extends AbstractController
         $critery = $request->request->get('critery');
         $field = $request->request->get('field');       
         
-        $dishes = $dishRepository->selectDishesByCritery($critery);            
+        $dishes = $dishRepository->selectDishesByCritery($field, $critery);             
         
         return $this->render('dish/index.html.twig', [
             'dishes' => $dishes,
         ]);
-    }
+    }   
 }

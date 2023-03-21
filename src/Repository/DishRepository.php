@@ -104,12 +104,12 @@ class DishRepository extends ServiceEntityRepository
     /**
      * @return Dish[] Returns an array of Dish objects
      */
-    public function selectDishesByCritery(string $value): array
+    public function selectDishesByCritery(string $field, string $value): array
     {
         $searchTerm = $value;
 
         return $this->createQueryBuilder('d')        
-        ->where('d.name LIKE :searchTerm')
+        ->where("d.$field LIKE :searchTerm")
         ->setParameter('searchTerm', '%'.$searchTerm.'%')
         ->getQuery()
         ->getResult();
