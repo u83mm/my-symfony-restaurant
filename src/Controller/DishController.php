@@ -23,10 +23,17 @@ class DishController extends AbstractController
 {
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'app_dish_index', methods: ['GET'])]
-    public function index(DishRepository $dishRepository): Response
+    public function index(DishRepository $dishRepository, Request $request): Response
     {
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $paginator = $dishRepository->getDishPaginator($offset);
+
         return $this->render('dish/index.html.twig', [
-            'dishes' => $dishRepository->findAll(),
+            //'dishes' => $dishRepository->findAll(),
+            'dishes'    => $paginator,
+            'previous'  => $offset - DishRepository::PAGINATOR_PER_PAGE,
+            'next'      => min(count($paginator), $offset + DishRepository::PAGINATOR_PER_PAGE),
+            'desde'     => $offset + 1,
         ]);
     }
 

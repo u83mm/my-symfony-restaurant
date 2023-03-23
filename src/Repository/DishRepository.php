@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Dish;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,6 +17,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class DishRepository extends ServiceEntityRepository
 {
+    public const PAGINATOR_PER_PAGE = 6;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Dish::class);
@@ -113,5 +116,15 @@ class DishRepository extends ServiceEntityRepository
         ->setParameter('searchTerm', '%'.$searchTerm.'%')
         ->getQuery()
         ->getResult();
+    }
+
+    public function getDishPaginator(int $offset): Paginator
+    {
+        $query = $this->createQueryBuilder('d')
+        ->setMaxResults(self::PAGINATOR_PER_PAGE)
+        ->setFirstResult($offset)
+        ->getQuery();
+
+        return new Paginator($query);
     }
 }

@@ -34,7 +34,7 @@ class MenuCategoriesController extends AbstractController
             $dishesByCategory = [];
 
             foreach ($dishes as $dish) {                          
-                if($dish->getDishMenu()->getMenuCategory() === $category) $dishesByCategory[] = $dish;
+                if($dish->getDishMenu()->getMenuCategory() === $category && $dish->getAvailable() === True) $dishesByCategory[] = $dish;
             }            
             
             /** We calculate how many "div" elements are necessary to show all the categories in Menu view */
