@@ -107,23 +107,38 @@ class DishRepository extends ServiceEntityRepository
     /**
      * @return Dish[] Returns an array of Dish objects
      */
-    public function selectDishesByCritery(string $field, string $value): array
+    public function selectDishesByCritery(int $offset, string $field, string $value): Paginator
     {
         $searchTerm = $value;
 
-        return $this->createQueryBuilder('d')        
+        $query = $this->createQueryBuilder('d')        
         ->where("d.$field LIKE :searchTerm")
         ->setParameter('searchTerm', '%'.$searchTerm.'%')
-        ->getQuery()
-        ->getResult();
-    }
-
-    public function getDishPaginator(int $offset): Paginator
-    {
-        $query = $this->createQueryBuilder('d')
         ->setMaxResults(self::PAGINATOR_PER_PAGE)
         ->setFirstResult($offset)
         ->getQuery();
+        //->getResult();
+
+        return new Paginator($query);
+    }
+
+    public function getDishPaginator(int $offset, string $field = null, string|int $value = null): Paginator
+    {
+        
+        if(isset($field) && isset($value)) {
+            $query = $this->createQueryBuilder('d')
+            ->andWhere("d.$field = :val")
+            ->setParameter('val', $value)
+            ->setMaxResults(self::PAGINATOR_PER_PAGE)
+            ->setFirstResult($offset)
+            ->getQuery();
+        }
+        else {
+            $query = $this->createQueryBuilder('d')
+            ->setMaxResults(self::PAGINATOR_PER_PAGE)
+            ->setFirstResult($offset)
+            ->getQuery();
+        }        
 
         return new Paginator($query);
     }
