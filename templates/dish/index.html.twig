@@ -50,10 +50,10 @@
             <!-- SHOW PAGINATION -->
 
             {% if previous >= 0 %}
-                <a href="{{ path('app_dish_index', {offset: previous}) }}" class="btn btn-primary">Previous</a>
+                <a href="{{ path(route, {offset: previous, 'field': field, 'critery': critery}) }}" class="btn btn-primary">Previous</a>
             {% endif %}
             {% if next < dishes|length %}
-                <a href="{{ path('app_dish_index', {offset: next}) }}" class="btn btn-primary">Next</a>
+                <a href="{{ path(route, {offset: next, 'field': field, 'critery': critery}) }}" class="btn btn-primary">Next</a>
             {% endif %}
         </div>
 
