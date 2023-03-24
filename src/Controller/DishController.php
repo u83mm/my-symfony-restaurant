@@ -169,12 +169,16 @@ class DishController extends AbstractController
     public function searchDishesName(Request $request, DishRepository $dishRepository): Response
     {
         $critery = $request->request->get('critery');
-        $field = $request->request->get('field');                 
+        $field = $request->request->get('field');
         
-        $dishes = $dishRepository->selectDishesByCritery($field, $critery);             
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $paginator = $dishRepository->selectDishesByCritery($offset, $field, $critery);                       
         
         return $this->render('dish/index.html.twig', [
-            'dishes' => $dishes,
+            'dishes' => $paginator,
+            'previous'  => $offset - DishRepository::PAGINATOR_PER_PAGE,
+            'next'      => min(count($paginator), $offset + DishRepository::PAGINATOR_PER_PAGE),
+            'desde'     => $offset + 1,
         ]);
     } 
     
@@ -183,12 +187,16 @@ class DishController extends AbstractController
     public function searchDishesCategory(Request $request, DishRepository $dishRepository): Response
     {
         $critery = $request->request->get('critery');
-        $field = $request->request->get('field');      
-              
-        $dishes = $dishRepository->findBy(['dishMenu' => $critery]);             
+        $field = $request->request->get('field');            
+                  
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $paginator = $dishRepository->getDishPaginator($offset, $field, $critery);               
         
         return $this->render('dish/index.html.twig', [
-            'dishes' => $dishes,
+            'dishes' => $paginator,
+            'previous'  => $offset - DishRepository::PAGINATOR_PER_PAGE,
+            'next'      => min(count($paginator), $offset + DishRepository::PAGINATOR_PER_PAGE),
+            'desde'     => $offset + 1,
         ]);
     } 
 }
