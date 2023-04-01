@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MenuCategoriesController!{% endblock %}
+{% block title %}My Restaurant | Menu{% endblock %}
 
 {% block section %}
 
@@ -9,7 +9,7 @@
     <div class="row mb-3">
         <div class="col d-flex justify-content-center align-items-center mb-3">
             <h2 class="m-0 me-2">{{ category|capitalize }}</h2>
-            <img class="img-fluid mainLogo" src="{{ asset("images/menu.png") }}" alt="logo">
+            <a href="{{ path('app_pdf_generator_menu') }}" target="_blank"><img class="img-fluid mainLogo" src="{{ asset("images/menu.png") }}" alt="logo"></a>                            
         </div>
     </div>
     <div class="row">
@@ -25,7 +25,12 @@
                 </ul>
             </div>
         {% endfor %} 
-    </div>               		     
+    </div>
+    <div class="row">
+        <div class="mb-3 text-center text-lg-start">
+            <a class="btn btn-primary" href="{{ path('app_menu_view') }}">Volver</a>
+        </div>
+    </div>              		     
 </section>
 
 {% endblock %}
