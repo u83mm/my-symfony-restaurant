@@ -189,6 +189,10 @@ aside {
 	width: 6em;
 }
 
+.menuLogo {
+	width: 4em;
+}
+
 .mainImg {
 	background-image: url("/images/home-main-img.jpg");
 	background-size: cover;
