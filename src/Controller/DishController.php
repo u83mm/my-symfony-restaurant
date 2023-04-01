@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Dish;
 use App\Entity\MenuDayPrice;
 use App\Form\DishType;
-use App\Repository\DishMenuRepository;
 use App\Repository\DishRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,22 +24,33 @@ class DishController extends AbstractController
     #[Route('/', name: 'app_dish_index', methods: ['GET', 'POST'])]
     public function index(DishRepository $dishRepository, Request $request): Response
     {
-
+        /** We get "critery" and "field" if necessary */
         $critery = $request->request->get('critery') ?? $request->query->get('critery') ?? null;
         $field = $request->request->get('field') ?? $request->query->get('field') ?? null;        
         
+        /** We obtain the paginator */
         $offset = max(0, $request->query->getInt('offset', 0));
         $paginator = $dishRepository->getDishPaginator($offset, $field, $critery);
 
+        /** We calculate total pages and how many pages show in each pagination */
+        $pages = ceil(count($paginator) / DishRepository::PAGINATOR_PER_PAGE);
+        $paginator_per_page = DishRepository::PAGINATOR_PER_PAGE;
+        
+        $last_page_offset = ($pages - 1) * DishRepository::PAGINATOR_PER_PAGE;
+
         return $this->render('dish/index.html.twig', [
             //'dishes' => $dishRepository->findAll(),
-            'dishes'    => $paginator,
-            'previous'  => $offset - DishRepository::PAGINATOR_PER_PAGE,
-            'next'      => min(count($paginator), $offset + DishRepository::PAGINATOR_PER_PAGE),
-            'desde'     => $offset + 1,
-            'route'     => "app_dish_index",
-            'critery'   => $critery,
-            'field'     => $field,             
+            'dishes'                => $paginator,
+            'previous'              => $offset - DishRepository::PAGINATOR_PER_PAGE,
+            'next'                  => min(count($paginator), $offset + DishRepository::PAGINATOR_PER_PAGE),
+            'desde'                 => $offset + 1,
+            'route'                 => "app_dish_index",
+            'critery'               => $critery,
+            'field'                 => $field,
+            'pages'                 => $pages,
+            'offset'                => $offset,
+            'paginator_per_pages'   => $paginator_per_page,
+            'last_page_offset'      => $last_page_offset,            
         ]);
     }
 

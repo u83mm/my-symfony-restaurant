@@ -47,17 +47,27 @@
         </table>
 
         <div class="text-center">
-            <!-- SHOW PAGINATION -->
+                                                        <!-- SHOW PAGINATION -->
 
-            {% if previous >= 0 %}
-                <a href="{{ path(route, {offset: previous, 'field': field, 'critery': critery}) }}" class="btn btn-primary">Previous</a>
+            {% if previous >= 0 %}                                
+                <a href="{{ path(route, {offset: previous, 'field': field, 'critery': critery}) }}">Previous</a> 
+                <a href="{{ path(route, {offset: 0, 'field': field, 'critery': critery}) }}"><<</a>               
             {% endif %}
+
+            {% for page in 1..pages %}
+                {% set page_offset = (page - 1) * paginator_per_pages %}
+                {% if page_offset == offset %}
+                    <span>{{ page }}</span>
+                {% else %}
+                    <a href="{{ path(route, {offset: page_offset, 'field': field, 'critery': critery}) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+
             {% if next < dishes|length %}
-                <a href="{{ path(route, {offset: next, 'field': field, 'critery': critery}) }}" class="btn btn-primary">Next</a>
+                <a href="{{ path(route, {offset: last_page_offset, 'field': field, 'critery': critery}) }}">>></a>
+                <a href="{{ path(route, {offset: next, 'field': field, 'critery': critery}) }}">Next</a>                
             {% endif %}
-        </div>
-
-        
+        </div>        
     </div>    
     <a class="btn btn-primary" href="{{ path('app_dish_new') }}">Create new</a>
     <a class="btn btn-primary" href="{{ path('app_admin_search') }}">Search</a>
