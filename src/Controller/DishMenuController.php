@@ -34,7 +34,7 @@ class DishMenuController extends AbstractController
             return $this->redirectToRoute('app_dish_menu_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('dish_menu/new.html.twig', [
+        return $this->render('dish_menu/new.html.twig', [
             'dish_menu' => $dishMenu,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class DishMenuController extends AbstractController
             return $this->redirectToRoute('app_dish_menu_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('dish_menu/edit.html.twig', [
+        return $this->render('dish_menu/edit.html.twig', [
             'dish_menu' => $dishMenu,
             'form' => $form,
         ]);

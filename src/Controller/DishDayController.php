@@ -34,7 +34,7 @@ class DishDayController extends AbstractController
             return $this->redirectToRoute('app_dish_day_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('dish_day/new.html.twig', [
+        return $this->render('dish_day/new.html.twig', [
             'dish_day' => $dishDay,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class DishDayController extends AbstractController
             return $this->redirectToRoute('app_dish_day_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('dish_day/edit.html.twig', [
+        return $this->render('dish_day/edit.html.twig', [
             'dish_day' => $dishDay,
             'form' => $form,
         ]);
