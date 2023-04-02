@@ -34,7 +34,7 @@ class MenuViewController extends AbstractController
             $price = $priceObject->getPrice() ?? $price = 0;
 
         } catch (\Throwable $th) {
-            echo "We have a problem with the price";
+            echo $th->getMessage();
         }
            
         return $this->render('menu_view/index.html.twig', [
