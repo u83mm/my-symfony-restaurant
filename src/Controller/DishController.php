@@ -106,14 +106,18 @@ class DishController extends AbstractController
         
         /** We obtain the Menu's day price */
         $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
-        $price = $priceObject->getPrice() ?? $price = 0;     
+        $price = $priceObject->getPrice() ?? $price = 0;
+        
+        /** We obtain the dish category */
+        $category = $dish->getDishMenu()->getMenuCategory();
 
         return $this->render('dish/show.html.twig', [
             'dish'      => $dish,
             'primeros'  => $primeros,
             'segundos'  => $segundos,
             'postres'   => $postres,
-            'price'     => $price,            
+            'price'     => $price, 
+            'category'  => $category,           
         ]);
     }
 
