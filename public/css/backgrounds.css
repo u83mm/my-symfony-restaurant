@@ -1,0 +1,117 @@
+.mainImg {
+	background-image: url("/images/home-main-img.webp");
+	background-size: cover;
+	height: 11em;
+}
+
+.menuImg {
+	background-image: url("/images/menu-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.aperitivos {
+	background-image: url("/images/aperitivos-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.entrantes {
+	background-image: url("/images/entrantes-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.ensaladas {
+	background-image: url("/images/ensaladas-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.carnes {
+	background-image: url("/images/carnes-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.pescados {
+	background-image: url("/images/pescados-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.arroces {
+	background-image: url("/images/arroces-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.postres {
+	background-image: url("/images/postres-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.cafés {
+	background-image: url("/images/coffe-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.tintos {
+	background-image: url("/images/tintos-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.blancos {
+	background-image: url("/images/blancos-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.rosados {
+	background-image: url("/images/rosados-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.champagne {
+	background-image: url("/images/champagne-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.cavas {
+	background-image: url("/images/cavas-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.licores {
+	background-image: url("/images/licores-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
+
+.bebidas {
+	background-image: url("/images/bebidas-page-img.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
