@@ -193,12 +193,6 @@ aside {
 	width: 4em;
 }
 
-.mainImg {
-	background-image: url("/images/home-main-img.jpg");
-	background-size: cover;
-	height: 11em;
-}
-
 .w-45 {
 	width: 45%;
 }
