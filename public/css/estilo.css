@@ -33,8 +33,10 @@ body {
 	margin: 0 auto;
 }
 
-hr {
-	margin-top: 10px;
+.menuDia hr {
+	margin: 1em auto;
+	width: 80%;
+
 }
 
 h1 {
@@ -168,8 +170,9 @@ select {
 	width: 4em;
 }
 
-.menuDia h3 {
+.menuDia h2 {
 	margin: 0em 1em;
+	width: 50%;
 }
 
 section {
