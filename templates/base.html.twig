@@ -103,7 +103,7 @@
 							<h4 class="text-center"><strong>PRIMEROS PLATOS</strong></h4>
 							<ul class="ps-4">
 								{% for dish in primeros %}
-									<li><em>{{ dish.name|capitalize }}</em></li>
+									<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
 								{% endfor %}
 							</ul>
 						</div>
@@ -111,7 +111,7 @@
 							<h4 class="text-center"><strong>SEGUNDOS PLATOS</strong></h4>
 							<ul class="ps-4">
 								{% for dish in segundos %}
-									<li><em>{{ dish.name|capitalize }}</em></li>
+									<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
 								{% endfor %}
 							</ul>
 						</div>
@@ -119,7 +119,7 @@
 							<h4 class="text-center"><strong>POSTRE</strong></h4>
 							<ul class="ps-4">
 								{% for dish in postres %}
-									<li><em>{{ dish.name|capitalize }}</em></li>
+									<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
 								{% endfor %}
 							</ul>
 						</div>
