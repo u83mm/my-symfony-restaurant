@@ -67,6 +67,15 @@ class DishRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    /**
+     * This PHP function retrieves a picture from a database based on a given ID.
+     * 
+     * @param string id The parameter "id" is a string variable that represents the unique identifier
+     * of a dish in a database table. The function "returnPicture" retrieves the picture of the dish
+     * with the specified id from the database and returns it as a string.
+     * 
+     * @return string a string which represents the picture of a dish with the given ID.
+     */
     public function returnPicture(string $id): string
     {
         $dbcon = $this->getEntityManager()->getConnection();
@@ -92,16 +101,17 @@ class DishRepository extends ServiceEntityRepository
     {
         $dbcon = $this->getEntityManager()->getConnection();
 
-        $query = "SELECT * FROM dish
+        $query = "SELECT dish.id as id, dish.name as name FROM dish
                 INNER JOIN dish_day
                 ON dish.dish_day_id = dish_day.id
-                WHERE dish_day.category_name = :val";
+                WHERE dish_day.category_name = :val
+                AND dish.available = true";
         
         $stm = $dbcon->prepare($query);
         $stm->bindValue(":val", $dishday);
         $result = $stm->executeQuery()->fetchAllAssociative();
 
-        return $result;
+        return $result;              
     }  
 
     /**
@@ -116,15 +126,13 @@ class DishRepository extends ServiceEntityRepository
         ->setParameter('searchTerm', '%'.$searchTerm.'%')
         ->setMaxResults(self::PAGINATOR_PER_PAGE)
         ->setFirstResult($offset)
-        ->getQuery();
-        //->getResult();
+        ->getQuery();        
 
         return new Paginator($query);
     }
 
     public function getDishPaginator(int $offset, string $field = null, string|int $value = null): Paginator
-    {
-        
+    {        
         if(isset($field) && isset($value)) {
             $query = $this->createQueryBuilder('d')
             ->andWhere("d.$field = :val")
