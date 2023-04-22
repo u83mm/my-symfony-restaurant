@@ -33,6 +33,10 @@ class DishType extends AbstractType
             ])
             ->add('image', null, [
                 'mapped'    => false,
+                'label'     => false,
+                'attr'      => [
+                    'hidden'    => true,
+                ],
             ])
             ->add('available', CheckboxType::class, [
                 'label' => false,
