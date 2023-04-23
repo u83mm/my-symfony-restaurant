@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 22-04-2023 a las 19:47:52
+-- Tiempo de generación: 23-04-2023 a las 08:06:01
 -- Versión del servidor: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Versión de PHP: 8.0.27
 
@@ -132,7 +132,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230227205548', '2023-02-27 21:56:01', 207),
 ('DoctrineMigrations\\Version20230227210210', '2023-02-27 22:02:21', 36),
 ('DoctrineMigrations\\Version20230301212938', '2023-03-01 22:29:48', 64),
-('DoctrineMigrations\\Version20230422193808', '2023-04-22 21:38:43', 129);
+('DoctrineMigrations\\Version20230422193808', '2023-04-22 21:38:43', 129),
+('DoctrineMigrations\\Version20230423080245', '2023-04-23 10:03:47', 38);
 
 -- --------------------------------------------------------
 
@@ -171,6 +172,26 @@ CREATE TABLE `messenger_messages` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `role` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `role`) VALUES
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_USER'),
+(3, 'ROLE_WITER');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `user`
 --
 
@@ -187,8 +208,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `email`, `roles`, `password`) VALUES
-(1, '', 'admin@admin.com', '[\"ROLE_ADMIN\"]', '$2y$13$bVmNFfFMjVjwv/l5eR6t5.AYjOmUWdZBTmaNNzSEirpFyyCbF8BSG'),
-(2, '', 'pepe@pepe.com', '[]', '$2y$13$aoePxdNjNS65F2A6gIZE9eg2mQ4zhxNy7r1YcJjzFYhdvOLm7ocyu');
+(1, 'admin', 'admin@admin.com', '[\"ROLE_ADMIN\"]', '$2y$13$bVmNFfFMjVjwv/l5eR6t5.AYjOmUWdZBTmaNNzSEirpFyyCbF8BSG'),
+(2, 'pepe', 'pepe@pepe.com', '[]', '$2y$13$aoePxdNjNS65F2A6gIZE9eg2mQ4zhxNy7r1YcJjzFYhdvOLm7ocyu');
 
 --
 -- Índices para tablas volcadas
@@ -236,6 +257,12 @@ ALTER TABLE `messenger_messages`
   ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
 
 --
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
@@ -275,6 +302,12 @@ ALTER TABLE `menu_day_price`
 --
 ALTER TABLE `messenger_messages`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `user`

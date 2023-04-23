@@ -18,6 +18,16 @@ font-family: ubuntuItalic;
 src: url('../ttf/Ubuntu-I.ttf') format('truetype');
 }
 
+/*Animación barra errores*/ 
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
 
 * {
 	margin: 0px;
@@ -84,17 +94,6 @@ p{
 nav a {
 	text-decoration: none;
 }
-
-/*label{
-	display: inline-block;
-	margin-top: 5px;
-	margin-left: 5px;
-	margin-right: 5px;
-	padding-top: 0.5em;
-	font-family: Arial;
-	width: 150px;
-	text-align: right;
-}*/
 
 footer {
 	background-color: darkslategray;
@@ -222,6 +221,45 @@ section img {
 	-moz-border-radius: 0.3em;
 	-ms-border-radius: 0.3em;
 	-o-border-radius: 0.3em;
+}
+
+.alert-success {
+	/*background: rgba(20, 116, 7, 0.8);
+	color: white;
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	padding: 0.5em;*/
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+}
+
+.alert-warning {
+	/*background: firebrick;
+	color: white;
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	padding: 0.5em;*/
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+}
+
+.alert-danger {
+	/*background: red;
+	color: white;
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	padding: 0.5em;*/
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
 }
 
 /***************** Configuración para móviles **********************/

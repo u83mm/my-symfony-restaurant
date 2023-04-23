@@ -18,12 +18,7 @@ class UserType extends AbstractType
             ])
             ->add('email')
             //->add('roles')
-            ->add('password', null, [
-                'label'  => false,                
-                'attr' => [
-                    'hidden' => true,
-                ],
-            ])
+            ->add('password')
         ;
     }
 
