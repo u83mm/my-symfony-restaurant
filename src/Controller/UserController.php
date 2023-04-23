@@ -99,4 +99,37 @@ class UserController extends AbstractController
         $this->addFlash('success', 'User deleted successfully.');
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/changepassword', name: 'app_user_change_password', methods: ['GET', 'POST'])]
+    public function changePassword(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    {           
+        try {
+            if ($this->isCsrfTokenValid('changePassword'.$user->getId(), $request->request->get('_token'))) {
+                $password = $request->request->get('password');
+                $repeated_password = $request->request->get('new_password');
+
+                if($password !== $repeated_password) throw new \Exception("Passwords aren't equals", 1);
+                
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $request->request->get('new_password')
+                    )
+                ); 
+    
+                $userRepository->save($user, true);
+    
+                $this->addFlash('success', 'Updated password successfully.');
+                return $this->redirectToRoute('app_user_edit', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+            }
+
+        } catch (\Throwable $th) {
+            $this->addFlash('danger', $th->getMessage());
+            return $this->redirectToRoute('app_user_change_password', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('user/change_password.html.twig', [
+            'user'  => $user,                    
+        ]);
+    }
 }
