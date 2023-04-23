@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\RolesRepository;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -62,22 +63,30 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
-    {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+    public function edit(Request $request, User $user, UserRepository $userRepository, RolesRepository $rolesRepository): Response
+    {                       
+        try {
+            $roles = $rolesRepository->findAll();            
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
+            if ($this->isCsrfTokenValid('edit'.$user->getId(), $request->request->get('_token'))) {
+                $user->setUserName($request->request->get("user_name"));
+                $user->setEmail($request->request->get("email"));               
+                $user->setRoles([$request->request->get("role")]);  
 
-            $this->addFlash('success', 'User updated successfully.');
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+                $userRepository->save($user, true);
+    
+                $this->addFlash('success', 'User updated successfully.');
+                return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            }             
+            
+        } catch (\Throwable $th) {
+            $this->addFlash('danger', "{$th->getMessage()}");
         }
 
         return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
+            'user'  => $user,
+            'roles' => $roles,           
+        ]);        
     }
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
