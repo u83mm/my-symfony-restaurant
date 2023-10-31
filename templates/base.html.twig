@@ -29,7 +29,7 @@
     </head>
     <body>
     	<div class="container-fluid">
-			<header class="d-flex justify-content-center align-items-center shadow rounded bg-success p-2 bg-opacity-25 border border-primary">				
+			<header class="d-flex justify-content-center align-items-center shadow rounded bg-success p-2 bg-opacity-25 border border-primary header">				
 				<div class="container-fluid">
 					<div class="row align-items-center">						
 						<div class="col-12 col-md-10 col-lg-12">							
@@ -74,6 +74,9 @@
 					</div>					
 				</div>				
 			</nav>
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}					
+					<p class="text-end pe-2">Loged as: <strong>{{ app.user.userName|capitalize }}</strong></p>									
+				{% endif %}
 			{% endblock %}			
 			<main class="pt-3 pb-3">
 				{% block flash %}
