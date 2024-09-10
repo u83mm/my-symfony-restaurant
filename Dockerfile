@@ -19,6 +19,9 @@ RUN "date"
 RUN apt update && apt install -y libicu-dev && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y git unzip zlib1g-dev libpng-dev
 
+# Install Xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 # Install PHP extensions Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo_mysql intl gd
 
