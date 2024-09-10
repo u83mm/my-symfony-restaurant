@@ -29,5 +29,7 @@ services:
       tty: true
       volumes: 
         - "../Symfony_Restaurant:/var/www"
+        - ./docker-php-ext-xdebug.ini:/usr/local/etc/php/php.ini
+        - ./docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
         - "./log/apache:/var/log/apache2"
         - "./log/php:/srv/var/log"     
