@@ -8,12 +8,9 @@ git clone https://github.com/u83mm/my-symfony-restaurant.git "directoryName"
 ```
 cd directoryName
 ```
-3.- Create "db_vol" and "log" directories and inside "log" directory create "apache", "db" and "php" directories.
+3.- Create "log" directoriy and inside "log" directory create "apache", "db" and "php" directories.
 ```
-mkdir db_vol log
-cd log
-mkdir apache db php
-cd .. (to go back)
+mkdir log log/apache log/db log/php
 ```
 4.- Build the project and stands up the containers
 ```
