@@ -10,7 +10,7 @@ services:
     ports:
       - "3306:3306"
     volumes: 
-        - "./db_vol:/var/lib/mysql"
+        - db_vol:/var/lib/mysql
         - "./log/db:/var/log"       
 
   phpmyadmin:    
@@ -21,15 +21,21 @@ services:
     environment:
       - PMA_ARBITRAY=1
 
-  web:      
+  web:
+      depends_on:
+        - db
       build: .
       container_name: php
       ports:
       - "80:80"
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
       tty: true
       volumes: 
-        - "../Symfony_Restaurant:/var/www"
+        - "./:/var/www"
         - ./docker-php-ext-xdebug.ini:/usr/local/etc/php/php.ini
         - ./docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
         - "./log/apache:/var/log/apache2"
-        - "./log/php:/srv/var/log"     
+        - "./log/php:/var/log"
+volumes:
+  db_vol:   
