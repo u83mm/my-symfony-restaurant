@@ -3,7 +3,6 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/.env
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
@@ -22,6 +21,4 @@
 
 ###> my files to ignore ###
 /log/
-/db_vol/
 ###< my files to ignore ###
-.env
