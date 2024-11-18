@@ -1,322 +1,587 @@
 @font-face{
-font-family: ubuntuRegular;
-src: url('../ttf/Ubuntu-R.ttf') format('truetype');
-}
-
-@font-face{
-font-family: ubuntuBold;
-src: url('../ttf/Ubuntu-B.ttf') format('truetype');
-}
-
-@font-face{
-font-family: ubuntuBoldItalic;
-src: url('../ttf/Ubuntu-BI.ttf') format('truetype');
-}
-
-@font-face{
-font-family: ubuntuItalic;
-src: url('../ttf/Ubuntu-I.ttf') format('truetype');
-}
-
-/*Animación barra errores*/ 
-@keyframes fadeOut {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
-}
-
-
-* {
-	margin: 0px;
-	padding: 0px;
-	outline: none;
-	text-decoration: none;
-	box-sizing: border-box;
-}	
-
-body {
-	font-size: 100%;		
 	font-family: ubuntuRegular;
-	margin: 0 auto;
-}
-
-.menuDia hr {
-	margin: 1em auto;
-	width: 80%;
-
-}
-
-h1 {
-	font-size: 2em;	
-	text-align: center;	
-}
-
-h2 {
-	font-size: 1.5em;
-	margin-bottom: 2em;
-}
-
-h3 {
-	font-size: 1.17em;
-	margin-left: 10px;
-}
-
-h4 {
-	 font-size: 1em;
-	 margin-bottom: 1em;
-}
-
-h5 {
-	font-size: .83em;
-}
-
-h6 {
-	font-size: .67em;
-}
-
-nav {
-	margin-bottom: 1em;
-}
-
-nav li {
-	display: inline;
-	/*margin-right: 5px;*/
-}
-
-p{	
-	text-align: justify;	
-	margin-bottom: 1em;
-}
-
-nav a {
-	text-decoration: none;
-}
-
-footer {
-	background-color: darkslategray;
-	padding: 1em;
-	clear: both;
-}
-
-.error {
-	color: red;
-}
-
-main {
-	min-height: 40em;	
-}
-
-header {
-	background-color: darkcyan;
-	height: 7em;
-}
-
-#datos {
-	margin-top: 1em;
-	margin-bottom: 1em;
-	background: lightgray;
-}
-
-input[type="button"], [type="text"], [type="number"], [type="submit"] {
-	padding: 0.5em;
-}
-
-form {
-	margin-top: 2em;
-}
-
-.ejercicio ol {
-	list-style-type: upper-alpha;
-}
-
-pre {
-	margin-top: 2em;	
-}
-
-table {
-	margin-top: 2em;
-}
-
-sup {
-	vertical-align: super;
-	font-size: smaller;
-}
-
-input[type=number] {
-	-moz-appearance: textfield;
-}
-
-select {
-	padding: 0.5em;
-}
-
-.menuDia {
-	background: rgba(190, 135, 172, 0.3);
-	border-radius: 1em;
-	-webkit-border-radius: 1em;
-	-moz-border-radius: 1em;
-	-ms-border-radius: 1em;
-	-o-border-radius: 1em;
-	border: 1px solid black;
-	padding: 1em;
-	box-shadow: 0px 1.5em 1.5em gray;
-}
-
-.menuDia img {
-	width: 4em;
-}
-
-.menuDia h2 {
-	margin: 0em 1em;
-	width: 50%;
-}
-
-section {
-	float: left;
-}
-
-aside {
-	display: inline-block;
-}
-
-.adminMenus {
-	width: 27em;
-	padding: 1em;
-}
-
-.mainLogo {
-	width: 6em;
-}
-
-.menuLogo {
-	width: 4em;
-}
-
-.w-45 {
-	width: 45%;
-}
-
-section img {
-	width: 18em;
-	padding-bottom: .1em;
-}
-
-.inputFile {
-	width: inherit;		
-}
-
-.nav-link {
-	border: 0.1em solid white;
-}
-
-.nav-link:hover {
-	background-color: gray;
-	color: white;
-	border: 0.1em solid darkgray;
-	border-radius: 0.3em;
-	-webkit-border-radius: 0.3em;
-	-moz-border-radius: 0.3em;
-	-ms-border-radius: 0.3em;
-	-o-border-radius: 0.3em;
-}
-
-.alert-success {
-	/*background: rgba(20, 116, 7, 0.8);
-	color: white;
-	text-align: center;
-	width: 80%;
-	margin: 0 auto;
-	padding: 0.5em;*/
-	animation-name: fadeOut;
-	animation-duration: 3s;
-	animation-delay: 4s;
-	animation-fill-mode: forwards;
-}
-
-.alert-warning {
-	/*background: firebrick;
-	color: white;
-	text-align: center;
-	width: 80%;
-	margin: 0 auto;
-	padding: 0.5em;*/
-	animation-name: fadeOut;
-	animation-duration: 3s;
-	animation-delay: 4s;
-	animation-fill-mode: forwards;
-}
-
-.alert-danger {
-	/*background: red;
-	color: white;
-	text-align: center;
-	width: 80%;
-	margin: 0 auto;
-	padding: 0.5em;*/
-	animation-name: fadeOut;
-	animation-duration: 3s;
-	animation-delay: 4s;
-	animation-fill-mode: forwards;
-}
-
-/***************** Configuración para móviles **********************/
-@media (max-width:480px) {
-	.mainLogo {
+	src: url('../ttf/Ubuntu-R.ttf') format('truetype');
+	}
+	
+	@font-face{
+	font-family: ubuntuBold;
+	src: url('../ttf/Ubuntu-B.ttf') format('truetype');
+	}
+	
+	@font-face{
+	font-family: ubuntuBoldItalic;
+	src: url('../ttf/Ubuntu-BI.ttf') format('truetype');
+	}
+	
+	@font-face{
+	font-family: ubuntuItalic;
+	src: url('../ttf/Ubuntu-I.ttf') format('truetype');
+	}
+	
+	@font-face{
+	font-family: GreatVibes;
+	src: url('../ttf/GreatVibes-Regular.ttf') format('truetype');
+	}
+	
+	
+	/*Animación barra errores*/ 
+	@keyframes fadeOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+	
+	* {
+		margin: 0px;
+		padding: 0px;
+		outline: none;
+		text-decoration: none;
+		box-sizing: border-box;
+	}	
+	
+	body {
+		font-size: 100%;		
+		font-family: ubuntuRegular;
+		margin: 0 auto;
+	}
+	
+	.menuDia hr {
+		margin: 1em auto;
+		width: 80%;
+	
+	}
+	
+	h1 {
+		font-size: 2.5em;	
+		text-align: center;
+		font-family: GreatVibes, ubuntuBold;		
+	}
+	
+	.header h1, .header h2 {
+		color: white;
+	}
+	
+	h2 {
+		font-size: 2em;
+		font-family: GreatVibes, ubuntuBold;
+	}
+	
+	h3 {
+		font-size: 1.5em;	
+		margin-bottom: 1em;
+	}
+	
+	h4 {
+		 font-size: 1em;
+		 margin-bottom: 1em;
+	}
+	
+	h5 {
+		font-size: .83em;
+	}
+	
+	h6 {
+		font-size: .67em;
+	}
+	
+	nav {
+		margin-bottom: 1em;
+	}
+	
+	nav li {
+		display: inline;
+		/*margin-right: 5px;*/
+	}
+	
+	p{	
+		/* text-align: justify; */	
+		margin-bottom: 1em;
+	}
+	
+	nav a {
+		text-decoration: none;
+	}
+	
+	label{
+		display: inline-block;
+		margin-top: 5px;
+		margin-left: 5px;
+		margin-right: 5px;
+		padding-top: 0.5em;
+		font-family: Arial;
+		width: 150px;
+		text-align: right;
+	}
+	
+	footer p{
+		text-align: center;
+		margin: 0em;	
+	}
+	
+	footer {
+		background-color: darkslategray;
+		padding: 1em;
+		clear: both;
+		min-height: 10em;
+		margin-top: 3em;
+	}
+	
+	.error {
+		color: red;
+	}
+	
+	main {
+		min-height: 40em;	
+	}
+	
+	header {
+		height: 7em;
+	}
+	
+	#datos {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		background: lightgray;
+	}
+	
+	input[type="button"], [type="number"], [type="submit"] {
+		padding: 0.4em;
+	}
+	
+	pre {
+		margin-top: 2em;	
+	}
+	
+	table {
+		margin-top: 2em;
+	}
+	
+	sup {
+		vertical-align: super;
+		font-size: smaller;
+	}
+	
+	input[type=number] {
+		appearance: textfield;
+	}
+	
+	input[type=number].numberQty {
+		appearance: initial;
+		vertical-align: middle;
 		width: 4em;
 	}
-
-	section img {
-		width: 9em;
+	
+	select {
+		padding: 0.5em;
 	}
-
-	.menuDia img {
-		width: 3em;
-	}
-
-	.options {
-		width: 10em;
-		display: block;
-	}	
-}
-
-/************************************************************************
-*			iphone 6/7/8 horizontal														*
-************************************************************************/
-@media (min-width:481px) and (max-width: 668px) {
-
-}
-
-/************************************************************************
-*			Configuración para tablets portrait (retrato)						*
-************************************************************************/
-@media (min-width:481px) and (max-width: 768px) {
-					
-}
-
-/***************************************************************
-*		Configuración para tablets landscape (horizontal)	   *
-***************************************************************/
-@media (min-width: 769px) and (max-width: 1050px) {
+	
 	.menuDia {
-		width: 50%;
+		background: #e9ebf3;
+		border-radius: 1em;
+		-webkit-border-radius: 1em;
+		-moz-border-radius: 1em;
+		-ms-border-radius: 1em;
+		-o-border-radius: 1em;
+		/*border: 1px solid black;*/
+		padding: 1em;
+		box-shadow: 0px 1.5em 1.5em gray;
+	}
+	
+	.menuDia img {
+		width: 4em;
+	}
+	
+	section {
+		float: left;
+	}
+	
+	aside {
+		display: inline-block;
+	}
+	
+	.adminMenus {	
+		padding: 1em;
+	}
+	
+	.mainLogo {
+		width: 6em;
+	}
+	
+	.w-45 {
+		width: 45%;
+	}
+	
+	section img {
+		width: 18em;
+		padding-bottom: .1em;
+	}
+	
+	.inputFile {
+		width: inherit;		
+	}
+	
+	.nav-link {
+		border: 0.1em solid white;
+	}
+	
+	.nav-link:hover {
+		background-color: gray;
+		color: white;
+		border: 0.1em solid darkgray;
+		border-radius: 0.3em;
+		-webkit-border-radius: 0.3em;
+		-moz-border-radius: 0.3em;
+		-ms-border-radius: 0.3em;
+		-o-border-radius: 0.3em;
+	}
+	
+	.navbar-nav .nav-link.active {
+		background-color: gray;
+		color: white;
+		border: 0.1em solid darkgray;
+		border-radius: 0.3em;
+		-webkit-border-radius: 0.3em;
+		-moz-border-radius: 0.3em;
+		-ms-border-radius: 0.3em;
+		-o-border-radius: 0.3em;
+	}
+	
+	.showMenuCategories {
+		/* margin-bottom: -1em; */
+		list-style-type: none;
+		margin-bottom: 1em;
+	}
+	
+	.showMenuCategories input[type='submit'], .showMenuCategories button[type='submit'], .showMenuCategories a {
+		width: 100%;
+	}
+	
+	.captcha h2 {
+		font-family: ubuntuRegular;
+	}
+	
+	del {
+		text-decoration: line-through;
+	}
+	
+	/*.alert-success {	
+		animation-name: fadeOut;
+		animation-duration: 3s;
+		animation-delay: 4s;
+		animation-fill-mode: forwards;
+	}
+	
+	.alert-warning {	
+		animation-name: fadeOut;
+		animation-duration: 3s;
+		animation-delay: 4s;
+		animation-fill-mode: forwards;
+	}
+	
+	.alert-danger {	
+		animation-name: fadeOut;
+		animation-duration: 3s;
+		animation-delay: 4s;
+		animation-fill-mode: forwards;
+	}*/
+	
+	.languageFlag {
+		width: 1.5em;
+		margin-right: 0.5em;
+	}
+	
+	del {
+		display: block;
+	}
+	
+	del::first-letter {
+		text-transform: capitalize;
+	}
+	
+	.lineThrough {
+		text-decoration: line-through;
+	}
+	
+	textarea {
+		resize: none;
+	}
+	
+	.credentials {	
+		border-radius: 0.5em;
+		box-shadow: 0em 0em 1em;
+		text-align: center;
+		padding: 1em;
+		margin-top: 3em;
+	}
+	
+	.credentials input[type="submit"] {
+		border-radius: 1.5em;
+		border: 1px solid gray;
+		width: 80%;
+	}
+	
+	.show_password {
+		cursor: pointer;		
+	}
+	
+	
+	/******* Cookies Consent style ********/
+	
+	.cookies_consent_banner {
+		position: fixed;
+		bottom: 0;
+		background-color: black;
+		color: white;
+		padding: 0.5em;
+		z-index: 1000;		
+		left: 0;
+	}
+	
+	.cookies_consent_banner a {
+		text-decoration: none;
+	}
+	
+	.cookies_consent_banner a:hover {
+		text-decoration: underline;
+	}
+	
+	.cookies_consent_buttons {
+		margin-top: 1.5em;
+	}
+	
+	.cookies_consent_buttons button {
+		margin: 0 0.5em;
+		padding: 0.5em 0.8em;
+		border-radius: 0.5em;	
+		border: none;	
+	}
+	
+	#accept_cookies {
+		background-color: #4caf50;
+	}
+	
+	#accept_cookies:hover {
+		background-color: #388e3c;
+	}
+	
+	#reject_cookies {
+		background-color: #f44336;
+	}
+	
+	#reject_cookies:hover {
+		background-color: #d32f2f;
+	}
+	
+	#configure_cookies {
+		background-color: #ffc107;
+	}
+	
+	#configure_cookies:hover {
+		background-color: #ffa000;
+	}
+	
+	.cookies_config_modal, .cookies_policy_modal {
+		display: none;
+		position: fixed;
+		z-index: 1001;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(0,0,0,0.5);
+	}
+	
+	.cookies_config_consent {
+		background-color: rgba(0,0,0,0.5);
+		position: fixed;
+		z-index: 1002;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.cookies_config_content, .cookies_policy_content {
+		background-color: rgb(235, 228, 208);	
+		padding: 2em 2em 0.7em;
+		border-radius: 0.5em;
+		-webkit-border-radius: 0.5em;
+		-moz-border-radius: 0.5em;
+		-ms-border-radius: 0.5em;
+		-o-border-radius: 0.5em;
+		width: 60%;
+		overflow-y: scroll;
+		max-height: 50%;
+	}
+	
+	.cookies_config_content h3, .cookies_policy_content h3 {
+		margin-top: 0;
+		margin-left: 0;
+		font-family: GreatVibes, ubuntuBold;
+	}
+	
+	.cookies_config_buttons, .cookies_policy_buttons {
+		text-align: right;
+		margin-top: 0.5em;
+	}
+	
+	.cookies_config_buttons button, .cookies_policy_buttons button {
+		margin: 0 0.5em;
+		padding: 0.5em 0.8em;
+		border-radius: 0.5em;	
+		border: none;	
+	}
+	/***************** End Cookies Consent style ***************/
+	
+	
+	/***************** Password strength style *****************/
+	.strength {
+		width: 80%;
+		height: 0.5em;	
+		margin-top: 0.5em;
+		border-radius: 0.5em;
+		background-color: #ddd;
 		margin: 0 auto;
-		display: flow-root;
+		padding: 0;
 	}
-
-	.options {
-		width: 10em;		
+	
+	.strength_bar {
+		height: 100%;
+		border-radius: 0.5em;
+		transition: 0.3s;
+		-webkit-transition: 0.3s;
+		-moz-transition: 0.3s;
+		-ms-transition: 0.3s;
+		-o-transition: 0.3s;
 	}
-}
-
-/***************************************************************
-*			 Configuración para KINDLE FIRE					   *
-***************************************************************/
-@media (min-width: 1051px) and (max-width: 1280px) {
-	.adminMenus {
-		width: 20em;		
-	}	
-}
-
+	
+	.strength_bar.very_weak {
+		background-color: red;
+		width: 20%;
+	}
+	
+	.strength_bar.weak {
+		background-color: lightsalmon;
+		width: 25%;
+	}
+	
+	.strength_bar.medium {
+		background-color: orange;
+		width: 50%;
+	}
+	
+	.strength_bar.strong {
+		background-color: yellowgreen;
+		width: 75%;
+	}
+	
+	.strength_bar.very_strong {
+		background-color: green;
+		width: 100%;
+	}
+	
+	.message {
+		text-align: center;
+		color: #888;
+	}
+	
+	/***************** End Password strength style ***************/
+	
+	
+	/***************** Configuración para móviles **********************/
+	@media (max-width:480px) {
+		.mainLogo {
+			width: 4em;
+		}
+	
+		section img {
+			width: 9em;
+		}
+	
+		.menuDia img {
+			width: 3em;
+		}
+	
+		.options {
+			width: 10em;
+			display: block;
+		}
+		
+		.navbar-nav .nav-link.active, .navbar-nav .show > .nav-link {
+			background-color: inherit;
+			border: inherit;
+			color: var(--bs-navbar-active-color);
+		}
+	
+		.inputFile {
+			font-size: x-small;
+		}
+	
+		.cookies_config_content, .cookies_policy_content {
+			width: 100%;
+			padding: 1em 1em 0.7em;
+			margin: 0 auto;
+		}
+	
+		.cookies_config_buttons, .cookies_policy_buttons {
+			text-align: center;
+		}
+	
+		.cookies_consent_buttons button {
+			margin: 0 0.2em;			
+		}
+	}
+	
+	/************************************************************************
+	*			iphone 6/7/8 horizontal														*
+	************************************************************************/
+	@media (min-width:481px) and (max-width: 668px) {	
+	
+	}
+	
+	/************************************************************************
+	*			Configuración para tablets portrait (retrato)						*
+	************************************************************************/
+	@media (min-width:481px) and (max-width: 768px) {
+		.navbar-nav .nav-link.active, .navbar-nav .show > .nav-link {
+			background-color: inherit;
+			border: inherit;
+			color: var(--bs-navbar-active-color);
+		}	
+	}
+	
+	/***************************************************************
+	*		Configuración para tablets landscape (horizontal)	   *
+	***************************************************************/
+	@media (min-width: 769px) and (max-width: 1050px) {
+		.menuDia {
+			width: 50%;
+			margin: 0 auto;
+			display: flow-root;
+		}
+	
+		.options {
+			width: 10em;		
+		}
+	
+		.navbar-nav .nav-link.active, .navbar-nav .show > .nav-link {
+			background-color: inherit;
+			border: inherit;
+			color: var(--bs-navbar-active-color);
+		}
+	}
+	
+	/***************************************************************
+	*			 Configuración para KINDLE FIRE					   *
+	***************************************************************/
+	@media (min-width: 1051px) and (max-width: 1280px) {
+		
+	}
+	
