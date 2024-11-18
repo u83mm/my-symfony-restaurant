@@ -8,41 +8,43 @@
 		<meta name="robots" content="All" />  
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>{% block title %}AutoDevelop{% endblock %}</title>   
-        {# <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"> #}
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+                
         {% block stylesheets %}
-			<link rel="stylesheet" type="text/css" href={{ asset('/css/reset.css') }}>
-			<link rel="stylesheet" type="text/css" href={{ asset("/css/bootstrap.min.css") }}>
-        	<link rel="stylesheet" type="text/css" href={{ asset('/css/estilo.css') }}>
-			<link rel="stylesheet" type="text/css" href={{ asset('/css/backgrounds.css') }}>
+			<link rel="stylesheet" href={{ asset('/css/reset.css') }}>
+			<link rel="stylesheet" href={{ asset("/css/bootstrap.min.css") }}>
+        	<link rel="stylesheet" href={{ asset('/css/estilo.css') }}>
+			<link rel="stylesheet" href={{ asset('/css/backgrounds.css') }}>
         	<link href={{ asset('/css/all.css') }} rel="stylesheet">
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
-			<script type="text/javascript" src={{ asset("/js/bootstrap.bundle.min.js.js") }}></script>
-        	<script type="text/javascript" src={{ asset('/js/eventos.js') }}></script> 
-        	<script defer src={{ asset('/js/all.js') }}></script> 
+			<script src="{{ asset("/js/bootstrap.bundle.min.js.js") }}"></script>
+        	<script src="{{ asset('/js/eventos.js') }}"></script> 
+        	<script defer src="{{ asset('/js/all.js') }}"></script> 
         	{# <script src={{ asset('https://kit.fontawesome.com/80ec316a17.js') }} crossorigin="anonymous"></script> #}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-    	<div class="container-fluid">
-			<header class="d-flex justify-content-center align-items-center shadow rounded bg-success p-2 bg-opacity-25 border border-primary header">				
-				<div class="container-fluid">
-					<div class="row align-items-center">						
-						<div class="col-12 col-md-10 col-lg-12">							
-							<h1 class="text-success">Restaurant</h1>
-						</div>						
-					</div>										
-				</div>				
-			</header>
-			{%block nav %}			
+    <body class="ps-md-3 pe-md-3">
+    	<header class="d-md-flex header">					
+			<div class="col-12 col-md-10 col-xl-11 d-flex justify-content-center align-items-end justify-content-md-end align-items-xl-center pt-5 p-xl-0">
+				<h2 class="pt-5 p-xl-0">Restaurant Your House</h2>
+			</div>
+			<div class="col-12 col-md-2 col-xl-1 d-md-flex justify-content-center align-items-end pb-2 pe-1 text-end">
+				<form action="#" method="post">
+					<input type="hidden" name="action" value="">
+					<input type="hidden" name="date" value="">													
+					<button id="language" class="btn btn-link" type="submit" name="language" value="english"><img class="me-xl-1 languageFlag" src="{{ asset('images/english-flag.svg') }}" alt="Language flag">English</button>
+				</form>										
+			</div>																				
+		</header>					
+		<main class="container-fluid">
+			{% block nav %}			
 			<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">				
 				<div class="container-fluid">					
 					<div class="col-5 col-sm-1 col-md-3 col-lg-2 col-xl-1">
-						<a class="navbar-brand" href="{{ path("app_home") }}"><img src="{{ asset("images/main_logo.png") }}" class="img-fluid float-start" alt="imagen_logo"></a>
+						<a class="navbar-brand" href="{{ path("app_home") }}"><img src={{ asset("images/main_logo.png") }} class="img-fluid float-start" alt="imagen_logo"></a>
 					</div>								
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#my_nav" aria-controls="my_nav" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -53,10 +55,10 @@
 								<a class="nav-link" aria-current="page" href="{{ path("app_home") }}">Home</a>
 							</li>
 							<li class="nav-item d-lg-inline-block">
-								<a class="nav-link" aria-current="page" href="{{ path("app_menu_view") }}">Menu</a>
+								<a class="nav-link"  href="{{ path("app_menu_view") }}">Menu</a>
 							</li>
 							<li class="nav-item d-lg-inline-block">
-								<a class="nav-link" aria-current="page" href="{{ path('app_register') }}">Registration</a>
+								<a class="nav-link"  href="{{ path('app_register') }}">Registration</a>
 							</li>
 							<li class="nav-item d-lg-inline-block">
 								{% if is_granted('ROLE_ADMIN') %}
@@ -65,110 +67,108 @@
 								</li>
 							<li class="nav-item d-lg-inline-block">
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-								<a class="nav-link" aria-current="page" href="{{ path('app_logout') }}">Logout</a>								
+								<a class="nav-link"  href="{{ path('app_logout') }}">Logout</a>								
 							{% else %}								
-								<a class="nav-link" aria-current="page" href="{{ path('app_login') }}">Login</a>
+								<a class="nav-link"  href="{{ path('app_login') }}">Login</a>
 							{% endif %}
 							</li>
 						</ul>						
 					</div>					
 				</div>				
-			</nav>
+			</nav>			
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}					
 					<p class="text-end pe-2">Loged as: <strong>{{ app.user.userName|capitalize }}</strong></p>									
 				{% endif %}
-			{% endblock %}			
-			<main class="pt-3 pb-3">
-				{% block flash %}
-					{# read and display all flash messages #}
-					{% for label, messages in app.flashes %}
-						{% for message in messages %}
-							<div class="alert alert-{{ label }} text-center col-8 mx-auto">
-								{{ message }}
-							</div>
-						{% endfor %}
+			{% endblock %}
+			{% block flash %}
+				{# read and display all flash messages #}
+				{% for label, messages in app.flashes %}
+					{% for message in messages %}
+						<div class="alert alert-{{ label }} text-center col-8 mx-auto">
+							{{ message }}
+						</div>
 					{% endfor %}
-				{% endblock %}
-				{% block main %}
-					{% block section  %}
-														
-					{% endblock section  %}
-					{% block aside %}
-					<aside class="col-12 col-lg-3 mb-5 menuDia">		
-						<div class="row text-center mb-3">
-							<div class="col d-flex justify-content-center align-items-center">
-								<h2>Menú del día</h2>
-								<img class="img-fluid" src="{{ asset("/images/menu_dia_logo.png") }}" alt="menu-logo">
-							</div>				
+				{% endfor %}
+			{% endblock %}
+			{% block main %}
+				{% block section  %}
+													
+				{% endblock section  %}
+				{% block aside %}
+				<aside class="col-12 col-lg-3 mb-5 menuDia">		
+					<div class="row text-center mb-3">
+						<div class="col d-flex justify-content-center align-items-center">
+							<h2>Menú del día</h2>
+							<img class="img-fluid" src="{{ asset("/images/menu_dia_logo.png") }}" alt="menu-logo">
+						</div>				
+					</div>
+					<hr>	
+					<div class="row mb-3">
+						<h4 class="text-center"><strong>PRIMEROS PLATOS</strong></h4>
+						<ul class="ps-4">
+							{% for dish in primeros %}
+								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="row mb-3">
+						<h4 class="text-center"><strong>SEGUNDOS PLATOS</strong></h4>
+						<ul class="ps-4">
+							{% for dish in segundos %}
+								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="row mb-3">
+						<h4 class="text-center"><strong>POSTRE</strong></h4>
+						<ul class="ps-4">
+							{% for dish in postres %}
+								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
+							{% endfor %}
+						</ul>
+					</div>
+					<hr>					
+					<h4><strong>PRECIO: {{ price|format_currency('EUR', locale='es') }}</strong></h4>
+					<p>*Bebida a elegir, agua, vino o refresco</p>
+				</aside>
+				{% endblock aside %}					
+			{% endblock %}
+		</main>
+		<footer class="text-center rounded bg-success p-2 bg-opacity-25 border border-primary">
+			{% block footer %}
+				<div class="container-fluid p-xl-5">						
+					<div class="row">
+						<div class="col-sm-6 col-lg-3 pe-xl-5 ps-xl-5 mb-4">
+							<h4>Footer1</h4>
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, delectus. Blanditiis reiciendis esse similique amet, laboriosam, eos quasi eligendi perferendis necessitatibus fugiat quibusdam veniam, neque aspernatur atque voluptas vel! Amet?
+							Quia sit et deserunt molestias ullam, dignissimos enim debitis praesentium corrupti sequi, culpa harum quae nemo excepturi reprehenderit accusantium ipsam odio non consequatur deleniti nobis ad quos officiis. Dolore, maiores.
+							Omnis eveniet velit vitae dolorum hic tempora asperiores nihil similique enim sit! Eos deserunt magni voluptate consequatur quisquam quod maxime ut possimus est hic. Vel non sunt veniam fugiat quod!</p>								
 						</div>
-						<hr>	
-						<div class="row mb-3">
-							<h4 class="text-center"><strong>PRIMEROS PLATOS</strong></h4>
-							<ul class="ps-4">
-								{% for dish in primeros %}
-									<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
-								{% endfor %}
-							</ul>
+						<div class="col-sm-6 col-lg-3 pe-xl-5 ps-xl-5 mb-4">
+							<h4>Footer2</h4>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt non iste quidem doloribus, id saepe iusto natus, officia maxime aliquam esse recusandae voluptatem dolorem cum quam provident fugit eligendi quia?
+							Blanditiis eaque sequi, aliquam tempore repellendus explicabo consequatur numquam libero, sint, labore soluta quia laudantium. Iste sapiente, quisquam corrupti eaque illo possimus qui quibusdam obcaecati, dolorum reprehenderit harum dicta magnam!
+							Natus molestiae unde tempora inventore reiciendis cum earum deserunt, debitis, rerum velit temporibus voluptas libero eos corrupti vel id dolore possimus, rem odit laboriosam aliquam harum? Magnam iure laboriosam enim?</p>															
 						</div>
-						<div class="row mb-3">
-							<h4 class="text-center"><strong>SEGUNDOS PLATOS</strong></h4>
-							<ul class="ps-4">
-								{% for dish in segundos %}
-									<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
-								{% endfor %}
-							</ul>
+						<div class="col-sm-6 col-lg-3 pe-xl-5 ps-xl-5 mb-4">
+							<h4>Footer3</h4>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim, beatae obcaecati rem dolores fugiat impedit sit velit. Cum dignissimos omnis nulla incidunt beatae facere voluptas quas in nobis soluta?
+							Deserunt impedit ipsa doloremque amet. Deserunt, officia! Repellendus, asperiores exercitationem accusamus voluptas alias sed quasi placeat, illo aliquid sapiente minus? Sit tempora accusamus minus, atque dolore delectus voluptatem sapiente cum!
+							Itaque incidunt asperiores soluta minus ut voluptates eveniet, dolore id quis porro quod voluptatum corporis atque tempore ducimus fugit perspiciatis quidem quasi culpa, dignissimos expedita delectus! Labore sed iure odio!</p>
 						</div>
-						<div class="row mb-3">
-							<h4 class="text-center"><strong>POSTRE</strong></h4>
-							<ul class="ps-4">
-								{% for dish in postres %}
-									<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
-								{% endfor %}
-							</ul>
+						<div class="col-sm-6 col-lg-3 pe-xl-5 ps-xl-5 mb-4">
+							<h4>Footer4</h4>								
+							<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, cum? A, consequatur, dolorum necessitatibus modi, iste nostrum in sunt provident quidem ipsam quo porro aperiam sapiente voluptas nobis illum? Id!
+							Voluptates voluptas provident fugit, laborum incidunt non dignissimos pariatur sint dolore quae nisi quidem blanditiis nemo. Voluptatum nesciunt harum provident delectus! Perspiciatis, eius voluptate quibusdam inventore fugit ut sequi cumque?
+							Repudiandae illo molestias error alias provident, voluptas earum nobis corporis officia voluptate harum eos dolor reprehenderit quo explicabo mollitia atque repellat reiciendis nam consectetur eveniet quidem! Reprehenderit, rem eaque. Excepturi?</p>
 						</div>
-						<hr>					
-						<h4><strong>PRECIO: {{ price|format_currency('EUR', locale='es') }}</strong></h4>
-						<p>*Bebida a elegir, agua, vino o refresco</p>
-					</aside>
-					{% endblock aside %}					
-				{% endblock %}
-			</main>
-			<footer class="text-center rounded bg-success p-2 bg-opacity-25 border border-primary">
-				{% block footer %}
-					<div class="container-fluid p-xl-5">						
-						<div class="row">
-							<div class="col-sm-6 col-lg-3 pe-xl-5 ps-xl-5 mb-4">
-								<h4>Footer1</h4>
-								<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, delectus. Blanditiis reiciendis esse similique amet, laboriosam, eos quasi eligendi perferendis necessitatibus fugiat quibusdam veniam, neque aspernatur atque voluptas vel! Amet?
-								Quia sit et deserunt molestias ullam, dignissimos enim debitis praesentium corrupti sequi, culpa harum quae nemo excepturi reprehenderit accusantium ipsam odio non consequatur deleniti nobis ad quos officiis. Dolore, maiores.
-								Omnis eveniet velit vitae dolorum hic tempora asperiores nihil similique enim sit! Eos deserunt magni voluptate consequatur quisquam quod maxime ut possimus est hic. Vel non sunt veniam fugiat quod!</p>								
-							</div>
-							<div class="col-sm-6 col-lg-3 pe-xl-5 ps-xl-5 mb-4">
-								<h4>Footer2</h4>
-								<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt non iste quidem doloribus, id saepe iusto natus, officia maxime aliquam esse recusandae voluptatem dolorem cum quam provident fugit eligendi quia?
-								Blanditiis eaque sequi, aliquam tempore repellendus explicabo consequatur numquam libero, sint, labore soluta quia laudantium. Iste sapiente, quisquam corrupti eaque illo possimus qui quibusdam obcaecati, dolorum reprehenderit harum dicta magnam!
-								Natus molestiae unde tempora inventore reiciendis cum earum deserunt, debitis, rerum velit temporibus voluptas libero eos corrupti vel id dolore possimus, rem odit laboriosam aliquam harum? Magnam iure laboriosam enim?</p>															
-							</div>
-							<div class="col-sm-6 col-lg-3 pe-xl-5 ps-xl-5 mb-4">
-								<h4>Footer3</h4>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim, beatae obcaecati rem dolores fugiat impedit sit velit. Cum dignissimos omnis nulla incidunt beatae facere voluptas quas in nobis soluta?
-								Deserunt impedit ipsa doloremque amet. Deserunt, officia! Repellendus, asperiores exercitationem accusamus voluptas alias sed quasi placeat, illo aliquid sapiente minus? Sit tempora accusamus minus, atque dolore delectus voluptatem sapiente cum!
-								Itaque incidunt asperiores soluta minus ut voluptates eveniet, dolore id quis porro quod voluptatum corporis atque tempore ducimus fugit perspiciatis quidem quasi culpa, dignissimos expedita delectus! Labore sed iure odio!</p>
-							</div>
-							<div class="col-sm-6 col-lg-3 pe-xl-5 ps-xl-5 mb-4">
-								<h4>Footer4</h4>								
-								<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, cum? A, consequatur, dolorum necessitatibus modi, iste nostrum in sunt provident quidem ipsam quo porro aperiam sapiente voluptas nobis illum? Id!
-								Voluptates voluptas provident fugit, laborum incidunt non dignissimos pariatur sint dolore quae nisi quidem blanditiis nemo. Voluptatum nesciunt harum provident delectus! Perspiciatis, eius voluptate quibusdam inventore fugit ut sequi cumque?
-								Repudiandae illo molestias error alias provident, voluptas earum nobis corporis officia voluptate harum eos dolor reprehenderit quo explicabo mollitia atque repellat reiciendis nam consectetur eveniet quidem! Reprehenderit, rem eaque. Excepturi?</p>
-							</div>
-							<div class="row pt-5">
-								<p class="text-center">Copyright &copy;2022 - {{ "now"|date("Y") }} Made by <em>José Mario Moreno Montenegro</em></p>
-							</div>
+						<div class="row pt-5">
+							<p class="text-center">Copyright &copy;2022 - {{ "now"|date("Y") }} Made by <em>José Mario Moreno Montenegro</em></p>
 						</div>
-					</div>					
-				{% endblock %}
-			</footer> 
-		</div>       
+					</div>
+				</div>					
+			{% endblock %}
+		</footer>       
     </body>
 </html>
 
