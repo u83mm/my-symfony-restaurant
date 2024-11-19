@@ -50,7 +50,8 @@ class DishController extends AbstractController
             'pages'                 => $pages,
             'offset'                => $offset,
             'paginator_per_pages'   => $paginator_per_page,
-            'last_page_offset'      => $last_page_offset,            
+            'last_page_offset'      => $last_page_offset, 
+            'active'                => "administration",           
         ]);
     }
 
@@ -91,8 +92,9 @@ class DishController extends AbstractController
         }
 
         return $this->render('dish/new.html.twig', [
-            'dish' => $dish,
-            'form' => $form,
+            'dish'      => $dish,
+            'form'      => $form,
+            'active'    => "administration",
         ]);
     }
 
@@ -117,7 +119,8 @@ class DishController extends AbstractController
             'segundos'  => $segundos,
             'postres'   => $postres,
             'price'     => $price, 
-            'category'  => $category,           
+            'category'  => $category,
+            'active'    => "menu",          
         ]);
     }
 
@@ -169,8 +172,9 @@ class DishController extends AbstractController
         }
 
         return $this->render('dish/edit.html.twig', [
-            'dish' => $dish,
-            'form' => $form,
+            'dish'      => $dish,
+            'form'      => $form,
+            'active'    => "administration",
         ]);
     }
 
@@ -214,7 +218,8 @@ class DishController extends AbstractController
             'pages'                 => $pages,
             'offset'                => $offset,
             'paginator_per_pages'   => $paginator_per_page,
-            'last_page_offset'      => $last_page_offset,           
+            'last_page_offset'      => $last_page_offset,  
+            'active'                => "administration",         
         ]);
     }     
 }

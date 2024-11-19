@@ -34,6 +34,7 @@ class HomeController extends AbstractController
             'segundos'          => $segundos,
             'postres'           => $postres,
             'price'             => $price,
+            'active'            => "home",
         ]);
     }
 }

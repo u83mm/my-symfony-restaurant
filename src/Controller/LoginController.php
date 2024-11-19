@@ -22,6 +22,7 @@ class LoginController extends AbstractController
             //'controller_name' => 'LoginController',
             'last_username' => $lastUsername,
             'error'         => $error,
+            'active'        => "login",
         ]);
     }
 
