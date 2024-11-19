@@ -44,7 +44,7 @@ class DishMenuController extends AbstractController
     public function show(DishMenu $dishMenu): Response
     {
         return $this->render('dish_menu/show.html.twig', [
-            'dish_menu' => $dishMenu,
+            'dish_menu' => $dishMenu,            
         ]);
     }
 
@@ -62,7 +62,8 @@ class DishMenuController extends AbstractController
 
         return $this->render('dish_menu/edit.html.twig', [
             'dish_menu' => $dishMenu,
-            'form' => $form,
+            'form'      => $form,
+            'active'    => "administration",
         ]);
     }
 

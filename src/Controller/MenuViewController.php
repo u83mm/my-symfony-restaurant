@@ -46,6 +46,7 @@ class MenuViewController extends AbstractController
             'segundos'          => $segundos,
             'postres'           => $postres,
             'price'             => $price,
+            'active'            => "menu",
         ]);
     }
 }

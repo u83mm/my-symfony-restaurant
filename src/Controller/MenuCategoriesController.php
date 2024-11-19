@@ -56,6 +56,7 @@ class MenuCategoriesController extends AbstractController
             'postres'           => $postres,
             'price'             => $price,
             'category'          => $category,
+            'active'            => "menu",
         ]);
     }    
 }

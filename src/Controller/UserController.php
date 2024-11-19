@@ -21,7 +21,8 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users'     => $userRepository->findAll(),
+            'active'    => "administration",
         ]);
     }
 
@@ -49,8 +50,9 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
+            'user'      => $user,
+            'form'      => $form,
+            'active'    => "administration",
         ]);
     }
 
@@ -58,7 +60,8 @@ class UserController extends AbstractController
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', [
-            'user' => $user,
+            'user'      => $user,
+            'active'    => "administration",
         ]);
     }
 
@@ -84,8 +87,9 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/edit.html.twig', [
-            'user'  => $user,
-            'roles' => $roles,           
+            'user'      => $user,
+            'roles'     => $roles,
+            'active'    => "administration",          
         ]);        
     }
 
@@ -129,7 +133,8 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/change_password.html.twig', [
-            'user'  => $user,                    
+            'user'      => $user,
+            'active'    => "administration",                    
         ]);
     }
 }
