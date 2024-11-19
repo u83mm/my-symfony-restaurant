@@ -21,6 +21,7 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+            'active'          => "administration",
         ]);
     }
 
@@ -33,6 +34,7 @@ class AdminController extends AbstractController
         return $this->render('admin/dish_search_main_view.html.twig', [
             'controller_name' => 'AdminController',
             'menu_categories' => $categoriesDishesMenu,
+            'active'          => "administration",
         ]);
     }
 }
