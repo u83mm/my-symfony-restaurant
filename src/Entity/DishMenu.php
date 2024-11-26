@@ -21,6 +21,9 @@ class DishMenu
     #[ORM\OneToMany(mappedBy: 'dishMenu', targetEntity: Dish::class)]
     private Collection $dishes;
 
+    #[ORM\Column(length: 25)]
+    private ?string $menuEmoji = null;
+
     public function __construct()
     {
         $this->dishes = new ArrayCollection();
@@ -75,6 +78,18 @@ class DishMenu
                 $dish->setDishMenu(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMenuEmoji(): ?string
+    {
+        return $this->menuEmoji;
+    }
+
+    public function setMenuEmoji(string $menuEmoji): static
+    {
+        $this->menuEmoji = $menuEmoji;
 
         return $this;
     }
