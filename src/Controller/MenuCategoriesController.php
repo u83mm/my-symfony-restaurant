@@ -47,7 +47,7 @@ class MenuCategoriesController extends AbstractController
         }
 
         return $this->render('menu_categories/index.html.twig', [
-            'controller_name' => 'MenuCategoriesController',
+            'controller_name'   => 'MenuCategoriesController',
             'sections'          => $dishesByCategory,
             'groups'            => $total_groups,
             'elements'          => $elements_by_group,

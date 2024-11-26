@@ -24,7 +24,9 @@
                 <ul>
                 {% for id, section in sections|slice(k * elements, elements * i) %}
                     {% if id < elements  %}
-                    <li><a href="{{ path('app_dish_show', {'id': section.id|lower}) }}">{{ section.name|capitalize }}</a></li> 
+                    <li class="showMenuCategories">
+                        <a class="btn btn-outline-secondary" href="{{ path('app_dish_show', {'id': section.id|lower}) }}">{{ section.name|capitalize }}</a>
+                    </li> 
                     {% endif %}                                                                                                          
                 {% endfor %}
                 </ul>
