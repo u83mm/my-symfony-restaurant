@@ -57,14 +57,14 @@
 							<li class="nav-item d-lg-inline-block">
 								<a class="nav-link {% if active is defined and active == 'menu' %}active{% endif %}" aria-current="page"  href="{{ path("app_menu_view") }}">Menu</a>
 							</li>
+							{% if is_granted('ROLE_ADMIN') %}
 							<li class="nav-item d-lg-inline-block">
 								<a class="nav-link {% if active is defined and active == 'registration' %}active{% endif %}" aria-current="page"  href="{{ path('app_register') }}">Registration</a>
 							</li>
-							<li class="nav-item d-lg-inline-block">
-								{% if is_granted('ROLE_ADMIN') %}
-									<a class="nav-link {% if active is defined and active == 'administration' %}active{% endif %}" aria-current="page" href="{{ path('app_admin') }}">Administración</a>																
-								{% endif %}
-								</li>
+							<li class="nav-item d-lg-inline-block">							
+								<a class="nav-link {% if active is defined and active == 'administration' %}active{% endif %}" aria-current="page" href="{{ path('app_admin') }}">Administración</a>							
+							</li>
+							{% endif %}
 							<li class="nav-item d-lg-inline-block">
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 								<a class="nav-link" aria-current="page"  href="{{ path('app_logout') }}">Logout</a>								
