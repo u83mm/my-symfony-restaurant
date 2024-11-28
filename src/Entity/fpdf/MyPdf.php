@@ -1,5 +1,8 @@
 <?php
+
     namespace App\Entity\fpdf;
+
+    use App\Entity\fpdf\Fpdf;    
 
     class MyPdf extends Fpdf
     {        
@@ -8,7 +11,9 @@
         public function header()
         {
             $this->Image('images/main_logo.png', 10, 8, 33);
-            $this->SetFont('Arial','IBU',20);
+            //$this->SetFont('Arial','IBU',20);
+            $this->AddFont("GreatVibes", "", "GreatVibes-Regular.php");
+            $this->SetFont('GreatVibes','',25); 
             $this->Ln(20);
             $this->Cell(0, 10, $this->title, 0, 0, 'C');
             $this->Ln(20);

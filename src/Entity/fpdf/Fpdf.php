@@ -2,18 +2,15 @@
 /*******************************************************************************
 * FPDF                                                                         *
 *                                                                              *
-* Version: 1.85                                                                *
-* Date:    2022-11-10                                                          *
+* Version: 1.86                                                                *
+* Date:    2023-06-25                                                          *
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
-
 namespace App\Entity\fpdf;
-
-use Exception;
 
 class Fpdf
 {
-const VERSION = '1.85';
+const VERSION = '1.86';
 protected $page;               // current page number
 protected $n;                  // current object number
 protected $offsets;            // array of object offsets
@@ -40,7 +37,7 @@ protected $cMargin;            // cell margin
 protected $x, $y;              // current position in user unit
 protected $lasth;              // height of last printed cell
 protected $LineWidth;          // line width in user unit
-protected $fontpath;           // path containing fonts
+protected $fontpath;           // directory containing fonts
 protected $CoreFonts;          // array of core font names
 protected $fonts;              // array of used fonts
 protected $FontFiles;          // array of font files
@@ -107,15 +104,9 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	$this->iconv = function_exists('iconv');
 	// Font path
 	if(defined('FPDF_FONTPATH'))
-	{
 		$this->fontpath = FPDF_FONTPATH;
-		if(substr($this->fontpath,-1)!='/' && substr($this->fontpath,-1)!='\\')
-			$this->fontpath .= '/';
-	}
-	elseif(is_dir(dirname(__FILE__).'/font'))
-		$this->fontpath = dirname(__FILE__).'/font/';
 	else
-		$this->fontpath = '';
+		$this->fontpath = dirname(__FILE__).'/font/';
 	// Core fonts
 	$this->CoreFonts = array('courier', 'helvetica', 'times', 'symbol', 'zapfdingbats');
 	// Scale factor
@@ -274,7 +265,7 @@ function AliasNbPages($alias='{nb}')
 function Error($msg)
 {
 	// Fatal error
-	throw new Exception('FPDF error: '.$msg);
+	throw new \Exception('FPDF error: '.$msg);
 }
 
 function Close()
@@ -450,7 +441,7 @@ function Rect($x, $y, $w, $h, $style='')
 	$this->_out(sprintf('%.2F %.2F %.2F %.2F re %s',$x*$this->k,($this->h-$y)*$this->k,$w*$this->k,-$h*$this->k,$op));
 }
 
-function AddFont($family, $style='', $file='')
+function AddFont($family, $style='', $file='', $dir='')
 {
 	// Add a TrueType, OpenType or Type1 font
 	$family = strtolower($family);
@@ -462,11 +453,18 @@ function AddFont($family, $style='', $file='')
 	$fontkey = $family.$style;
 	if(isset($this->fonts[$fontkey]))
 		return;
-	$info = $this->_loadfont($file);
+	if(strpos($file,'/')!==false || strpos($file,"\\")!==false)
+		$this->Error('Incorrect font definition file name: '.$file);
+	if($dir=='')
+		$dir = $this->fontpath;
+	if(substr($dir,-1)!='/' && substr($dir,-1)!='\\')
+		$dir .= '/';
+	$info = $this->_loadfont($dir.$file);
 	$info['i'] = count($this->fonts)+1;
 	if(!empty($info['file']))
 	{
 		// Embedded font
+		$info['file'] = $dir.$info['file'];
 		if($info['type']=='TrueType')
 			$this->FontFiles[$info['file']] = array('length1'=>$info['originalsize']);
 		else
@@ -1134,14 +1132,12 @@ protected function _endpage()
 	$this->state = 1;
 }
 
-protected function _loadfont($font)
+protected function _loadfont($path)
 {
-	// Load a font definition file from the font directory
-	if(strpos($font,'/')!==false || strpos($font,"\\")!==false)
-		$this->Error('Incorrect font definition file name: '.$font);
-	include($this->fontpath.$font);
+	// Load a font definition file
+	include($path);
 	if(!isset($name))
-		$this->Error('Could not include font definition file');
+		$this->Error('Could not include font definition file: '.$path);
 	if(isset($enc))
 		$enc = strtolower($enc);
 	if(!isset($subsetted))
@@ -1613,7 +1609,7 @@ protected function _putfonts()
 		// Font file embedding
 		$this->_newobj();
 		$this->FontFiles[$file]['n'] = $this->n;
-		$font = file_get_contents($this->fontpath.$file,true);
+		$font = file_get_contents($file);
 		if(!$font)
 			$this->Error('Font file not found: '.$file);
 		$compressed = (substr($file,-2)=='.z');
@@ -1861,7 +1857,7 @@ protected function _putresources()
 
 protected function _putinfo()
 {
-	$date = @date('YmdHisO', $this->CreationDate);
+	$date = @date('YmdHisO',$this->CreationDate);
 	$this->metadata['CreationDate'] = 'D:'.substr($date,0,-2)."'".substr($date,-2)."'";
 	foreach($this->metadata as $key=>$value)
 		$this->_put('/'.$key.' '.$this->_textstring($value));
@@ -1902,6 +1898,7 @@ protected function _puttrailer()
 
 protected function _enddoc()
 {
+	$this->CreationDate = time();
 	$this->_putheader();
 	$this->_putpages();
 	$this->_putresources();
@@ -1933,7 +1930,6 @@ protected function _enddoc()
 	$this->_put($offset);
 	$this->_put('%%EOF');
 	$this->state = 3;
-	$this->CreationDate = time();
 }
 }
 ?>
