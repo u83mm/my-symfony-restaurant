@@ -27,7 +27,7 @@ class PdfGeneratorMenuController extends AbstractController
         $pdf->SetFillColor(0, 54.5, 54.5);           
         $pdf->AddPage();
         $pdf->AliasNbPages();
-        $pdf->SetFont('Helvetica','B',12); 
+        $pdf->SetFont('GreatVibes','',18); 
 
 
         /** Show all the categories and their dishes*/
@@ -45,14 +45,14 @@ class PdfGeneratorMenuController extends AbstractController
 
             foreach ($rows as $key => $value) {
             
-                $pdf->SetFont('Helvetica','I',10);
+                $pdf->SetFont('GreatVibes','',14);
                 if($value->getAvailable() === true) {                    
                     $pdf->Cell(150, 10, iconv('UTF-8', 'ISO-8859-1', ucfirst($value->getName())), 0, 0, 'L');
                     $pdf->Cell(20, 10, $value->getPrice() . " " . EURO_SIMBOL, 0, 0, 'R');
                     $pdf->Ln(5);                                                                  
                 }
                 
-                $pdf->SetFont('Arial','B',12);
+                $pdf->SetFont('GreatVibes','',18);
             }
             $pdf->Ln(20);
         } 
