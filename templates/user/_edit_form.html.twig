@@ -14,7 +14,7 @@
     </div>
     <div class="row mb-3">
         <label class="col-12 col-sm-3 text-center text-md-end col-form-label" for="role">Role:</label>
-        <div class="col-sm-8">
+        <div class="col-12 col-md-8 text-center text-md-start">
             <select name="role" id="role">
                 <option value="{{ user.roles ? user.roles|json_encode : '' }}">{{ user.roles ? user.roles|json_encode : '' }}</option>
                 {% for role in roles %}
@@ -23,12 +23,12 @@
             </select>
         </div>                
     </div>              
-    <div class="row mb-3">
+    <div class="row mb-3 mt-5">
         <label class="col-12 col-sm-3 text-center text-md-end" for="nome">&nbsp;</label>
         <div class="col-sm-8 text-center text-md-start">
-            <button class="btn btn-primary">{{ button_label|default('Update') }}</button>
-            <a class="btn btn-primary" href="{{ path('app_user_change_password', {'id': user.id}) }}">Change Password</a>
-            <a class="btn btn-primary" href="{{ path('app_user_index') }}">Back to list</a>        
+            <button class="btn btn-outline-success">{{ button_label|default('Update') }}</button>
+            <a class="btn btn-outline-success" href="{{ path('app_user_change_password', {'id': user.id}) }}">Change Password</a>
+            <a class="btn btn-outline-primary" href="{{ path('app_user_index') }}">Back to list</a>        
         </div>                
     </div>                                                              
 </form>
