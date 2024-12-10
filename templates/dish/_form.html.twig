@@ -1,35 +1,33 @@
 {{ form_start(form) }}
     {% for field in form.children %}
-    <div class="row {% if not field.vars.valid %}has-error{% endif %}">
+    <div class="row align-items-center {% if not field.vars.valid %}has-error{% endif %}">
         {% if field.vars.name != "_token" %}
-            <div class="col-sm-3 mb-3">
+            <div class="{% if field.vars.name == 'available' %} col-3 {% else %} col-sm-3 {% endif %} mb-3 text-center text-sm-end {% if field.vars.name == 'image' %} d-none d-sm-block{% endif %}">
                 {% if field.vars.name == "available" %}
-                    {{ form_label(form, "Available", {'label_attr': {'class': 'form-check-label'}}) }}
+                    {{ form_label(form, "Available", {'label_attr': {'class': 'text-md-end'}}) }}
                 {% else %}
-                    {{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }} 
+                    {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }} 
                 {% endif %}                
             </div>               
         {% endif %}
                 
         {% if field.vars.name == "price" %}
             {# Render field "price" #}
-
             <div class="col-sm-2 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-control col-2' }}) }} 
             </div>
         {% elseif field.vars.name == "image" %} 
-            <div class="col-8 col-sm-5 mb-3">
+            <div class="col-8 col-sm-5 mb-3 mx-auto mx-sm-0">
                 <img class="float-start me-3 img-fluid" src="{{ asset('uploads/dishes_pictures/' ~ dish.picture) }}" alt="Image_dish"> 
             </div>
         {% elseif field.vars.name == "dishDay" or field.vars.name == "dishMenu" %}
             {# Render Select fields #}
-
             <div class="col-sm-4 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-select' }}) }} 
             </div>
         {% elseif field.vars.name == "available" %}
             {# Render field "price" #}
-            <div class="col-sm-8 mb-3">
+            <div class="col-8 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-check-input' }}) }} 
             </div>             
         {% else %}
