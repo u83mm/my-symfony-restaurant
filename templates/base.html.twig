@@ -77,8 +77,8 @@
 				</div>				
 			</nav>			
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}					
-					<p class="text-end pe-2">Loged as: <strong>{{ app.user.userName|capitalize }}</strong></p>									
-				{% endif %}
+				<p class="text-end pe-2">Loged as: <strong>{{ app.user.userName|capitalize }}</strong></p>									
+			{% endif %}
 			{% endblock %}
 			{% block flash %}
 				{# read and display all flash messages #}
