@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+    <h1>Orders</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>TableNumber</th>
+                <td>{{ order.tableNumber }}</td>
+            </tr>
+            <tr>
+                <th>PeopleQty</th>
+                <td>{{ order.peopleQty }}</td>
+            </tr>
+            <tr>
+                <th>Aperitifs</th>
+                <td>{{ order.aperitifs }}</td>
+            </tr>
+            <tr>
+                <th>AperitifsQty</th>
+                <td>{{ order.aperitifsQty }}</td>
+            </tr>
+            <tr>
+                <th>AperitifsFinished</th>
+                <td>{{ order.aperitifsFinished }}</td>
+            </tr>
+            <tr>
+                <th>Firsts</th>
+                <td>{{ order.firsts }}</td>
+            </tr>
+            <tr>
+                <th>FirstsQty</th>
+                <td>{{ order.firstsQty }}</td>
+            </tr>
+            <tr>
+                <th>FirstsFinished</th>
+                <td>{{ order.firstsFinished }}</td>
+            </tr>
+            <tr>
+                <th>Seconds</th>
+                <td>{{ order.seconds }}</td>
+            </tr>
+            <tr>
+                <th>SecondsQty</th>
+                <td>{{ order.secondsQty }}</td>
+            </tr>
+            <tr>
+                <th>SecondsFinished</th>
+                <td>{{ order.secondsFinished }}</td>
+            </tr>
+            <tr>
+                <th>Desserts</th>
+                <td>{{ order.desserts }}</td>
+            </tr>
+            <tr>
+                <th>DessertsQty</th>
+                <td>{{ order.dessertsQty }}</td>
+            </tr>
+            <tr>
+                <th>DessertsFinished</th>
+                <td>{{ order.dessertsFinished }}</td>
+            </tr>
+            <tr>
+                <th>Drinks</th>
+                <td>{{ order.drinks }}</td>
+            </tr>
+            <tr>
+                <th>DrinksQty</th>
+                <td>{{ order.drinksQty }}</td>
+            </tr>
+            <tr>
+                <th>DrinksFinished</th>
+                <td>{{ order.drinksFinished }}</td>
+            </tr>
+            <tr>
+                <th>Coffees</th>
+                <td>{{ order.coffees }}</td>
+            </tr>
+            <tr>
+                <th>CoffeesQty</th>
+                <td>{{ order.coffeesQty }}</td>
+            </tr>
+            <tr>
+                <th>CoffeesFinished</th>
+                <td>{{ order.coffeesFinished }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_orders_index') }}">back to list</a>
+
+    <a href="{{ path('app_orders_edit', {'id': order.id}) }}">edit</a>
+
+    {{ include('orders/_delete_form.html.twig') }}
+{% endblock %}

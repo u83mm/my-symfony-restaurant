@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Dish;
 use App\Entity\MenuDayPrice;
+use App\Form\Custom\AddToOrderType;
 use App\Form\DishType;
 use App\Repository\DishRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -98,8 +99,8 @@ class DishController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_dish_show', methods: ['GET'])]
-    public function show(Dish $dish, DishRepository $dishRepository, ManagerRegistry $mr): Response
+    #[Route('/{id}', name: 'app_dish_show', methods: ['GET', 'POST'])]
+    public function show(Dish $dish, DishRepository $dishRepository, ManagerRegistry $mr, Request $request): Response
     {     
         /** Show diferent Day's menu dishes */
         $primeros = $dishRepository->findDishesByDishday("primero");
@@ -113,6 +114,28 @@ class DishController extends AbstractController
         /** We obtain the dish category */
         $category = $dish->getDishMenu()->getMenuCategory();
 
+        $form = $this->createForm(AddToOrderType::class, null);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $session = $request->getSession();                       
+
+            $data = $form->getData();
+            $data['name'] = $dish->getName();
+
+            $elements = $session->get('elements') ?? [];
+            $elements[] = $data;
+            $session->set('elements', $elements);                                             
+
+            return $this->redirectToRoute(
+                'app_orders_new', 
+                [
+                    //'data' => $data,                                    
+                ], 
+                Response::HTTP_SEE_OTHER
+            );
+        }
+
         return $this->render('dish/show.html.twig', [
             'dish'      => $dish,
             'primeros'  => $primeros,
@@ -120,6 +143,7 @@ class DishController extends AbstractController
             'postres'   => $postres,
             'price'     => $price, 
             'category'  => $category,
+            'form'      => $form,
             'active'    => "menu",          
         ]);
     }
