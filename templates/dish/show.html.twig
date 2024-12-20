@@ -8,9 +8,8 @@
 <section class="col-12 col-lg-9 p-sm-0 pe-lg-3">
     <div class="col mb-3 {{ category }}"></div>
     <div class="row mb-3">
-        <div class="col d-flex justify-content-center align-items-center mb-3">
-            <h2 class="m-0 me-2">{{ dish.name|capitalize }}</h2>
-            <img class="img-fluid mainLogo" src="{{ asset("images/restaurant_logo.png") }}" alt="logo">
+        <div class="col d-flex justify-content-center align-items-center mb-4 mt-4">
+            <h2 class="m-0 me-2">{{ dish.name|capitalize }}</h2>            
         </div>
     </div>
     <div class="row">
@@ -20,10 +19,18 @@
         </div>	
     </div>
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-9 p-4">
+        <div class="col-3 d-none d-xl-block"></div>
+        <div class="col-12 col-md-3 p-3 ps-2 text-center text-md-start">
             <h3>Price: {{ dish.price|format_currency('EUR', locale='es') }}</h3>
             <h3>Available: {% if dish.available %} SI {% else %} NO {% endif %}</h3>
+        </div>
+        <div class="col-12 col-md-7 col-xl-5 text-md-end ps-4 pe-4 pb-4">
+            {{ form_start(form, { 'attr': { 'action': path('app_dish_show', {'id': dish.id}) }}) }}
+            {{ form_label(form.qty, 'Qty:', {'label_attr': {'class': 'col-2 col-form-label d-inline-block'}}) }}
+            {{ form_widget(form.qty, { 'attr': { 'class': 'numberQty d-inline-block', 'value': '0' }}) }}
+            {{ form_widget(form.category, { 'attr': { 'class': 'align-middle, d-inline-block' }}) }}
+            {{ form_widget(form.order) }}
+            {{ form_end(form) }}
         </div>			
     </div>
     

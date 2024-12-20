@@ -1,0 +1,156 @@
+<form action="" method="post">
+    <div class="row mb-4 col-12 col-md-8 mx-auto justify-content-center">
+        <!-- Table -->
+        <div class="col-6 col-lg-4">
+            {{ form_label(form.tableNumber, 'Table:', {'label_attr': {'class': 'col-12 col-md-4 col-form-label text-center text-md-end'}}) }}
+            <div class="col-12 col-md-7 d-inline-block text-center text-md-start">
+                {{ form_widget(form.tableNumber) }}
+            </div>
+        </div>
+
+        <!-- People -->
+        <div class="col-6 col-lg-4">
+            {{ form_label(form.peopleQty, 'People:', {'label_attr': {'class': 'col-12 col-md-4 col-form-label text-center text-md-end'}}) }}
+            <div class="col-12 col-md-7 d-inline-block text-center text-md-start">
+                {{ form_widget(form.peopleQty) }}
+            </div>
+        </div>
+    </div>
+
+                                        <!-- ORDER -->
+    <div class="row mb-3">
+        <!-- Aperitiffs -->
+        <div class="col-12 col-md-6 col-lg-4 mb-5">
+            <h3 class="text-center">Aperitiffs</h3>
+            <div class="w-100 adminMenus menuDia">
+                <ul class="ps-4">
+                    {% for element in app.session.get('elements') %}
+                        {% if element.category == 'aperitifs' %}
+                            <li>
+                                <div class="col-9 d-inline-block">
+                                    {{ element.name|capitalize }}
+                                </div>
+                                <div class="col-2 d-inline-block">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Firsts -->
+        <div class="col-12 col-md-6 col-lg-4 mb-5">
+            <h3 class="text-center">Firsts Dishes</h3>
+            <div class="w-100 adminMenus menuDia">
+                <ul class="ps-4">
+                    {% for element in app.session.get('elements') %}
+                        {% if element.category == 'firsts' %}
+                            <li>
+                                <div class="col-9 d-inline-block">
+                                    {{ element.name|capitalize }}
+                                </div>
+                                <div class="col-2 d-inline-block">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Seconds -->
+        <div class="col-12 col-md-6 col-lg-4 mb-5">
+            <h3 class="text-center">Seconds Dishes</h3>
+            <div class="w-100 adminMenus menuDia">
+                <ul class="ps-4">
+                    {% for element in app.session.get('elements') %}
+                        {% if element.category == 'seconds' %}
+                            <li>
+                                <div class="col-9 d-inline-block">
+                                    {{ element.name|capitalize }}
+                                </div>
+                                <div class="col-2 d-inline-block">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Desserts -->
+        <div class="col-12 col-md-6 col-lg-4 mb-5">
+            <h3 class="text-center">Drinks</h3>
+            <div class="w-100 adminMenus menuDia">
+                <ul class="ps-4">
+                    {% for element in app.session.get('elements') %}
+                        {% if element.category == 'drinks' %}
+                            <li>
+                                <div class="col-9 d-inline-block">
+                                    {{ element.name|capitalize }}
+                                </div>
+                                <div class="col-2 d-inline-block">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Coffees -->
+        <div class="col-12 col-md-6 col-lg-4 mb-5">
+            <h3 class="text-center">Desserts</h3>
+            <div class="w-100 adminMenus menuDia">
+                <ul class="ps-4">
+                    {% for element in app.session.get('elements') %}
+                        {% if element.category == 'desserts' %}
+                            <li>
+                                <div class="col-9 d-inline-block">
+                                    {{ element.name|capitalize }}
+                                </div>
+                                <div class="col-2 d-inline-block">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Aperitiffs -->
+        <div class="col-12 col-md-6 col-lg-4 mb-5">
+            <h3 class="text-center">Coffees / Liquors</h3>
+            <div class="w-100 adminMenus menuDia">
+                <ul class="ps-4">
+                    {% for element in app.session.get('elements') %}
+                        {% if element.category == 'coffees' %}
+                            <li>
+                                <div class="col-9 d-inline-block">
+                                    {{ element.name|capitalize }}
+                                </div>
+                                <div class="col-2 d-inline-block">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
+            <a class="btn btn-outline-primary" href="{{ path('app_reset_order') }}">New Order</a>
+            <a class="btn btn-outline-primary" href="#">Update</a>
+        </div>
+    </div>        
+</form>
