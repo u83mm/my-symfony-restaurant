@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Form;
+declare(strict_types=1);
 
-use App\Entity\Orders;
+namespace App\Form\Custom;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class OrdersType extends AbstractType
+class NewOrderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -48,31 +50,18 @@ class OrdersType extends AbstractType
                     '15'     => 15,
                 ]
             ])
-            ->add('aperitifs')
-            ->add('aperitifsQty')
-            ->add('aperitifsFinished')
-            ->add('firsts')
-            ->add('firstsQty')
-            ->add('firstsFinished')
-            ->add('seconds')
-            ->add('secondsQty')
-            ->add('secondsFinished')
-            ->add('desserts')
-            ->add('dessertsQty')
-            ->add('dessertsFinished')
-            ->add('drinks')
-            ->add('drinksQty')
-            ->add('drinksFinished')
-            ->add('coffees')
-            ->add('coffeesQty')
-            ->add('coffeesFinished')
+            ->add('order', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-outline-success',
+                ]
+            ])           
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Orders::class,
+            'data_class' => null,
         ]);
     }
 }
