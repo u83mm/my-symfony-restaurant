@@ -24,18 +24,18 @@
             <h3 class="text-center">Aperitiffs</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
-                    {% for element in app.session.get('elements') %}
-                        {% if element.category == 'aperitifs' %}
+                   {% for dish in dishes %}
+                        {% if dish.category == 'aperitifs' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ element.name|capitalize }}
+                                    {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
                                 </div>
-                            </li>
+                            </li>                            
                         {% endif %}
-                    {% endfor %}
+                    {% endfor %} 
                 </ul>
             </div>
         </div>
@@ -45,16 +45,16 @@
             <h3 class="text-center">Firsts Dishes</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
-                    {% for element in app.session.get('elements') %}
-                        {% if element.category == 'firsts' %}
+                    {% for dish in dishes %}
+                        {% if dish.category == 'firsts' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ element.name|capitalize }}
+                                    {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
                                 </div>
-                            </li>
+                            </li>                            
                         {% endif %}
                     {% endfor %}
                 </ul>
@@ -66,16 +66,16 @@
             <h3 class="text-center">Seconds Dishes</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
-                    {% for element in app.session.get('elements') %}
-                        {% if element.category == 'seconds' %}
+                    {% for dish in dishes %}
+                        {% if dish.category == 'seconds' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ element.name|capitalize }}
+                                    {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
                                 </div>
-                            </li>
+                            </li>                            
                         {% endif %}
                     {% endfor %}
                 </ul>
@@ -87,16 +87,16 @@
             <h3 class="text-center">Drinks</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
-                    {% for element in app.session.get('elements') %}
-                        {% if element.category == 'drinks' %}
+                    {% for dish in dishes %}
+                        {% if dish.category == 'drinks' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ element.name|capitalize }}
+                                    {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
                                 </div>
-                            </li>
+                            </li>                            
                         {% endif %}
                     {% endfor %}
                 </ul>
@@ -108,16 +108,16 @@
             <h3 class="text-center">Desserts</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
-                    {% for element in app.session.get('elements') %}
-                        {% if element.category == 'desserts' %}
+                    {% for dish in dishes %}
+                        {% if dish.category == 'desserts' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ element.name|capitalize }}
+                                    {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
                                 </div>
-                            </li>
+                            </li>                            
                         {% endif %}
                     {% endfor %}
                 </ul>
@@ -129,16 +129,16 @@
             <h3 class="text-center">Coffees / Liquors</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
-                    {% for element in app.session.get('elements') %}
-                        {% if element.category == 'coffees' %}
+                    {% for dish in dishes %}
+                        {% if dish.category == 'coffees' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ element.name|capitalize }}
+                                    {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ element.qty }}">
+                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
                                 </div>
-                            </li>
+                            </li>                            
                         {% endif %}
                     {% endfor %}
                 </ul>

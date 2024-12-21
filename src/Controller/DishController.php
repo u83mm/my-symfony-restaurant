@@ -102,14 +102,14 @@ class DishController extends AbstractController
     #[Route('/{id}', name: 'app_dish_show', methods: ['GET', 'POST'])]
     public function show(Dish $dish, DishRepository $dishRepository, ManagerRegistry $mr, Request $request): Response
     {     
-        /** Show diferent Day's menu dishes */
+        /** Show different Day's menu dishes */
         $primeros = $dishRepository->findDishesByDishday("primero");
         $segundos = $dishRepository->findDishesByDishday("segundo");
         $postres  = $dishRepository->findDishesByDishday("postre"); 
         
         /** We obtain the Menu's day price */
         $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
-        $price = $priceObject->getPrice() ?? $price = 0;
+        $price = $priceObject->getPrice() ?? 0;
         
         /** We obtain the dish category */
         $category = $dish->getDishMenu()->getMenuCategory();
@@ -117,23 +117,10 @@ class DishController extends AbstractController
         $form = $this->createForm(AddToOrderType::class, null);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $session = $request->getSession();                       
-
-            $data = $form->getData();
-            $data['name'] = $dish->getName();
-
-            $elements = $session->get('elements') ?? [];
-            $elements[] = $data;
-            $session->set('elements', $elements);                                             
-
-            return $this->redirectToRoute(
-                'app_orders_new', 
-                [
-                    //'data' => $data,                                    
-                ], 
-                Response::HTTP_SEE_OTHER
-            );
+        if ($form->isSubmitted() && $form->isValid()) {                                 
+            $data = $form->getData();            
+            $this->addDishToCart($dish, $data, $request);
+            return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('dish/show.html.twig', [
@@ -147,6 +134,32 @@ class DishController extends AbstractController
             'active'    => "menu",          
         ]);
     }
+
+    private function addDishToCart(Dish $dish, array $data, Request $request): void
+    {
+        $dishes = $request->getSession()->get('dishes') ?? [];                        
+
+        foreach ($dishes as &$item) {
+            if ($item['id'] === $dish->getId() && $item['category'] === $data['category']) {
+                /** Increase the quantity if the dish is already in the cart */
+                $item['qty'] += $data['qty'];
+                $request->getSession()->set('dishes', $dishes);                                             
+                return;
+            }
+        }
+
+        $dishes[] = [
+            'id'        => $dish->getId(),
+            'name'      => $dish->getName(),
+            'picture'   => $dish->getPicture(),
+            'price'     => $dish->getPrice(),
+            'qty'       => $data['qty'],
+            'category'  => $data['category'],
+        ];
+        
+        $request->getSession()->set('dishes', $dishes);                                             
+    }
+
 
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_dish_edit', methods: ['GET', 'POST'])]
