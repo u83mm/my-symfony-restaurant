@@ -52,7 +52,9 @@
                                     {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
+                                    <input type="hidden" name="firsts_id[]" value="{{ dish.id }}">
+                                    <input type="hidden" name="firsts_category[]" value="{{ dish.category }}">
+                                    <input class="numberQty" type="number" name="firsts_qty[]" id="" value="{{ dish.qty }}">
                                 </div>
                             </li>                            
                         {% endif %}
@@ -72,8 +74,8 @@
                                 <div class="col-9 d-inline-block">
                                     {{ dish.name|capitalize }}
                                 </div>
-                                <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
+                                <div class="col-2 d-inline-block">                                    
+                                    <input class="numberQty" type="number" name="qty[]" id="" value="{{ dish.qty }}">
                                 </div>
                             </li>                            
                         {% endif %}
@@ -150,7 +152,8 @@
         <div class="col-12 text-center">
             <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
             <a class="btn btn-outline-primary" href="{{ path('app_reset_order') }}">New Order</a>
-            <a class="btn btn-outline-primary" href="#">Update</a>
+            <button class="btn btn-outline-primary">Update</button>
         </div>
-    </div>        
+    </div>  
+    {{ form_rest(form) }}      
 </form>
