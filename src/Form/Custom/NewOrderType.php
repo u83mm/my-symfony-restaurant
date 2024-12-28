@@ -11,9 +11,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NewOrderType extends AbstractType
-{
+{   
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    {                
         $builder
             ->add('tableNumber', ChoiceType::class, [
                 'choices' => [
@@ -49,7 +49,7 @@ class NewOrderType extends AbstractType
                     '14'     => 14,
                     '15'     => 15,
                 ]
-            ])
+            ])            
             ->add('order', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-outline-success',
@@ -61,7 +61,7 @@ class NewOrderType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => null,
+            'data_class' => null,            
         ]);
     }
 }

@@ -100,7 +100,7 @@ class DishController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_dish_show', methods: ['GET', 'POST'])]
-    public function show(Dish $dish, DishRepository $dishRepository, ManagerRegistry $mr, Request $request): Response
+    public function show(Dish $dish, DishRepository $dishRepository, ManagerRegistry $mr, Request $request, CartController $cart): Response
     {     
         /** Show different Day's menu dishes */
         $primeros = $dishRepository->findDishesByDishday("primero");
@@ -117,9 +117,10 @@ class DishController extends AbstractController
         $form = $this->createForm(AddToOrderType::class, null);
         $form->handleRequest($request);
 
+        /** Add dish to cart */
         if ($form->isSubmitted() && $form->isValid()) {                                 
-            $data = $form->getData();            
-            $this->addDishToCart($dish, $data, $request);
+            $data = $form->getData();                      
+            $cart->addDishToCart($dish, $data, $request);
             return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -135,30 +136,7 @@ class DishController extends AbstractController
         ]);
     }
 
-    private function addDishToCart(Dish $dish, array $data, Request $request): void
-    {
-        $dishes = $request->getSession()->get('dishes') ?? [];                        
-
-        foreach ($dishes as &$item) {
-            if ($item['id'] === $dish->getId() && $item['category'] === $data['category']) {
-                /** Increase the quantity if the dish is already in the cart */
-                $item['qty'] += $data['qty'];
-                $request->getSession()->set('dishes', $dishes);                                             
-                return;
-            }
-        }
-
-        $dishes[] = [
-            'id'        => $dish->getId(),
-            'name'      => $dish->getName(),
-            'picture'   => $dish->getPicture(),
-            'price'     => $dish->getPrice(),
-            'qty'       => $data['qty'],
-            'category'  => $data['category'],
-        ];
-        
-        $request->getSession()->set('dishes', $dishes);                                             
-    }
+    
 
 
     #[IsGranted('ROLE_ADMIN')]
