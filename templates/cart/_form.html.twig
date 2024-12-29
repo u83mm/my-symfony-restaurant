@@ -31,7 +31,7 @@
                                     {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
+                                    <input class="numberQty" type="number" name="aperitifs_qty[]" id="" value="{{ dish.qty }}">
                                 </div>
                             </li>                            
                         {% endif %}
@@ -51,9 +51,7 @@
                                 <div class="col-9 d-inline-block">
                                     {{ dish.name|capitalize }}
                                 </div>
-                                <div class="col-2 d-inline-block">
-                                    <input type="hidden" name="firsts_id[]" value="{{ dish.id }}">
-                                    <input type="hidden" name="firsts_category[]" value="{{ dish.category }}">
+                                <div class="col-2 d-inline-block">                                    
                                     <input class="numberQty" type="number" name="firsts_qty[]" id="" value="{{ dish.qty }}">
                                 </div>
                             </li>                            
@@ -74,8 +72,8 @@
                                 <div class="col-9 d-inline-block">
                                     {{ dish.name|capitalize }}
                                 </div>
-                                <div class="col-2 d-inline-block">                                    
-                                    <input class="numberQty" type="number" name="qty[]" id="" value="{{ dish.qty }}">
+                                <div class="col-2 d-inline-block">                                                                        
+                                    <input class="numberQty" type="number" name="seconds_qty[]" id="" value="{{ dish.qty }}">
                                 </div>
                             </li>                            
                         {% endif %}
@@ -96,7 +94,7 @@
                                     {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
+                                    <input class="numberQty" type="number" name="drinks_qty[]" id="" value="{{ dish.qty }}">
                                 </div>
                             </li>                            
                         {% endif %}
@@ -117,7 +115,7 @@
                                     {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
+                                    <input class="numberQty" type="number" name="desserts_qty[]" id="" value="{{ dish.qty }}">
                                 </div>
                             </li>                            
                         {% endif %}
@@ -138,7 +136,7 @@
                                     {{ dish.name|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
-                                    <input class="numberQty" type="number" name="" id="" value="{{ dish.qty }}">
+                                    <input class="numberQty" type="number" name="coffees_qty[]" id="" value="{{ dish.qty }}">
                                 </div>
                             </li>                            
                         {% endif %}
