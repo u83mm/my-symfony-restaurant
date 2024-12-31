@@ -176,7 +176,7 @@ class CartController extends AbstractController
         $request->getSession()->set('dishes', $dishes);                                             
     }
 
-    #[Route('/save/order', name: 'app_save_order', methods: ['GET', 'POST'])]
+    #[Route('/save/cart', name: 'app_save_cart', methods: ['GET', 'POST'])]
     public function saveOrder(Request $request, OrderRepository $orderRepository): Response
     {
         $order = new Order();
