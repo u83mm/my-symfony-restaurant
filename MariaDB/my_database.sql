@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 26, 2024 at 10:25 AM
+-- Generation Time: Dec 31, 2024 at 12:59 PM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.23
 
@@ -44,14 +44,15 @@ CREATE TABLE `dish` (
 
 INSERT INTO `dish` (`id`, `name`, `description`, `picture`, `price`, `dish_day_id`, `dish_menu_id`, `available`) VALUES
 (1, 'macarrones a la boloñesa', 'Suspendisse bibendum velit at ex interdum lacinia. Nam bibendum tortor nisl, vel ultricies risus semper sed. Praesent efficitur tortor in pretium maximus. Sed nec mattis nulla. Donec eleifend in lectus in accumsan. Integer semper finibus sapien, lacinia aliquam leo varius in. Vivamus imperdiet lectus a massa imperdiet sollicitudin. \r\n\r\nSed pellentesque, mauris ut tempor dictum, libero ex malesuada ante, a commodo sem risus non felis. Maecenas venenatis pellentesque turpis eu suscipit.', 'macarrones-bolognesa-6404fe2603f1f.png', 11.75, 4, 2, 0),
-(2, 'ensalada catalana', 'Suspendisse bibendum velit at ex interdum lacinia. Nam bibendum tortor nisl, vel ultricies risus semper sed. Praesent efficitur tortor in pretium maximus. Sed nec mattis nulla. \r\n\r\nDonec eleifend in lectus in accumsan. Integer semper finibus sapien, lacinia aliquam leo varius in. Vivamus imperdiet lectus a massa imperdiet sollicitudin. Sed pellentesque, mauris ut tempor dictum, libero ex malesuada ante, a commodo sem risus non felis. Maecenas venenatis pellentesque turpis eu suscipit.', 'ensalada-catalana-640513571a216.png', 8.20, 4, 3, 0),
+(2, 'ensalada catalana', 'Suspendisse bibendum velit at ex interdum lacinia. Nam bibendum tortor nisl, vel ultricies risus semper sed. Praesent efficitur tortor in pretium maximus. Sed nec mattis nulla. \r\n\r\nDonec eleifend in lectus in accumsan. Integer semper finibus sapien, lacinia aliquam leo varius in. Vivamus imperdiet lectus a massa imperdiet sollicitudin. Sed pellentesque, mauris ut tempor dictum, libero ex malesuada ante, a commodo sem risus non felis. Maecenas venenatis pellentesque turpis eu suscipit.', 'ensalada-catalana-640513571a216.png', 8.20, 4, 3, 1),
 (3, 'ensalada mixta', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'ensalada-mixta-6408f148d4d27.png', 8.50, 1, 3, 1),
 (4, 'paella valenciana', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'paella-valenciana-jpg-6408f190f338b.png', 11.25, 2, 6, 1),
 (5, 'bistec con patatas', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'bistec-patatas-6408f2785ab36.png', 9.50, 2, 4, 1),
 (6, 'arroz con setas', 'nteger malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'arroz-setas-6408f2c3eac89.png', 12.00, 4, 6, 1),
 (7, 'espaguetis a la carbonara', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'espagueti-carbo-6408f30e586cb.png', 8.50, 1, 2, 1),
 (8, 'crema catalana', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'crema-catalana-6408f362b203c.png', 6.00, 3, 7, 1),
-(9, 'entrecotte a la parrilla', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'entrecote-6408f396812a4.png', 12.30, 4, 4, 1);
+(9, 'entrecotte a la parrilla', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'entrecote-6408f396812a4.png', 12.30, 4, 4, 1),
+(10, 'Jarra de Cerveza', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at ipsum et enim euismod congue. Cras dictum auctor finibus. Ut et ultrices tellus. Maecenas tempus et ligula a fermentum. Maecenas lacinia ultricies quam ac posuere. Nam placerat lacus suscipit lectus venenatis scelerisque. Quisque tristique faucibus pretium.', 'beer-676535c3d060b.webp', 3.50, 4, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,10 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230301212938', '2023-03-01 22:29:48', 64),
 ('DoctrineMigrations\\Version20230422193808', '2023-04-22 21:38:43', 129),
 ('DoctrineMigrations\\Version20230423080245', '2023-04-23 10:03:47', 38),
-('DoctrineMigrations\\Version20241125195812', '2024-11-25 21:04:26', 166);
+('DoctrineMigrations\\Version20241125195812', '2024-11-25 21:04:26', 166),
+('DoctrineMigrations\\Version20241218114904', '2024-12-18 12:49:57', 42),
+('DoctrineMigrations\\Version20241221192453', '2024-12-21 20:25:18', 71),
+('DoctrineMigrations\\Version20241230101326', '2024-12-30 11:13:42', 32);
 
 -- --------------------------------------------------------
 
@@ -153,7 +157,7 @@ CREATE TABLE `menu_day_price` (
 --
 
 INSERT INTO `menu_day_price` (`id`, `price`) VALUES
-(1, 15.75);
+(1, 15.80);
 
 -- --------------------------------------------------------
 
@@ -174,6 +178,24 @@ CREATE TABLE `messenger_messages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL,
+  `table_number` smallint(6) NOT NULL,
+  `people_qty` smallint(6) NOT NULL,
+  `aperitifs` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`aperitifs`)),
+  `firsts` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`firsts`)),
+  `seconds` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`seconds`)),
+  `drinks` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`drinks`)),
+  `desserts` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`desserts`)),
+  `coffees` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`coffees`))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -189,7 +211,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `role`) VALUES
 (1, 'ROLE_ADMIN'),
 (2, 'ROLE_USER'),
-(3, 'ROLE_WITER');
+(3, 'ROLE_WAITER');
 
 -- --------------------------------------------------------
 
@@ -211,7 +233,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `user_name`, `email`, `roles`, `password`) VALUES
 (1, 'admin', 'admin@admin.com', '[\"ROLE_ADMIN\"]', '$2y$13$bVmNFfFMjVjwv/l5eR6t5.AYjOmUWdZBTmaNNzSEirpFyyCbF8BSG'),
-(2, 'pepe', 'pepe@pepe.com', '[]', '$2y$13$aoePxdNjNS65F2A6gIZE9eg2mQ4zhxNy7r1YcJjzFYhdvOLm7ocyu');
+(2, 'pepe', 'pepe@pepe.com', '[\"ROLE_USER\"]', '$2y$13$XSWyywf1abLJtW/zHUwC2.1XpyhF/ZLeAHAX83.DVY.AJajglzNrq');
 
 --
 -- Indexes for dumped tables
@@ -259,6 +281,12 @@ ALTER TABLE `messenger_messages`
   ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
 
 --
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -279,7 +307,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `dish_day`
@@ -304,6 +332,12 @@ ALTER TABLE `menu_day_price`
 --
 ALTER TABLE `messenger_messages`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`

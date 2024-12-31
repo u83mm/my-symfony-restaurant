@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Dish;
+use App\Entity\Order;
 use App\Form\Custom\NewOrderType;
+use App\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +31,8 @@ class CartController extends AbstractController
 
         $form = $this->createForm(NewOrderType::class, null);
         $form->handleRequest($request);
+
+        $request->getSession()->set('data', $form->getData());
 
         if($form->isSubmitted() && $form->isValid()) {                        
             $aperitifs_qty  = $_POST['aperitifs_qty'] ?? [];
@@ -170,5 +174,37 @@ class CartController extends AbstractController
         array_values($dishes);
         
         $request->getSession()->set('dishes', $dishes);                                             
+    }
+
+    #[Route('/save/order', name: 'app_save_order', methods: ['GET', 'POST'])]
+    public function saveOrder(Request $request, OrderRepository $orderRepository): Response
+    {
+        $order = new Order();
+
+        // Get the dishes and data from the session
+        $dishes = $request->getSession()->get('dishes');        
+        $data = $request->getSession()->get('data'); 
+        
+        $order->setTableNumber($data['tableNumber']);
+        $order->setPeopleQty($data['peopleQty']);
+
+        foreach($dishes as $dish) {
+            match($dish['category']) {
+                'aperitifs' => $order->setAperitifs($dish),
+                'firsts'    => $order->setFirsts($dish),
+                'seconds'   => $order->setSeconds($dish),
+                'drinks'    => $order->setDrinks($dish),
+                'desserts'  => $order->setDesserts($dish),
+                'coffees'   => $order->setCoffees($dish),
+            };
+        }
+
+        // Save the order
+        $orderRepository->save($order, true);
+        $request->getSession()->remove('dishes');
+        $request->getSession()->remove('data');
+        $this->addFlash('success', 'Order created successfully.');
+        
+        return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
     }
 }
