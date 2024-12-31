@@ -136,9 +136,6 @@ class DishController extends AbstractController
         ]);
     }
 
-    
-
-
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_dish_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Dish $dish, DishRepository $dishRepository, SluggerInterface $slugger): Response
