@@ -80,6 +80,12 @@ class Order
         return $this;
     }
 
+    public function cleanAperitifs() {
+        $this->aperitifs = null;
+
+        return $this;
+    }
+
     public function getFirsts(): ?array
     {
         return $this->firsts;
@@ -88,6 +94,12 @@ class Order
     public function setFirsts(?array $firsts): static
     {
         $this->firsts[] = $firsts;
+
+        return $this;
+    }
+
+    public function cleanFirsts() {
+        $this->firsts = null;
 
         return $this;
     }
@@ -104,6 +116,12 @@ class Order
         return $this;
     }
 
+    public function cleanSeconds() {
+        $this->seconds = null;
+
+        return $this;
+    }
+
     public function getDrinks(): ?array
     {
         return $this->drinks;
@@ -112,6 +130,12 @@ class Order
     public function setDrinks(?array $drinks): static
     {
         $this->drinks[] = $drinks;
+
+        return $this;
+    }
+
+    public function cleanDrinks() {
+        $this->drinks = null;
 
         return $this;
     }
@@ -128,6 +152,12 @@ class Order
         return $this;
     }
 
+    public function cleanDesserts() {
+        $this->desserts = null;
+
+        return $this;
+    }
+
     public function getCoffees(): ?array
     {
         return $this->coffees;
@@ -136,6 +166,12 @@ class Order
     public function setCoffees(?array $coffees): static
     {
         $this->coffees[] = $coffees;
+
+        return $this;
+    }
+
+    public function cleanCoffees() {
+        $this->coffees = null;
 
         return $this;
     }
