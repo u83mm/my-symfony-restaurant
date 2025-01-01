@@ -75,7 +75,7 @@ class Order
 
     public function setAperitifs(?array $aperitifs): static
     {
-        $this->aperitifs = $aperitifs;
+        $this->aperitifs[] = $aperitifs;
 
         return $this;
     }
@@ -87,7 +87,7 @@ class Order
 
     public function setFirsts(?array $firsts): static
     {
-        $this->firsts = $firsts;
+        $this->firsts[] = $firsts;
 
         return $this;
     }
@@ -99,7 +99,7 @@ class Order
 
     public function setSeconds(?array $seconds): static
     {
-        $this->seconds = $seconds;
+        $this->seconds[] = $seconds;
 
         return $this;
     }
@@ -111,7 +111,7 @@ class Order
 
     public function setDrinks(?array $drinks): static
     {
-        $this->drinks = $drinks;
+        $this->drinks[] = $drinks;
 
         return $this;
     }
@@ -123,7 +123,7 @@ class Order
 
     public function setDesserts(?array $desserts): static
     {
-        $this->desserts = $desserts;
+        $this->desserts[] = $desserts;
 
         return $this;
     }
@@ -135,7 +135,7 @@ class Order
 
     public function setCoffees(?array $coffees): static
     {
-        $this->coffees = $coffees;
+        $this->coffees[] = $coffees;
 
         return $this;
     }
