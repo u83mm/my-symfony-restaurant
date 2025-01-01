@@ -12,20 +12,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MenuViewController extends AbstractController
 {
-    #[Route('/menu/view', name: 'app_menu_view')]
-    public function index(ManagerRegistry $mr, DishRepository $dishRepository): Response
-    {       
-        try {
-            $dishMenuRepository = $mr->getRepository(DishMenu::class);        
-            $menuCategories = $dishMenuRepository->findAll();
-    
-            /** Show diferent Day's menu dishes */
-            $primeros = $dishRepository->findDishesByDishday("primero");
-            $segundos = $dishRepository->findDishesByDishday("segundo");
-            $postres  = $dishRepository->findDishesByDishday("postre");  
-    
-            /** We calculate how many "div" elements are necessary to show all the categories in Menu view */
-            $total_categories = count($menuCategories);
+#[Route('/menu/view', name: 'app_menu_view')]
+public function index(ManagerRegistry $mr, DishRepository $dishRepository): Response
+{       
+    try {
+        $dishMenuRepository = $mr->getRepository(DishMenu::class);        
+        $menuCategories = $dishMenuRepository->findAll();
+
+        /** Show diferent Day's menu dishes */
+        $primeros = $dishRepository->findDishesByDishday("primero");
+        $segundos = $dishRepository->findDishesByDishday("segundo");
+        $postres  = $dishRepository->findDishesByDishday("postre");  
+
+        /** We calculate how many "div" elements are necessary to show all the categories in Menu view */
+        $total_categories = count($menuCategories);
             $elements_by_group = 4;
             $total_groups = number_format(ceil($total_categories / $elements_by_group), 0);
 
