@@ -11,13 +11,22 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NewOrderType extends AbstractType
-{   
+{
+   private int|string $tableNumber;
+   private int|string $peopleQty;
+
+    public function __construct() 
+    {
+        $this->tableNumber = isset($_SESSION['_sf2_attributes']['data']['tableNumber']) ? $_SESSION['_sf2_attributes']['data']['tableNumber'] : "Select";
+        $this->peopleQty = isset($_SESSION['_sf2_attributes']['data']['peopleQty']) ? $_SESSION['_sf2_attributes']['data']['peopleQty'] : "Select";
+    }    
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {                
         $builder
             ->add('tableNumber', ChoiceType::class, [
                 'choices' => [
-                    'Select' => "",
+                    "{$this->tableNumber}" => "",
                     '1'      => 1,
                     '2'      => 2,
                     '3'      => 3,
@@ -32,7 +41,7 @@ class NewOrderType extends AbstractType
             ])
             ->add('peopleQty', ChoiceType::class, [
                 'choices' => [
-                    'Select' => "",
+                    "{$this->peopleQty}" => "",
                     '1'      => 1,
                     '2'      => 2,
                     '3'      => 3,
@@ -61,7 +70,7 @@ class NewOrderType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => null,            
+            'data_class' => null,                  
         ]);
     }
 }
