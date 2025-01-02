@@ -27,14 +27,14 @@ class CartController extends AbstractController
     #[Route('/new', name: 'app_cart_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
-        $dishes = $request->getSession()->get('dishes');       
+        $dishes = $request->getSession()->get('dishes');              
 
         $form = $this->createForm(NewOrderType::class, null);
-        $form->handleRequest($request);
+        $form->handleRequest($request);        
 
-        $request->getSession()->set('data', $form->getData());
-
-        if($form->isSubmitted() && $form->isValid()) {                        
+        if($form->isSubmitted() && $form->isValid()) { 
+            $request->getSession()->set('data', $form->getData());
+                                   
             $aperitifs_qty  = $_POST['aperitifs_qty'] ?? [];
             $firsts_qty     = $_POST['firsts_qty']    ?? [];
             $seconds_qty    = $_POST['seconds_qty']   ?? [];
@@ -138,7 +138,8 @@ class CartController extends AbstractController
                 }
             }
 
-            $dishes =array_values($dishes);
+            if(isset($dishes)) $dishes = array_values($dishes);
+            
             $request->getSession()->set('dishes', $dishes);                        
         }
 
