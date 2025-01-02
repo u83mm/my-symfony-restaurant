@@ -25,7 +25,7 @@ class OrderRepository extends ServiceEntityRepository
         }
     }
 
-    public function update(Order $entity): Order
+    public function update(Order $entity, bool $flush = false): void
     {
         // Update the order
         if($entity->getAperitifs() !== null) {
@@ -95,7 +95,20 @@ class OrderRepository extends ServiceEntityRepository
             }
         }
 
-        return $entity;
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Order $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 
     //    /**
