@@ -13,6 +13,7 @@ class ResetOrderController extends AbstractController
     public function resetOrders(Request $request): Response    
     {       
         $request->getSession()->set('dishes', []);
+        $request->getSession()->set('data', []);
         return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
     }
 }
