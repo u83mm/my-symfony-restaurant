@@ -184,8 +184,15 @@ class CartController extends AbstractController
 
         // Get the dishes and data from the session
         $dishes = $request->getSession()->get('dishes');        
-        $data = $request->getSession()->get('data'); 
+        $data = $request->getSession()->get('data');
+
+        // Test if the table is bussy
+        if($orderRepository->testIfTheTableIsBussy($data['tableNumber'])) {
+            $this->addFlash('danger', 'The table is bussy');
+            return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
+        } 
         
+        // Set the order
         $order->setTableNumber($data['tableNumber']);
         $order->setPeopleQty($data['peopleQty']);
 
