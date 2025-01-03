@@ -111,6 +111,16 @@ class OrderRepository extends ServiceEntityRepository
         }
     }
 
+    public function testIfTheTableIsBussy(int $number): bool
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT table_number FROM `order` WHERE table_number = :number';
+        $stmt = $conn->prepare($sql);          
+        $result = $stmt->executeQuery(['number' => $number]);
+        
+        return $result->rowCount() > 0 ? true : false;
+    }
+
     //    /**
     //     * @return Order[] Returns an array of Order objects
     //     */
