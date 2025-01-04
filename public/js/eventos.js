@@ -1,3 +1,5 @@
+import { finishDish, setFinishDishValue, testDishesStriked } from "./dishesFunctions.js";
+
 "use strict"; 
 
 /** Comprueba si el elemento "available" del formulario del CRUD de la entidad "Dish" está marcado o no */
@@ -9,6 +11,9 @@ function checkAvailable() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+	/** Test for striked dishes */
+    testDishesStriked();
+	
     /** Define un evento "click" para el elemento "available" del formulario del CRUD de la entidad "Dish" */
 	let availableCheck = document.getElementById("dish_available");
     if (availableCheck) {addEventListener("click", checkAvailable, false)};
@@ -32,4 +37,14 @@ window.addEventListener('DOMContentLoaded', () => {
 			});
 		});
 	}
+
+	/** Add event "click" to dishes in 'Comandas' view */
+	let finishCheck = document.querySelectorAll("div.finished");
+        
+    if(finishCheck) {        
+		finishCheck.forEach(finish => {
+			finish.addEventListener("click", finishDish);
+			finish.addEventListener("click", setFinishDishValue);
+		});
+    }
 });

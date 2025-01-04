@@ -22,6 +22,7 @@
                                 {% for aperitif in order.aperitifs %}
                                 <li>
                                     <div class="col-9 d-inline-block">
+                                        <input class="item_finished" type="hidden" name="aperitifs_finished[]" id="aperitifs_finished" value="{% if aperitif.finished is defined %}{{ aperitif.finished }}{% endif %}">
                                         <div id="aperitifs_check{{ aperitif.id }}" class="finished">
                                             {{ aperitif.name|capitalize }}
                                         </div>                                    
@@ -42,6 +43,7 @@
                                 {% for first in order.firsts %}
                                 <li>
                                     <div class="col-9 d-inline-block">
+                                        <input class="item_finished" type="hidden" name="firsts_finished[]" id="firsts_finished" value="{% if first.finished is defined %}{{ first.finished }}{% endif %}">
                                         <div id="firsts_check{{ first.id }}" class="finished">
                                             {{ first.name|capitalize }}
                                         </div>                                    
@@ -62,6 +64,7 @@
                                 {% for second in order.seconds %}
                                 <li>
                                     <div class="col-9 d-inline-block">
+                                        <input class="item_finished" type="hidden" name="seconds_finished[]" id="seconds_finished" value="{% if second.finished is defined %}{{ second.finished }}{% endif %}">
                                         <div id="seconds_check{{ second.id }}" class="finished">
                                             {{ second.name|capitalize }}
                                         </div>                                    
@@ -82,6 +85,7 @@
                                 {% for drink in order.drinks %}
                                 <li>
                                     <div class="col-9 d-inline-block">
+                                        <input class="item_finished" type="hidden" name="drinks_finished[]" id="drinks_finished" value="{% if drink.finished is defined %}{{ drink.finished }}{% endif %}">
                                         <div id="drinks_check{{ drink.id }}" class="finished">
                                             {{ drink.name|capitalize }}
                                         </div>                                    
@@ -102,6 +106,7 @@
                                 {% for dessert in order.desserts %}
                                 <li>
                                     <div class="col-9 d-inline-block">
+                                        <input class="item_finished" type="hidden" name="desserts_finished[]" id="desserts_finished" value="{% if dessert.finished is defined %}{{ dessert.finished }}{% endif %}">
                                         <div id="desserts_check{{ dessert.id }}" class="finished">
                                             {{ dessert.name|capitalize }}
                                         </div>                                    
@@ -122,6 +127,7 @@
                                 {% for coffee in order.coffees %}
                                 <li>
                                     <div class="col-9 d-inline-block">
+                                        <input class="item_finished" type="hidden" name="coffees_finished[]" id="coffees_finished" value="{% if coffee.finished is defined %}{{ coffee.finished }}{% endif %}">
                                         <div id="coffees_check{{ coffee.id }}" class="finished">
                                             {{ coffee.name|capitalize }}
                                         </div>                                    
