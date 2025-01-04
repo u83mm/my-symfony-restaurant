@@ -34,19 +34,21 @@ class OrderRepository extends ServiceEntityRepository
 
             foreach($_POST['aperitifs_qty'] as $key => $value) {
                 if($value != 0) {
-                    $aperitifs[$key]['qty'] = $value;                
+                    $aperitifs[$key]['qty'] = $value;
+                    $aperitifs[$key]['finished'] = $_POST['aperitifs_finished'][$key];                
                     $entity->setAperitifs($aperitifs[$key]);
                 }
             }
         }  
         if($entity->getFirsts() !== null) {
             $firsts = $entity->getFirsts();
-            $entity->cleanFirsts();
+            $entity->cleanFirsts();            
 
             foreach($_POST['firsts_qty'] as $key => $value) {
                 if($value != 0) {
-                    $firsts[$key]['qty'] = $value;                
-                    $entity->setFirsts($firsts[$key]);
+                    $firsts[$key]['qty'] = $value; 
+                    $firsts[$key]['finished'] = $_POST['firsts_finished'][$key];               
+                    $entity->setFirsts($firsts[$key]);                    
                 }
             }
         }
@@ -56,7 +58,8 @@ class OrderRepository extends ServiceEntityRepository
 
             foreach($_POST['seconds_qty'] as $key => $value) {
                 if($value != 0) {
-                    $seconds[$key]['qty'] = $value;                
+                    $seconds[$key]['qty'] = $value; 
+                    $seconds[$key]['finished'] = $_POST['seconds_finished'][$key];               
                     $entity->setSeconds($seconds[$key]);
                 }              
             }                        
@@ -67,7 +70,8 @@ class OrderRepository extends ServiceEntityRepository
 
             foreach($_POST['drinks_qty'] as $key => $value) {
                 if($value != 0) {
-                    $drinks[$key]['qty'] = $value;                
+                    $drinks[$key]['qty'] = $value;
+                    $drinks[$key]['finished'] = $_POST['drinks_finished'][$key];                
                     $entity->setDrinks($drinks[$key]);
                 }
             }
@@ -78,7 +82,8 @@ class OrderRepository extends ServiceEntityRepository
 
             foreach($_POST['desserts_qty'] as $key => $value) {
                 if($value != 0) {
-                    $desserts[$key]['qty'] = $value;                
+                    $desserts[$key]['qty'] = $value;
+                    $desserts[$key]['finished'] = $_POST['desserts_finished'][$key];               
                     $entity->setDesserts($desserts[$key]);
                 }                                
             }
@@ -89,7 +94,8 @@ class OrderRepository extends ServiceEntityRepository
 
             foreach($_POST['coffees_qty'] as $key => $value) {
                 if($value != 0) {
-                    $coffees[$key]['qty'] = $value;                
+                    $coffees[$key]['qty'] = $value;
+                    $coffees[$key]['finished'] = $_POST['coffees_finished'][$key];                
                     $entity->setCoffees($coffees[$key]);
                 }                             
             }
