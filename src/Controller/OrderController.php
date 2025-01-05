@@ -6,10 +6,13 @@ use App\Entity\Order;
 use App\Repository\OrderRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted(new Expression('is_granted("ROLE_ADMIN") or is_granted("ROLE_WAITER")'))]
 #[Route('/order')]
 class OrderController extends AbstractController
 {
@@ -52,10 +55,13 @@ class OrderController extends AbstractController
         }                
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/delete', name: 'app_order_delete', methods: ['POST'])]
     public function delete(Request $request, Order $order, OrderRepository $orderRepository): Response
     {
         try {
+            //if(!IsGranted('ROLE_ADMIN')) {throw new \Exception("You don't have permission", 1);}
+           
             if ($this->isCsrfTokenValid('delete'.$order->getId(), $request->request->get('_token'))) {
                 $orderRepository->remove($order, true);
                 $this->addFlash('success', 'Order deleted successfully.');
