@@ -65,10 +65,12 @@
 								<a class="nav-link {% if active is defined and active == 'administration' %}active{% endif %}" aria-current="page" href="{{ path('app_admin') }}">Administration</a>							
 							</li>							
 							{% endif %}
-							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_WAITER') %}
+							{% if is_granted('ROLE_WAITER') %}
 							<li class="nav-item d-lg-inline-block">
 								<a class="nav-link {% if active is defined and active == 'order' %}active{% endif %}" aria-current="page" href="{{ path('app_order') }}">Order List</a>
-							</li>							
+							</li>
+							{% endif %}
+							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_WAITER') %}							
 							<li class="nav-item d-lg-inline-block">
 								<a class="nav-link {% if active is defined and active == 'order' %}active{% endif %}" aria-current="page" href="{{ path('app_cart_new') }}">Order</a>
 							</li>
