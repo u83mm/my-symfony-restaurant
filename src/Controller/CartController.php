@@ -182,7 +182,7 @@ class CartController extends AbstractController
         $request->getSession()->set('dishes', $dishes);                                             
     }
 
-    #[Route('/save/cart', name: 'app_save_cart', methods: ['GET', 'POST'])]
+    #[Route('/save', name: 'app_save_cart', methods: ['GET', 'POST'])]
     public function saveOrder(Request $request, OrderRepository $orderRepository): Response
     {
         $order = new Order();
@@ -190,6 +190,7 @@ class CartController extends AbstractController
         // Get the dishes and data from the session
         $dishes = $request->getSession()->get('dishes');        
         $data = $request->getSession()->get('data');
+        
 
         // Test if the table is bussy
         if($orderRepository->testIfTheTableIsBussy($data['tableNumber'])) {
