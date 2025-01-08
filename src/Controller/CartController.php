@@ -188,6 +188,12 @@ class CartController extends AbstractController
         // Get the dishes and data from the session
         $dishes = $request->getSession()->get('dishes');        
         $data = $request->getSession()->get('data');
+
+        // Test if data are selected
+        if(!$data) {
+            $this->addFlash('danger', 'Please select table number and people quantity');
+            return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
+        }
         
         // Adds new dishes to an existing order, updates table number or people quantity
         if($oldOrder = $request->getSession()->get('order')) {
@@ -205,7 +211,8 @@ class CartController extends AbstractController
                 return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
             }
 
-            //! Add more dishes to the order
+            // Adds new dishes to an existing order
+            if($dishes) $orderRepository->addDishesToAnExistingOrder($dishes, $order);         
 
             $orderRepository->update($order, true);
             $this->addFlash('success', 'Order updated successfully.');
@@ -225,9 +232,9 @@ class CartController extends AbstractController
             return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
         }
         
-        // Test if the order is valid
+        // Test if the order is empty
         if(!$dishes) {
-            $this->addFlash('danger', 'No dish selected');
+            $this->addFlash('danger', 'Select a dish from the menu');
             return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
         }
         

@@ -127,6 +127,161 @@ class OrderRepository extends ServiceEntityRepository
         return $result->rowCount() > 0 ? true : false;
     }
 
+    public function addDishesToAnExistingOrder(array $dishes, Order $order): void {
+        foreach ($dishes as $dish) {
+
+            // Aperitifs
+            if($dish['category'] == 'aperitifs') {
+                $apperitifs = $order->getAperitifs();
+                $order->cleanAperitifs();
+
+                if($apperitifs !== null) {
+                    foreach ($apperitifs as $aperitifKey => $aperitif) {
+                        if($aperitif['name'] == $dish['name']) {
+                            $apperitifs[$aperitifKey]['qty'] += $dish['qty'];                                                      
+                            break;
+                        }
+                        else if(count($apperitifs) == $aperitifKey + 1) {
+                            $apperitifs[] = $dish;                            
+                        }                                                
+                    }
+                    
+                    foreach ($apperitifs as $value) {
+                        $order->setAperitifs($value);
+                    }
+                }
+                else {
+                    $order->setAperitifs($dish);
+                }
+            }
+
+            // Firsts
+            if($dish['category'] == 'firsts') {
+                $firsts = $order->getFirsts();
+                $order->cleanFirsts();
+
+                if($firsts !== null) {
+                    foreach ($firsts as $firstKey => $first) {
+                        if($first['name'] == $dish['name']) {
+                            $firsts[$firstKey]['qty'] += $dish['qty'];                                                      
+                            break;
+                        }
+                        else if(count($firsts) == $firstKey + 1) {
+                            $firsts[] = $dish;                            
+                        }                                                
+                    }
+                    
+                    foreach ($firsts as $value) {
+                        $order->setFirsts($value);
+                    }
+                }
+                else {
+                    $order->setFirsts($dish);
+                }
+            }
+
+            // Seconds
+            if($dish['category'] == 'seconds') {
+                $seconds = $order->getSeconds();
+                $order->cleanSeconds();
+
+                if($seconds !== null) {
+                    foreach ($seconds as $secondKey => $second) {
+                        if($second['name'] == $dish['name']) {
+                            $seconds[$secondKey]['qty'] += $dish['qty'];                                                      
+                            break;
+                        }
+                        else if(count($seconds) == $secondKey + 1) {
+                            $seconds[] = $dish;                            
+                        }                                                
+                    }
+                    
+                    foreach ($seconds as $value) {
+                        $order->setSeconds($value);
+                    }
+                }
+                else {
+                    $order->setSeconds($dish);
+                }
+            }
+
+            // Drinks
+            if($dish['category'] == 'drinks') {
+                $drinks = $order->getDrinks();
+                $order->cleanDrinks();
+
+                if($drinks !== null) {
+                    foreach ($drinks as $drinkKey => $drink) {
+                        if($drink['name'] == $dish['name']) {
+                            $drinks[$drinkKey]['qty'] += $dish['qty'];                                                      
+                            break;
+                        }
+                        else if(count($drinks) == $drinkKey + 1) {
+                            $drinks[] = $dish;                            
+                        }                                                
+                    }
+                    
+                    foreach ($drinks as $value) {
+                        $order->setDrinks($value);
+                    }
+                }
+                else {
+                    $order->setDrinks($dish);
+                }
+            }
+
+            // Desserts
+            if($dish['category'] == 'desserts') {
+                $desserts = $order->getDesserts();
+                $order->cleanDesserts();
+
+                if($desserts !== null) {
+                    foreach ($desserts as $dessertKey => $dessert) {
+                        if($dessert['name'] == $dish['name']) {
+                            $desserts[$dessertKey]['qty'] += $dish['qty'];                                                      
+                            break;
+                        }
+                        else if(count($desserts) == $dessertKey + 1) {
+                            $desserts[] = $dish;                            
+                        }                                                
+                    }
+                    
+                    foreach ($desserts as $value) {
+                        $order->setDesserts($value);
+                    }
+                }
+                else {
+                    $order->setDesserts($dish);
+                }
+            }
+
+            // Coffees
+            if($dish['category'] == 'coffees') {
+                $coffees = $order->getCoffees();
+                $order->cleanCoffees();
+
+                if($coffees !== null) {
+                    foreach ($coffees as $coffeeKey => $coffee) {
+                        if($coffee['name'] == $dish['name']) {
+                            $coffees[$coffeeKey]['qty'] += $dish['qty'];                                                      
+                            break;
+                        }
+                        else if(count($coffees) == $coffeeKey + 1) {
+                            $coffees[] = $dish;                            
+                        }                                                
+                    }
+                    
+                    foreach ($coffees as $value) {
+                        $order->setCoffees($value);
+                    }
+                }
+                else {
+                    $order->setCoffees($dish);
+                }
+            }
+        }
+    }
+
     //    /**
     //     * @return Order[] Returns an array of Order objects
     //     */
