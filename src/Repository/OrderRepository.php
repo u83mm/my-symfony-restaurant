@@ -28,7 +28,7 @@ class OrderRepository extends ServiceEntityRepository
     public function update(Order $entity, bool $flush = false): void
     {
         // Update the order
-        if($entity->getAperitifs() !== null) {
+        if($entity->getAperitifs() !== null && isset($_POST['aperitifs_qty'])) {
             $aperitifs = $entity->getAperitifs();
             $entity->cleanAperitifs();
 
@@ -40,7 +40,7 @@ class OrderRepository extends ServiceEntityRepository
                 }
             }
         }  
-        if($entity->getFirsts() !== null) {
+        if($entity->getFirsts() !== null && isset($_POST['firsts_qty'])) {
             $firsts = $entity->getFirsts();
             $entity->cleanFirsts();            
 
@@ -52,7 +52,7 @@ class OrderRepository extends ServiceEntityRepository
                 }
             }
         }
-        if($entity->getSeconds() !== null) {
+        if($entity->getSeconds() !== null && isset($_POST['seconds_qty'])) {
             $seconds = $entity->getSeconds();
             $entity->cleanSeconds();
 
@@ -64,7 +64,7 @@ class OrderRepository extends ServiceEntityRepository
                 }              
             }                        
         }
-        if($entity->getDrinks() !== null) {
+        if($entity->getDrinks() !== null && isset($_POST['drinks_qty'])) {
             $drinks = $entity->getDrinks();
             $entity->cleanDrinks();
 
@@ -76,7 +76,7 @@ class OrderRepository extends ServiceEntityRepository
                 }
             }
         }
-        if($entity->getDesserts() !== null) {
+        if($entity->getDesserts() !== null && isset($_POST['desserts_qty'])) {
             $desserts = $entity->getDesserts();
             $entity->cleanDesserts();
 
@@ -88,7 +88,7 @@ class OrderRepository extends ServiceEntityRepository
                 }                                
             }
         }
-        if($entity->getCoffees() !== null) {
+        if($entity->getCoffees() !== null && isset($_POST['coffees_qty'])) {
             $coffees = $entity->getCoffees();
             $entity->cleanCoffees();
 

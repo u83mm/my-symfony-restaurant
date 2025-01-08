@@ -77,4 +77,22 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('app_order_show', ['id' => $order->getId()]);
         }        
     }
+
+    #[Route('/{id}/add', name: 'app_order_add', methods: ['GET'])]
+    public function addToOrder(Request $request, Order $order, OrderRepository $orderRepository): Response
+    {
+        try {
+            $request->getSession()->set('order', $order);
+            $request->getSession()->set('data', [
+                'tableNumber' => $order->getTableNumber(),
+                'peopleQty' => $order->getPeopleQty()
+            ]);            
+            
+            return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
+
+        } catch (\Throwable $th) {
+            $this->addFlash('danger', $th->getMessage());
+            return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
+        }
+    }
 }
