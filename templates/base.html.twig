@@ -21,8 +21,7 @@
         {% block javascripts %}
 			<script src="{{ asset("/js/bootstrap.bundle.min.js.js") }}"></script>
         	<script type="module" src="{{ asset('/js/eventos.js') }}"></script> 
-        	<script defer src="{{ asset('/js/all.js') }}"></script> 
-        	{# <script src={{ asset('https://kit.fontawesome.com/80ec316a17.js') }} crossorigin="anonymous"></script> #}
+        	<script defer src="{{ asset('/js/all.js') }}"></script>         	
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
