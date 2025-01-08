@@ -184,19 +184,52 @@ class CartController extends AbstractController
 
     #[Route('/save', name: 'app_save_cart', methods: ['GET', 'POST'])]
     public function saveOrder(Request $request, OrderRepository $orderRepository): Response
-    {
-        $order = new Order();
-
+    {       
         // Get the dishes and data from the session
         $dishes = $request->getSession()->get('dishes');        
         $data = $request->getSession()->get('data');
         
+        // Adds new dishes to an existing order, updates table number or people quantity
+        if($oldOrder = $request->getSession()->get('order')) {
+            $order = $orderRepository->findOneBy(['id' => $oldOrder->getId()]);
+            $order->setTableNumber(0);
+            $orderRepository->update($order, true);
+
+            // Updates table number or people quantity or both
+            $order->setTableNumber($data['tableNumber']);
+            $order->setPeopleQty($data['peopleQty']);
+
+            // Test if the table is bussy
+            if($orderRepository->testIfTheTableIsBussy($data['tableNumber'])) {
+                $this->addFlash('danger', 'The table is bussy');
+                return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
+            }
+
+            //! Add more dishes to the order
+
+            $orderRepository->update($order, true);
+            $this->addFlash('success', 'Order updated successfully.');
+            $request->getSession()->remove('order');
+            $request->getSession()->remove('dishes');
+            $request->getSession()->remove('data');
+
+            return $this->redirectToRoute('app_order_show', ['id' => $order->getId()], Response::HTTP_SEE_OTHER);
+        }
+        else {
+            $order = new Order();
+        }
 
         // Test if the table is bussy
         if($orderRepository->testIfTheTableIsBussy($data['tableNumber'])) {
             $this->addFlash('danger', 'The table is bussy');
             return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
-        } 
+        }
+        
+        // Test if the order is valid
+        if(!$dishes) {
+            $this->addFlash('danger', 'No dish selected');
+            return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
+        }
         
         // Set the order
         $order->setTableNumber($data['tableNumber']);
@@ -220,5 +253,5 @@ class CartController extends AbstractController
         $this->addFlash('success', 'Order created successfully.');
         
         return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
-    }
+    }    
 }

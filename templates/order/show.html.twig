@@ -142,7 +142,8 @@
                     {% endif %}
                     <div class="col text-center">
                         <a class="btn btn-outline-success" href="{{ path('app_order') }}">Back to list</a>
-                        <button class="btn btn-outline-success" type="submit">Update</button>                                         
+                        <button class="btn btn-outline-success" type="submit">Update</button> 
+                        <a class="btn btn-outline-primary" href="{{ path('app_order_add', {'id': order.id}) }}">Add to Order</a>                                        
                     </div>
                 </form>
                 {% if is_granted('ROLE_ADMIN') %}
