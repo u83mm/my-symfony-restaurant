@@ -22,10 +22,11 @@ class HomeController extends AbstractController
             
             /** We obtain the Menu's day price */
             $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
-            $price = $priceObject->getPrice() ?? $price = 0;
+            $price = $priceObject->getPrice() ?? $price = 0;                        
 
         } catch (\Throwable $th) {
-            echo $th->getMessage();            
+            $this->addFlash('danger', $th->getMessage());
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);                        
         }
                     
         return $this->render('home/index.html.twig', [
