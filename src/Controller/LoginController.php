@@ -12,18 +12,25 @@ class LoginController extends AbstractController
     #[Route('/login', name: 'app_login')]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        try {
+            // get the login error if there is one
+            $error = $authenticationUtils->getLastAuthenticationError();
 
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+            // last username entered by the user
+            $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('login/index.html.twig', [
-            //'controller_name' => 'LoginController',
-            'last_username' => $lastUsername,
-            'error'         => $error,
-            'active'        => "login",
-        ]);
+            return $this->render('login/index.html.twig', [
+                //'controller_name' => 'LoginController',
+                'last_username' => $lastUsername,
+                'error'         => $error,
+                'active'        => "login",
+            ]);
+
+        } catch (\Throwable $th) {
+            $this->addFlash('danger', $th->getMessage());
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }
+        
     }
 
     #[Route('/logout', name: 'app_logout', methods: ['GET'])]
