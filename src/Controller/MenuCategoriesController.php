@@ -16,7 +16,7 @@ class MenuCategoriesController extends AbstractController
     #[Route('/{category}', name: 'app_dishes_category')]
     public function index(DishRepository $dishRepository, ManagerRegistry $mr, Request $request): Response
     {        
-        try {
+        try {                        
             /** Show diferent Day's menu dishes */
             $primeros = $dishRepository->findDishesByDishday("primero");
             $segundos = $dishRepository->findDishesByDishday("segundo");
@@ -40,10 +40,11 @@ class MenuCategoriesController extends AbstractController
             /** We calculate how many "div" elements are necessary to show all the categories in Menu view */
             $total_categories = count($dishesByCategory);
             $elements_by_group = 4;
-            $total_groups = number_format(ceil($total_categories / $elements_by_group), 0);       
+            $total_groups = number_format(ceil($total_categories / $elements_by_group), 0);                         
 
         } catch (\Throwable $th) {
-            $message =  $th->getMessage();
+            $this->addFlash('danger', $th->getMessage());
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('menu_categories/index.html.twig', [
