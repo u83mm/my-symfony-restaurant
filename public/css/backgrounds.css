@@ -123,3 +123,10 @@
 	height: auto;
 	background-position: center;	
 }
+
+.reservations {
+	background-image: url("/images/reservations.webp");
+	background-size: cover;
+	height: 11em;
+	background-position: center;
+}
