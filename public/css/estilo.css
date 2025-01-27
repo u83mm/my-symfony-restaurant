@@ -189,6 +189,7 @@
 		/*border: 1px solid black;*/
 		padding: 1em;
 		box-shadow: 0px 1.5em 1.5em gray;
+		float:right;
 	}
 	
 	.menuDia img {
