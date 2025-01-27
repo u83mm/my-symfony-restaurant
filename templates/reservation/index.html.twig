@@ -15,7 +15,7 @@
             <div class="col-12 col-md-6">
                 {{ form_label(form.date, 'Date:', {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
                 <div class="col-8 col-md-5 d-inline-block mb-2 mb-md-0">
-                    {{ form_widget(form.date, { 'attr': { 'class': 'form-control blockBefore', 'required': 'required', 'min': "now"|date("m/d/Y")}}) }}
+                    {{ form_widget(form.date, { 'attr': { 'class': 'form-control blockBefore', 'required': 'required', 'min': "now"|date("m/d/Y"), 'type': 'date'}}) }}
                 </div>
             </div>
             <div class="col-12 col-md-6">
