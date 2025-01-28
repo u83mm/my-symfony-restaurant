@@ -14,11 +14,11 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $time = null;
+    #[ORM\Column(length: 50)]
+    private ?string $time = null;
 
     #[ORM\Column(length: 100)]
     private ?string $name = null;
@@ -49,12 +49,12 @@ class Reservation
         return $this;
     }
 
-    public function getTime(): ?\DateTimeInterface
+    public function getTime(): ?string
     {
         return $this->time;
     }
 
-    public function setTime(\DateTimeInterface $time): static
+    public function setTime(string $time): static
     {
         $this->time = $time;
 

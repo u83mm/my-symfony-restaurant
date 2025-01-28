@@ -6,15 +6,17 @@ use App\Entity\MenuDayPrice;
 use App\Entity\Reservation;
 use App\Form\ReservationsType;
 use App\Repository\DishRepository;
+use App\Repository\ReservationRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ReservationController extends AbstractController
 {
     #[Route('/reservation', name: 'app_reservation')]
-    public function index(DishRepository $dishRepository, ManagerRegistry $mr): Response
+    public function index(DishRepository $dishRepository, ManagerRegistry $mr, Request $request, ReservationRepository $reservationRepository): Response
     {
         try {
             /** Show diferent Day's menu dishes */
@@ -29,6 +31,14 @@ class ReservationController extends AbstractController
             /** Show the reservation form */
             $reservation = new Reservation();
             $form = $this->createForm(ReservationsType::class, $reservation);
+            $form->handleRequest($request);           
+
+            /** Save the reservation */
+            if ($form->isSubmitted() && $form->isValid()) {                
+                $reservationRepository->save($reservation, true);
+                $this->addFlash('success', 'Thank you for your reservation!');
+                return $this->redirectToRoute('app_reservation', [], Response::HTTP_SEE_OTHER);
+            }
 
             return $this->render('reservation/index.html.twig', [
                 'controller_name' => 'ReservationController',
