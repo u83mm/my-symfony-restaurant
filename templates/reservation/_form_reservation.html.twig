@@ -1,0 +1,58 @@
+{{ form_start(form) }}
+<!-- Date and Time -->
+<div class="row mb-0 mb-md-3 d-flex">
+    <div class="col-12 col-md-6">
+        {{ form_label(form.date, 'Date:', {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
+        <div class="col-8 col-md-5 d-inline-block mb-2 mb-md-0">
+            {{ form_widget(form.date, { 'attr': { 'class': 'form-control', 'required': 'required', 'min': "now"|date("Y-m-d"), 'type': 'date'}}) }}
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_label(form.time, 'Time:', {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
+        <div class="col-8 col-md-7 col-lg-4 d-inline-block mb-2 mb-md-0">
+            {{ form_widget(form.time, { 'attr': { 'required': 'required'}}) }}
+        </div>
+    </div>
+</div>
+
+<!-- Name and people quantity -->
+<div class="row mb-0 mb-md-3 d-flex">
+    <div class="col-12 col-md-6">
+        {{ form_label(form.name, 'Name:', {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
+        <div class="col-8 col-md-7 d-inline-block mb-2 mb-md-0">
+            {{ form_widget(form.name, { 'attr': { 'class': 'form-control blockBefore', 'required': 'required'}}) }}
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_label(form.peopleQty, 'Quantity:', {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
+        <div class="col-8 col-md-7 col-lg-4 d-inline-block mb-2 mb-md-0">
+            {{ form_widget(form.peopleQty, { 'attr': { 'required': 'required'}}) }}
+        </div>
+    </div>
+</div>
+
+<!-- Email -->
+<div class="row mb-0 mb-md-3 d-flex">
+    <div class="col-12 col-md-6">
+        {{ form_label(form.email, 'Email:', {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
+        <div class="col-8 col-md-7 d-inline-block mb-2 mb-md-0">
+            {{ form_widget(form.email, { 'attr': { 'class': 'form-control blockBefore', 'required': 'required'}}) }}
+        </div>
+    </div>            
+</div>
+
+<!-- Comment -->
+<div class="row mb-0 mb-md-3 d-flex">
+    <div class="col-12">
+        {{ form_label(form.comment, 'Comment:', {'label_attr': {'class': 'col-2 col-md-2 form-label mb-2 mb-md-0'}}) }}
+        <div class="col-12 col-md-9 d-inline-block mb-2 mb-md-0">
+            {{ form_widget(form.comment, { 'attr': { 'class': 'form-control blockBefore', 'required': 'required', 'placeholder': 'Write your comment here...'}}) }}
+        </div>
+    </div>            
+</div>
+<div class="row mb-3 mt-5 d-flex">
+    <div class="text-center">
+        {{ form_widget(form.send) }}
+    </div>
+</div>
+{{ form_end(form) }}
