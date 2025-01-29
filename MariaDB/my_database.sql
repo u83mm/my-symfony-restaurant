@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Dec 31, 2024 at 12:59 PM
+-- Generation Time: Jan 29, 2025 at 11:09 AM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.23
 
@@ -139,7 +139,14 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20241125195812', '2024-11-25 21:04:26', 166),
 ('DoctrineMigrations\\Version20241218114904', '2024-12-18 12:49:57', 42),
 ('DoctrineMigrations\\Version20241221192453', '2024-12-21 20:25:18', 71),
-('DoctrineMigrations\\Version20241230101326', '2024-12-30 11:13:42', 32);
+('DoctrineMigrations\\Version20241230101326', '2024-12-30 11:13:42', 32),
+('DoctrineMigrations\\Version20250104102951', '2025-01-04 11:30:11', 78),
+('DoctrineMigrations\\Version20250104112921', '2025-01-04 12:29:34', 59),
+('DoctrineMigrations\\Version20250104113129', '2025-01-04 12:31:32', 78),
+('DoctrineMigrations\\Version20250104165133', '2025-01-04 17:51:46', 48),
+('DoctrineMigrations\\Version20250126114931', '2025-01-26 12:49:55', 37),
+('DoctrineMigrations\\Version20250127100244', '2025-01-27 11:02:59', 75),
+('DoctrineMigrations\\Version20250127101912', '2025-01-27 11:19:15', 64);
 
 -- --------------------------------------------------------
 
@@ -193,6 +200,30 @@ CREATE TABLE `order` (
   `coffees` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`coffees`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id`, `table_number`, `people_qty`, `aperitifs`, `firsts`, `seconds`, `drinks`, `desserts`, `coffees`) VALUES
+(1, 1, 2, NULL, '[{\"id\":3,\"name\":\"ensalada mixta\",\"picture\":\"ensalada-mixta-6408f148d4d27.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"firsts\",\"finished\":\"1\"},{\"id\":7,\"name\":\"espaguetis a la carbonara\",\"picture\":\"espagueti-carbo-6408f30e586cb.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"firsts\",\"finished\":\"1\"}]', '[{\"id\":4,\"name\":\"paella valenciana\",\"picture\":\"paella-valenciana-jpg-6408f190f338b.png\",\"price\":\"11.25\",\"qty\":\"1\",\"category\":\"seconds\",\"finished\":\"\"},{\"id\":5,\"name\":\"bistec con patatas\",\"picture\":\"bistec-patatas-6408f2785ab36.png\",\"price\":\"9.50\",\"qty\":\"1\",\"category\":\"seconds\",\"finished\":\"\"}]', '[{\"id\":10,\"name\":\"Jarra de Cerveza\",\"picture\":\"beer-676535c3d060b.webp\",\"price\":\"3.50\",\"qty\":\"2\",\"category\":\"drinks\",\"finished\":\"\"}]', '[{\"id\":8,\"name\":\"crema catalana\",\"picture\":\"crema-catalana-6408f362b203c.png\",\"price\":\"6.00\",\"qty\":\"2\",\"category\":\"desserts\",\"finished\":\"\"}]', NULL),
+(10, 2, 4, '[{\"id\":3,\"name\":\"ensalada mixta\",\"picture\":\"ensalada-mixta-6408f148d4d27.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"aperitifs\",\"finished\":\"1\"},{\"id\":7,\"name\":\"espaguetis a la carbonara\",\"picture\":\"espagueti-carbo-6408f30e586cb.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"aperitifs\",\"finished\":\"1\"}]', '[{\"id\":3,\"name\":\"ensalada mixta\",\"picture\":\"ensalada-mixta-6408f148d4d27.png\",\"price\":\"8.50\",\"qty\":\"2\",\"category\":\"firsts\",\"finished\":\"1\"},{\"id\":7,\"name\":\"espaguetis a la carbonara\",\"picture\":\"espagueti-carbo-6408f30e586cb.png\",\"price\":\"8.50\",\"qty\":\"2\",\"category\":\"firsts\",\"finished\":\"1\"},{\"id\":4,\"name\":\"paella valenciana\",\"picture\":\"paella-valenciana-jpg-6408f190f338b.png\",\"price\":\"11.25\",\"qty\":\"1\",\"category\":\"firsts\",\"finished\":\"1\"}]', '[{\"id\":5,\"name\":\"bistec con patatas\",\"picture\":\"bistec-patatas-6408f2785ab36.png\",\"price\":\"9.50\",\"qty\":\"2\",\"category\":\"seconds\",\"finished\":\"1\"},{\"id\":4,\"name\":\"paella valenciana\",\"picture\":\"paella-valenciana-jpg-6408f190f338b.png\",\"price\":\"11.25\",\"qty\":\"2\",\"category\":\"seconds\",\"finished\":\"1\"}]', NULL, '[{\"id\":8,\"name\":\"crema catalana\",\"picture\":\"crema-catalana-6408f362b203c.png\",\"price\":\"6.00\",\"qty\":2,\"category\":\"desserts\"}]', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `time` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `people_qty` smallint(6) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `comment` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -233,7 +264,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `user_name`, `email`, `roles`, `password`) VALUES
 (1, 'admin', 'admin@admin.com', '[\"ROLE_ADMIN\"]', '$2y$13$bVmNFfFMjVjwv/l5eR6t5.AYjOmUWdZBTmaNNzSEirpFyyCbF8BSG'),
-(2, 'pepe', 'pepe@pepe.com', '[\"ROLE_USER\"]', '$2y$13$XSWyywf1abLJtW/zHUwC2.1XpyhF/ZLeAHAX83.DVY.AJajglzNrq');
+(2, 'pepe', 'pepe@pepe.com', '[\"ROLE_WAITER\"]', '$2y$13$XSWyywf1abLJtW/zHUwC2.1XpyhF/ZLeAHAX83.DVY.AJajglzNrq');
 
 --
 -- Indexes for dumped tables
@@ -287,6 +318,12 @@ ALTER TABLE `order`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -337,6 +374,12 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `reservation`
+--
+ALTER TABLE `reservation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
