@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Restaurant | Reservations Search{% endblock %}
+
+{% block main %}
+<section class="row w-100">
+    <h3 class="text-center pb-2">RESERVATIONS SEARCH</h3>
+    <div class="col-12 col-md-6 col-lg-4 mb-4 shadow rounded adminMenus">
+        <h4 class="text-center">Search's critery</h4>
+        <a class="btn btn-primary mb-5" href="{{ path('app_reservation_all') }}">Find all</a>
+    </div>
+</section>
+{% endblock %}
