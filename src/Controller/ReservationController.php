@@ -55,4 +55,50 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER); 
         }        
     }
+
+    #[Route('/reservation/search', name: 'app_reservation_search')]
+    public function search(Request $request): Response
+    {
+        try {
+
+            return $this->render('reservation/search/search.html.twig', [
+                'controller_name' => 'ReservationController',
+                'active'          => "administration",
+            ]);
+
+        } catch (\Throwable $th) {
+            $this->addFlash('danger', $th->getMessage());
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER); 
+        }
+    }
+
+    #[Route('/reservation/all', name: 'app_reservation_all')]
+    public function allReservations(ReservationRepository $reservationRepository, DishRepository $dishRepository, ManagerRegistry $mr): Response
+    {
+        try {
+            /** Show diferent Day's menu dishes */
+            $primeros = $dishRepository->findDishesByDishday("primero");            
+            $segundos = $dishRepository->findDishesByDishday("segundo");
+            $postres  = $dishRepository->findDishesByDishday("postre");           
+            
+            /** We obtain the Menu's day price */
+            $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
+            $price = $priceObject->getPrice() ?? $price = 0;
+
+            $reservations = $reservationRepository->findAll();
+
+            return $this->render('reservation/search/search_results.html.twig', [
+                'reservations' => $reservations,
+                'primeros'    => $primeros,
+                'segundos'    => $segundos,
+                'postres'     => $postres,
+                'price'       => $price,
+                'active'      => "administration",
+            ]);
+            
+        } catch (\Throwable $th) {
+            $this->addFlash('danger', $th->getMessage());
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER); 
+        }
+    }
 }
