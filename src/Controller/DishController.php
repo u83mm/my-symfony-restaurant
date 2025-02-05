@@ -39,8 +39,7 @@ class DishController extends AbstractController
         
         $last_page_offset = ($pages - 1) * DishRepository::PAGINATOR_PER_PAGE;
 
-        return $this->render('dish/index.html.twig', [
-            //'dishes' => $dishRepository->findAll(),
+        return $this->render('dish/index.html.twig', [            
             'dishes'                => $paginator,
             'previous'              => $offset - DishRepository::PAGINATOR_PER_PAGE,
             'next'                  => min(count($paginator), $offset + DishRepository::PAGINATOR_PER_PAGE),
@@ -102,10 +101,8 @@ class DishController extends AbstractController
     #[Route('/{id}', name: 'app_dish_show', methods: ['GET', 'POST'])]
     public function show(Dish $dish, DishRepository $dishRepository, ManagerRegistry $mr, Request $request, CartController $cart): Response
     {     
-        /** Show different Day's menu dishes */
-        $primeros = $dishRepository->findDishesByDishday("primero");
-        $segundos = $dishRepository->findDishesByDishday("segundo");
-        $postres  = $dishRepository->findDishesByDishday("postre"); 
+        /** Show diferent Day's menu dishes */            
+        $menuDayElements = $dishRepository->getMenuDayElements();
         
         /** We obtain the Menu's day price */
         $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
@@ -125,14 +122,12 @@ class DishController extends AbstractController
         }
 
         return $this->render('dish/show.html.twig', [
-            'dish'      => $dish,
-            'primeros'  => $primeros,
-            'segundos'  => $segundos,
-            'postres'   => $postres,
-            'price'     => $price, 
-            'category'  => $category,
-            'form'      => $form,
-            'active'    => "menu",          
+            'dish'            => $dish,
+            'menuDayElements' => $menuDayElements,
+            'price'           => $price, 
+            'category'        => $category,
+            'form'            => $form,
+            'active'          => "menu",          
         ]);
     }
 

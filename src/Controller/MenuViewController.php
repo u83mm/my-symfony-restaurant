@@ -19,10 +19,8 @@ public function index(ManagerRegistry $mr, DishRepository $dishRepository): Resp
         $dishMenuRepository = $mr->getRepository(DishMenu::class);        
         $menuCategories = $dishMenuRepository->findAll();
 
-        /** Show diferent Day's menu dishes */
-        $primeros = $dishRepository->findDishesByDishday("primero");
-        $segundos = $dishRepository->findDishesByDishday("segundo");
-        $postres  = $dishRepository->findDishesByDishday("postre");  
+        /** Show diferent Day's menu dishes */                
+        $menuDayElements = $dishRepository->getMenuDayElements(); 
 
         /** We calculate how many "div" elements are necessary to show all the categories in Menu view */
         $total_categories = count($menuCategories);
@@ -42,9 +40,7 @@ public function index(ManagerRegistry $mr, DishRepository $dishRepository): Resp
             'sections'          => $menuCategories,
             'groups'            => $total_groups,
             'elements'          => $elements_by_group,
-            'primeros'          => $primeros,
-            'segundos'          => $segundos,
-            'postres'           => $postres,
+            'menuDayElements'   => $menuDayElements,
             'price'             => $price,
             'active'            => "menu",
         ]);

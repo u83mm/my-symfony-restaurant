@@ -150,4 +150,14 @@ class DishRepository extends ServiceEntityRepository
 
         return new Paginator($query);
     }
+
+    public function getMenuDayElements(): array
+    {               
+        /** Show diferent Day's menu dishes */
+        return [
+            'primeros' => $this->findDishesByDishday('primero'),
+            'segundos' => $this->findDishesByDishday('segundo'),
+            'postres'  => $this->findDishesByDishday('postre'),
+        ];
+    }
 }

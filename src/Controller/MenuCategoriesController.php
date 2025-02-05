@@ -17,10 +17,8 @@ class MenuCategoriesController extends AbstractController
     public function index(DishRepository $dishRepository, ManagerRegistry $mr, Request $request): Response
     {        
         try {                        
-            /** Show diferent Day's menu dishes */
-            $primeros = $dishRepository->findDishesByDishday("primero");
-            $segundos = $dishRepository->findDishesByDishday("segundo");
-            $postres  = $dishRepository->findDishesByDishday("postre");
+            /** Show diferent Day's menu dishes */            
+            $menuDayElements = $dishRepository->getMenuDayElements();
             
             /** We obtain the Menu's day price */
             $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
@@ -52,9 +50,7 @@ class MenuCategoriesController extends AbstractController
             'sections'          => $dishesByCategory,
             'groups'            => $total_groups,
             'elements'          => $elements_by_group,
-            'primeros'          => $primeros,
-            'segundos'          => $segundos,
-            'postres'           => $postres,
+            'menuDayElements'   => $menuDayElements,
             'price'             => $price,
             'category'          => $category,
             'active'            => "menu",

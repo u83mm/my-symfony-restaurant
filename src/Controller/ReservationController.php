@@ -19,10 +19,8 @@ class ReservationController extends AbstractController
     public function index(DishRepository $dishRepository, ManagerRegistry $mr, Request $request, ReservationRepository $reservationRepository): Response
     {
         try {
-            /** Show diferent Day's menu dishes */
-            $primeros = $dishRepository->findDishesByDishday("primero");            
-            $segundos = $dishRepository->findDishesByDishday("segundo");
-            $postres  = $dishRepository->findDishesByDishday("postre");           
+            /** Show diferent Day's menu dishes */            
+            $menuDayElements = $dishRepository->getMenuDayElements();           
             
             /** We obtain the Menu's day price */
             $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
@@ -42,9 +40,7 @@ class ReservationController extends AbstractController
 
             return $this->render('reservation/index.html.twig', [
                 'controller_name' => 'ReservationController',
-                'primeros'        => $primeros,
-                'segundos'        => $segundos,
-                'postres'         => $postres,
+                'menuDayElements' => $menuDayElements,
                 'price'           => $price,
                 'active'          => "reservation",
                 'form'            => $form,
@@ -76,10 +72,8 @@ class ReservationController extends AbstractController
     public function allReservations(ReservationRepository $reservationRepository, DishRepository $dishRepository, ManagerRegistry $mr): Response
     {
         try {
-            /** Show diferent Day's menu dishes */
-            $primeros = $dishRepository->findDishesByDishday("primero");            
-            $segundos = $dishRepository->findDishesByDishday("segundo");
-            $postres  = $dishRepository->findDishesByDishday("postre");           
+            /** Show diferent Day's menu dishes */            
+            $menuDayElements = $dishRepository->getMenuDayElements();          
             
             /** We obtain the Menu's day price */
             $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
@@ -88,12 +82,10 @@ class ReservationController extends AbstractController
             $reservations = $reservationRepository->findAll();
 
             return $this->render('reservation/search/search_results.html.twig', [
-                'reservations' => $reservations,
-                'primeros'    => $primeros,
-                'segundos'    => $segundos,
-                'postres'     => $postres,
-                'price'       => $price,
-                'active'      => "administration",
+                'reservations'    => $reservations,
+                'menuDayElements' => $menuDayElements,
+                'price'           => $price,
+                'active'          => "administration",
             ]);
             
         } catch (\Throwable $th) {
