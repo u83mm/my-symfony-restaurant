@@ -23,6 +23,19 @@ class ReservationRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }    
+
+    /**
+     * @return Reservation[] Returns an array of Reservation objects
+     */
+    public function findAll(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.date >= CURRENT_DATE()')           
+            ->orderBy('r.date', 'ASC')            
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     //    /**
