@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\MenuDayPrice;
 use App\Entity\Reservation;
 use App\Form\ReservationsType;
+use App\Form\SearchBydateType;
 use App\Repository\DishRepository;
 use App\Repository\ReservationRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -56,10 +57,27 @@ class ReservationController extends AbstractController
     public function search(Request $request): Response
     {
         try {
+            $form = $this->createForm(SearchBydateType::class);
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()) {
+                $fields = $form->getData();
+                  
+                $date = $fields['date']->format('Y-m-d');              
+
+                return $this->redirectToRoute(
+                    'app_reservation_by_date', 
+                    [
+                        'date' => $date,
+                        'time' => $fields['time']
+                    ]
+                );
+            }                       
 
             return $this->render('reservation/search/search.html.twig', [
                 'controller_name' => 'ReservationController',
                 'active'          => "administration",
+                'form'            => $form
             ]);
 
         } catch (\Throwable $th) {
@@ -91,6 +109,40 @@ class ReservationController extends AbstractController
         } catch (\Throwable $th) {
             $this->addFlash('danger', $th->getMessage());
             return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER); 
+        }
+    }
+
+    #[Route('/reservation/by_date/{?time}', name: 'app_reservation_by_date', methods: ['GET'])]
+    public function byDate(
+        ReservationRepository $reservationRepository, 
+        DishRepository $dishRepository, Request $request, 
+        ManagerRegistry $mr, 
+        string $time = null
+    ): Response
+    {
+        try {
+            /** Show diferent Day's menu dishes */            
+            $menuDayElements = $dishRepository->getMenuDayElements();          
+            
+            /** We obtain the Menu's day price */
+            $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
+            $price = $priceObject->getPrice() ?? $price = 0;
+
+            $date = $request->get('date');
+            $time = $request->get('time');
+
+            $reservations = $reservationRepository->findByDateAndTime($date, $time);            
+
+            return $this->render('reservation/search/search_results.html.twig', [
+                'reservations'    => $reservations,
+                'menuDayElements' => $menuDayElements,
+                'price'           => $price,
+                'active'          => "administration",
+            ]);
+
+        } catch (\Throwable $th) {
+            $this->addFlash('danger', $th->getMessage());
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
         }
     }
 }
