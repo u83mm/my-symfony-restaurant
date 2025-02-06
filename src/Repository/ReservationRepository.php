@@ -38,6 +38,32 @@ class ReservationRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return Reservation[] Returns an array of Reservation objects
+     */
+    public function findByDateAndTime($date, $time = null): array
+    {
+        if($time) {
+            return $this->createQueryBuilder('r')
+            ->andWhere('r.date = :date')
+            ->andWhere('r.time = :time')
+            ->setParameter('date', $date)
+            ->setParameter('time', $time)
+            ->orderBy('r.time', 'ASC')            
+            ->getQuery()
+            ->getResult()
+        ;
+
+        }
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.date = :date')
+            ->setParameter('date', $date)
+            ->orderBy('r.time', 'ASC')            
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     //    /**
     //     * @return Reservation[] Returns an array of Reservation objects
     //     */
