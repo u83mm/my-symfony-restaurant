@@ -23,7 +23,12 @@ class HomeController extends AbstractController
             $price = $priceObject->getPrice() ?? $price = 0;                        
 
         } catch (\Throwable $th) {
-            $this->addFlash('danger', $th->getMessage());
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+            
             return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);                        
         }
                     
