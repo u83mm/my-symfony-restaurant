@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Jan 29, 2025 at 11:09 AM
+-- Generation Time: Feb 07, 2025 at 10:14 PM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.23
 
@@ -224,6 +224,23 @@ CREATE TABLE `reservation` (
   `comment` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `date`, `time`, `name`, `people_qty`, `email`, `comment`) VALUES
+(1, '2025-02-03', '12:30', 'Pepe', 10, 'pepe@pepe.com', 'ddddd'),
+(2, '2025-02-04', '12:30', 'Pepe', 7, 'pepe@pepe.com', 'ddddd'),
+(3, '2025-02-05', '14:00', 'Pepe', 9, 'pepe@pepe.com', 'ddddd'),
+(4, '2025-02-06', '14:00', 'Juán', 3, 'pepe@pepe.com', 'sddadfd'),
+(5, '2025-02-07', '13:00', 'Juán', 2, 'pepe@pepe.com', 'dddssd'),
+(6, '2025-02-07', '14:30', 'Pepe', 3, 'pepe@pepe.com', 'ada dfdda'),
+(7, '2025-02-07', '13:00', 'Adolfo', 5, 'pepe@pepe.com', 'add adfdfad'),
+(8, '2025-02-08', '12:30', 'Juán', 2, 'pepe@pepe.com', 'dsddsddsds'),
+(9, '2025-02-08', '14:30', 'Adolfo', 2, 'pepe@pepe.com', 'dsdsdd'),
+(10, '2025-02-08', '13:30', 'Pepe', 5, 'pepe@pepe.com', 'dsdsdsd'),
+(11, '2025-02-08', '13:00', 'Luís', 9, 'luis@luis.com', 'Al lado de la ventana');
+
 -- --------------------------------------------------------
 
 --
@@ -380,7 +397,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `roles`

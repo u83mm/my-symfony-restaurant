@@ -97,9 +97,11 @@ class ReservationController extends AbstractController
             $priceObject = $mr->getRepository(MenuDayPrice::class)->find(1);
             $price = $priceObject->getPrice() ?? $price = 0;
 
+            $dates = $reservationRepository->findDateFromCurrentDateGroupByDate();
             $reservations = $reservationRepository->findAll();
 
             return $this->render('reservation/search/search_results.html.twig', [
+                'dates'           => $dates,
                 'reservations'    => $reservations,
                 'menuDayElements' => $menuDayElements,
                 'price'           => $price,
@@ -129,12 +131,11 @@ class ReservationController extends AbstractController
             $price = $priceObject->getPrice() ?? $price = 0;
 
             $date = $request->get('date');
-            $time = $request->get('time');
-
-            $reservations = $reservationRepository->findByDateAndTime($date, $time);            
+            $time = $request->get('time');                      
 
             return $this->render('reservation/search/search_results.html.twig', [
-                'reservations'    => $reservations,
+                'dates'           => $reservationRepository->findDate($date),
+                'reservations'    => $reservationRepository->findByDateAndTime($date, $time),
                 'menuDayElements' => $menuDayElements,
                 'price'           => $price,
                 'active'          => "administration",
