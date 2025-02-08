@@ -32,7 +32,7 @@ class ReservationRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.date >= CURRENT_DATE()')           
-            ->orderBy('r.date', 'ASC')            
+            ->orderBy('r.time', 'ASC')            
             ->getQuery()
             ->getResult()
         ;
@@ -59,6 +59,34 @@ class ReservationRepository extends ServiceEntityRepository
             ->andWhere('r.date = :date')
             ->setParameter('date', $date)
             ->orderBy('r.time', 'ASC')            
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Reservation[] Returns an array of Reservation objects
+     */
+    public function findDateFromCurrentDateGroupByDate(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.date >= CURRENT_DATE()')
+            ->addGroupBy('r.date')            
+            ->orderBy('r.id', 'ASC')            
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Reservation[] Returns an array of Reservation objects
+     */
+    public function findDate($date): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.date = :val') 
+            ->setParameter('val', $date)
+            ->groupBy('r.date')                                           
             ->getQuery()
             ->getResult()
         ;
