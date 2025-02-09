@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DishMenu{% endblock %}
+{% block title %}Admin | Dish categories{% endblock %}
 
 {% block main %}
-    <h1>DishMenu</h1>
+    <h1>Dish category</h1>
 
     <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto">
         <table class="table">
@@ -13,7 +13,7 @@
                     <td>{{ dish_menu.id }}</td>
                 </tr>
                 <tr>
-                    <th>MenuCategory</th>
+                    <th>Category</th>
                     <td>{{ dish_menu.menuCategory }}</td>
                 </tr>
             </tbody>
