@@ -19,22 +19,46 @@ class AdminController extends AbstractController
     #[Route('/', name: 'app_admin')]
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
-            'active'          => "administration",
-        ]);
+        try {
+            return $this->render('admin/index.html.twig', [
+                'controller_name' => 'AdminController',
+                'active'          => "administration",
+            ]);
+
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }
+        
     }
 
     /** Show serch dish view */
     #[Route('/search', name: 'app_admin_search')]
     public function dishSearchView(DishMenuRepository $dishMenuRepository): Response
     {
-        $categoriesDishesMenu = $dishMenuRepository->findAll();      
 
-        return $this->render('admin/dish_search_main_view.html.twig', [
-            'controller_name' => 'AdminController',
-            'menu_categories' => $categoriesDishesMenu,
-            'active'          => "administration",
-        ]);
+        try {
+            $categoriesDishesMenu = $dishMenuRepository->findAll();      
+
+            return $this->render('admin/dish_search_main_view.html.twig', [
+                'controller_name' => 'AdminController',
+                'menu_categories' => $categoriesDishesMenu,
+                'active'          => "administration",
+            ]);
+
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 }
