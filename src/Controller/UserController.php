@@ -74,7 +74,9 @@ class UserController extends AbstractController
             if ($this->isCsrfTokenValid('edit'.$user->getId(), $request->request->get('_token'))) {
                 $user->setUserName($request->request->get("user_name"));
                 $user->setEmail($request->request->get("email"));               
-                $user->setRoles([$request->request->get("role")]);  
+
+                if(!($user->getRoles() === json_decode($request->request->get("role")))) 
+                    $user->setRoles([$request->request->get("role")]);                 
 
                 $userRepository->save($user, true);
     
