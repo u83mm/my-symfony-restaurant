@@ -19,6 +19,7 @@ class DishMenuType extends AbstractType
                 'label' => 'Emoji',
                 'attr' => [
                     'readonly' => true,
+                    'class'    => 'show-emoji form-control',
                 ],
             ])
         ;

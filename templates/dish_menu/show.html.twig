@@ -14,11 +14,11 @@
                 </tr>
                 <tr>
                     <th>Category</th>
-                    <td>{{ dish_menu.menuCategory }}</td>
+                    <td>{{ dish_menu.menuCategory|capitalize }}</td>
                 </tr>
                 <tr>
                     <th>Emoji</th>
-                    <td>{{ dish_menu.menuEmoji|raw }}</td>
+                    <td class="emoji-size">{{ dish_menu.menuEmoji|raw }}</td>
                 </tr>
             </tbody>
         </table>
