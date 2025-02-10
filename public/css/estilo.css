@@ -492,24 +492,18 @@
 	.message {
 		text-align: center;
 		color: #888;
-	}
+	}	
 	
 	/***************** End Password strength style ***************/
 	
-	#dishesIndex td{
+	#dishesIndex td, #categoriesIndex td{
 		vertical-align: middle;
 	}
 
 	#add_to_order_category {
 		width: 7em;
 	}
-
-	#emoji-container {
-		display: flex;
-		gap: 10px;
-		margin-bottom: 10px;
-	}
-
+	
 	#emoji-field {
 		width: 100%;
 		padding: 10px;
@@ -520,10 +514,25 @@
 
 	.emoji-option {
 		cursor: pointer;
-		font-size: 24px;
-	}	
+		font-size: 2em;
+		display: inline-block;
+		width: 1.4em;
+		text-align: center;
+	}
+
+	.show-emoji {		
+		width: 2em;
+		border: none;
+		font-size: 2em;
+	}
+
+	.emoji-size {
+		font-size: 1.7em;
+	}
+
+	tr:nth-child(odd) {background-color: #f2f2f2;}
 	
-	/***************** Configuración para móviles **********************/
+	/***************** Configuración para móviles **********************/	
 	@media (max-width:480px) {
 		.mainLogo {
 			width: 4em;
@@ -537,9 +546,13 @@
 			width: 3em;
 		}
 	
-		.options {
-			width: 10em;
-			display: block;
+		table .options {			
+			display: grid;
+			width: 100%;			
+		}
+
+		table .options a:first-child {
+			margin-bottom: 0.5em;
 		}
 		
 		.navbar-nav .nav-link.active, .navbar-nav .show > .nav-link {
@@ -582,7 +595,11 @@
 			background-color: inherit;
 			border: inherit;
 			color: var(--bs-navbar-active-color);
-		}	
+		}
+
+		table .options {			
+			width: 100%;			
+		}
 	}
 	
 	/***************************************************************
@@ -595,8 +612,8 @@
 			display: flow-root;
 		}
 	
-		.options {
-			width: 10em;		
+		table .options {
+			width: 100%;				
 		}
 	
 		.navbar-nav .nav-link.active, .navbar-nav .show > .nav-link {
