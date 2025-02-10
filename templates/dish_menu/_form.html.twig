@@ -2,23 +2,27 @@
     {% for field in form.children %}
         <div class="row {% if not field.vars.valid %}has-error{% endif %}">
             {% if field.vars.name != "_token" %}
-                <div class="col-sm-3 mb-3">
+                <div class="col-sm-3 mb-3 align-content-center">
                     {{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }} 
                 </div>
             {% endif %}
             
             <div class="col-sm-8 mb-3">
-                {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }}
+                {{ form_widget(field) }}
             </div>            
 
             <div class="error">{{ form_errors(field) }}</div> 
         </div>        
     {% endfor %}
 
-    <label for="emoji">Select an Emoji:</label>
-    <div id="emoji-container">
-        <!-- Emojis will be dynamically inserted here -->
-    </div>    
+    <div class="row">
+        <div class="col-sm-3 mb-3">
+            <label for="emoji">Select an Emoji:</label>
+        </div>        
+        <div id="emoji-container" class="col-sm-8 mb-3">
+            <!-- Emojis will be dynamically inserted here -->
+        </div>  
+    </div>      
     
     <div class="row">
         <div class="col-sm-3 mb-3">&nbsp;</div>

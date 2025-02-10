@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Feb 07, 2025 at 10:14 PM
+-- Generation Time: Feb 10, 2025 at 10:07 AM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.23
 
@@ -92,21 +92,21 @@ CREATE TABLE `dish_menu` (
 --
 
 INSERT INTO `dish_menu` (`id`, `menu_category`, `menu_emoji`) VALUES
-(1, 'aperitivos', '&#127839;'),
-(2, 'entrantes', '&#127836;'),
-(3, 'ensaladas', '&#129367;'),
-(4, 'carnes', '&#129385;'),
-(5, 'pescados', '&#128031;'),
-(6, 'arroces', '&#129368;'),
-(7, 'postres', '&#129473;'),
-(8, 'cafés', '&#9749;'),
-(9, 'tintos', '&#127863;'),
-(10, 'blancos', '&#127863;'),
-(11, 'rosados', '&#127863;'),
-(12, 'cavas', '&#127870;'),
-(13, 'champagne', '&#127870;'),
-(14, 'bebidas', '&#127866;'),
-(15, 'licores', '&#127865;');
+(1, 'aperitivos', '🍟'),
+(2, 'entrantes', '🍝'),
+(3, 'ensaladas', '🥗'),
+(4, 'carnes', '🥩'),
+(5, 'pescados', '🐟'),
+(6, 'arroces', '🥘'),
+(7, 'postres', '🍮'),
+(8, 'cafés', '☕️'),
+(9, 'tintos', '🍷'),
+(10, 'blancos', '🍷'),
+(11, 'rosados', '🍷'),
+(12, 'cavas', '🍾'),
+(13, 'champagne', '🍾'),
+(14, 'bebidas', '🍺'),
+(15, 'licores', '🍹');
 
 -- --------------------------------------------------------
 
@@ -239,7 +239,11 @@ INSERT INTO `reservation` (`id`, `date`, `time`, `name`, `people_qty`, `email`, 
 (8, '2025-02-08', '12:30', 'Juán', 2, 'pepe@pepe.com', 'dsddsddsds'),
 (9, '2025-02-08', '14:30', 'Adolfo', 2, 'pepe@pepe.com', 'dsdsdd'),
 (10, '2025-02-08', '13:30', 'Pepe', 5, 'pepe@pepe.com', 'dsdsdsd'),
-(11, '2025-02-08', '13:00', 'Luís', 9, 'luis@luis.com', 'Al lado de la ventana');
+(11, '2025-02-08', '13:00', 'Luís', 9, 'luis@luis.com', 'Al lado de la ventana'),
+(12, '2025-02-09', '13:30', 'Luís', 4, 'luis@luis.com', 'dsdaad'),
+(13, '2025-02-10', '13:30', 'Pepe', 3, 'pepe@pepe.com', 'adadada'),
+(14, '2025-02-10', '13:00', 'Juán', 2, 'luis@luis.com', 'dadada add'),
+(15, '2025-02-10', '13:30', 'Adolfo', 4, 'luis@luis.com', 'Paella para 4 de marisco');
 
 -- --------------------------------------------------------
 
@@ -397,7 +401,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `roles`
