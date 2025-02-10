@@ -11,6 +11,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Category</th>
+                    <th>Emoji</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -19,6 +20,7 @@
                 <tr>
                     <td>{{ dish_menu.id }}</td>
                     <td>{{ dish_menu.menuCategory }}</td>
+                    <td>{{ dish_menu.menuEmoji|raw }}</td>
                     <td class="text-center">
                         <a class="btn btn-outline-success" href="{{ path('app_dish_menu_show', {'id': dish_menu.id}) }}">show</a>
                         <a class="btn btn-outline-success" href="{{ path('app_dish_menu_edit', {'id': dish_menu.id}) }}">edit</a>

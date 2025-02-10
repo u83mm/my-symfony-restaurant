@@ -1,4 +1,4 @@
-    "use strict";
+"use strict";
 
 const passwordInput = document.getElementById('password');
 const passwordInputRegister = document.getElementById('registration_form_plainPassword');

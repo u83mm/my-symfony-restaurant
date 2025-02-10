@@ -46,7 +46,9 @@ class DishType extends AbstractType
                 'required' => false,
             ])
             ->add('dishDay')
-            ->add('dishMenu')
+            ->add('dishMenu', null, [
+                'label' => 'Category',
+            ])
             ->add('picture', null, [
                 'label' => false,
                 'attr' => [

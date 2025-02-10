@@ -12,7 +12,15 @@ class DishMenuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('menuCategory')
+            ->add('menuCategory', null, [
+                'label' => 'Category',
+            ])
+            ->add('menuEmoji', null, [
+                'label' => 'Emoji',
+                'attr' => [
+                    'readonly' => true,
+                ],
+            ])
         ;
     }
 
