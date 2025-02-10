@@ -8,12 +8,18 @@
             {% endif %}
             
             <div class="col-sm-8 mb-3">
-                {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }} 
-            </div>
+                {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }}
+            </div>            
 
             <div class="error">{{ form_errors(field) }}</div> 
         </div>        
     {% endfor %}
+
+    <label for="emoji">Select an Emoji:</label>
+    <div id="emoji-container">
+        <!-- Emojis will be dynamically inserted here -->
+    </div>    
+    
     <div class="row">
         <div class="col-sm-3 mb-3">&nbsp;</div>
         <div class="col-sm-8 mb-3">

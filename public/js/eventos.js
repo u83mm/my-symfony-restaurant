@@ -1,4 +1,4 @@
-import { finishDish, setFinishDishValue, testDishesStriked } from "./dishesFunctions.js";
+import { finishDish, setFinishDishValue, testDishesStriked, showEmoji } from "./dishesFunctions.js";
 
 "use strict"; 
 
@@ -11,6 +11,9 @@ function checkAvailable() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+	/** Function to manage emojis in dishes categories */
+	showEmoji();
+
 	/** Test for striked dishes */
     testDishesStriked();
 	

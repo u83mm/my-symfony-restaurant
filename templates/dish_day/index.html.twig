@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DishDay index{% endblock %}
+{% block title %}Admin | Dish options{% endblock %}
 
 {% block main %}
-    <h1>DishDay index</h1>
+    <h1>Dish options index</h1>
 
     <div class="col-12 col-xl-9 mx-auto table-responsive">
         <table class="table table-bordered table-striped">
             <thead class="text-center">
                 <tr>
                     <th>Id</th>
-                    <th>CategoryName</th>
+                    <th>Dish option</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -34,4 +34,5 @@
     </div>
     
     <a class="btn btn-primary" href="{{ path('app_dish_day_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('app_admin') }}">Go back</a>
 {% endblock %}

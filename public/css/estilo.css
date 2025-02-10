@@ -503,6 +503,25 @@
 	#add_to_order_category {
 		width: 7em;
 	}
+
+	#emoji-container {
+		display: flex;
+		gap: 10px;
+		margin-bottom: 10px;
+	}
+
+	#emoji-field {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 20px;
+		font-size: 24px;
+		text-align: center;
+	}
+
+	.emoji-option {
+		cursor: pointer;
+		font-size: 24px;
+	}	
 	
 	/***************** Configuración para móviles **********************/
 	@media (max-width:480px) {
