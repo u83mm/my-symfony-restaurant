@@ -14,15 +14,26 @@ class MenuDayPriceController extends AbstractController
     #[Route('/menuday/price', name: 'app_menu_day_price')]
     public function index(Request $request, MenuDayPriceRepository $menuDayPriceRepository): Response
     {
-        $price = $request->request->get('price');
+        try {
+            $price = $request->request->get('price');
 
-        $menu_day_price = new MenuDayPrice();
-        $menu_day_price->setPrice($price);
+            $menu_day_price = new MenuDayPrice();
+            $menu_day_price->setPrice($price);
 
-        $menuDayPriceRepository->truncateTable("menu_day_price");
-        $menuDayPriceRepository->save($menu_day_price, true);
-        
+            $menuDayPriceRepository->truncateTable("menu_day_price");
+            $menuDayPriceRepository->save($menu_day_price, true);
+            
 
-        return $this->redirectToRoute("app_dish_index", ['message' => "Menu's price stablish"]);
+            return $this->redirectToRoute("app_dish_index", ['message' => "Menu's price stablish"]);
+            
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 }

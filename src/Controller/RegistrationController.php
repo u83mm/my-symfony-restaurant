@@ -18,30 +18,41 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+        try {
+            $user = new User();
+            $form = $this->createForm(RegistrationFormType::class, $user);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+            if ($form->isSubmitted() && $form->isValid()) {
+                // encode the plain password
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            $this->addFlash('success', 'User created successfully.');
-                    
-            return $this->redirectToRoute('app_home');            
-        }
+                $this->addFlash('success', 'User created successfully.');
+                        
+                return $this->redirectToRoute('app_home');            
+            }
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-            'active'           => "registration",
-        ]);
+            return $this->render('registration/register.html.twig', [
+                'registrationForm' => $form->createView(),
+                'active'           => "registration",
+            ]);
+            
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 }

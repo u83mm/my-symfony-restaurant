@@ -20,49 +20,82 @@ class UserController extends AbstractController
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
-            'users'     => $userRepository->findAll(),
-            'active'    => "administration",
-        ]);
+        try {
+            return $this->render('user/index.html.twig', [
+                'users'     => $userRepository->findAll(),
+                'active'    => "administration",
+            ]);
+
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        try {
+            $user = new User();
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {                        
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
+            if ($form->isSubmitted() && $form->isValid()) {                        
+                // encode the plain password
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
 
-            $userRepository->save($user, true);           
+                $userRepository->save($user, true);           
 
-            $this->addFlash('success', 'User created successfully.');
-           
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-        }
+                $this->addFlash('success', 'User created successfully.');
+            
+                return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            }
 
-        return $this->render('user/new.html.twig', [
-            'user'      => $user,
-            'form'      => $form,
-            'active'    => "administration",
-        ]);
+            return $this->render('user/new.html.twig', [
+                'user'      => $user,
+                'form'      => $form,
+                'active'    => "administration",
+            ]);
+
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
-            'user'      => $user,
-            'active'    => "administration",
-        ]);
+        try {
+            return $this->render('user/show.html.twig', [
+                'user'      => $user,
+                'active'    => "administration",
+            ]);
+
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
@@ -98,12 +131,23 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
-        }
+        try {
+            if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+                $userRepository->remove($user, true);
+            }
+    
+            $this->addFlash('success', 'User deleted successfully.');
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
 
-        $this->addFlash('success', 'User deleted successfully.');
-        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 
     #[Route('/{id}/changepassword', name: 'app_user_change_password', methods: ['GET', 'POST'])]

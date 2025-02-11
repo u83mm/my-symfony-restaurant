@@ -165,7 +165,8 @@ class CartController extends AbstractController
             return $this->render('cart/new.html.twig', [
                 'controller_name' => 'CartController',
                 'form'            => $form,
-                'dishes'          => $dishes,            
+                'dishes'          => $dishes,
+                'active'          => "order",
             ]);
 
         } catch (\Throwable $th) {
