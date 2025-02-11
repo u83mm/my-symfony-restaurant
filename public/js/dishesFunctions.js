@@ -39,16 +39,18 @@ function showEmoji() {
     const emojiContainer = document.getElementById('emoji-container');
     const emojiField = document.getElementById('dish_menu_menuEmoji');
 
-    // Populate the emoji container with emoji options
-    emojis.forEach(emoji => {
-        const emojiOption = document.createElement('span');
-        emojiOption.classList.add('emoji-option');
-        emojiOption.textContent = emoji;
-        emojiOption.addEventListener('click', () => {
-            emojiField.value = emoji;
+    if(emojiContainer) {
+        // Populate the emoji container with emoji options
+        emojis.forEach(emoji => {
+            const emojiOption = document.createElement('span');
+            emojiOption.classList.add('emoji-option');
+            emojiOption.textContent = emoji;
+            emojiOption.addEventListener('click', () => {
+                emojiField.value = emoji;
+            });
+            emojiContainer.appendChild(emojiOption);
         });
-        emojiContainer.appendChild(emojiOption);
-    });
+    }
 }
 
 export { finishDish, setFinishDishValue, testDishesStriked, showEmoji };

@@ -19,21 +19,45 @@ class OrderController extends AbstractController
     #[Route('/', name: 'app_order')]
     public function index(ManagerRegistry $mr): Response
     {
-        $orders = $mr->getRepository(Order::class)->findAll();
+        try {
+            $orders = $mr->getRepository(Order::class)->findAll();
 
-        return $this->render('order/index.html.twig', [
-            'controller_name'   => 'OrderController',
-            'orders'            => $orders
-        ]);
+            return $this->render('order/index.html.twig', [
+                'controller_name'   => 'OrderController',
+                'orders'            => $orders,
+                'active'            => "administration"  
+            ]);
+
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 
     #[Route('/{id}', name: 'app_order_show')]
     public function show(Order $order): Response
     {
-        return $this->render('order/show.html.twig', [
-            'controller_name'   => 'OrderController',
-            'order'             => $order
-        ]);
+        try {
+            return $this->render('order/show.html.twig', [
+                'controller_name'   => 'OrderController',
+                'order'             => $order,
+                'active'            => "administration"
+            ]);
+            
+        } catch (\Throwable $th) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
+            } else {
+                $this->addFlash('danger', $th->getMessage());
+            }
+
+            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
+        }        
     }
 
     #[Route('/{id}/edit', name: 'app_order_edit')]
