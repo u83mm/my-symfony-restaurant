@@ -47,6 +47,30 @@ class DishMenuController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                // Check if the emoji field is empty
+                if($dishMenu->getMenuEmoji() == null) {
+                    $this->addFlash('danger', 'The emoji field is required.');
+
+                    return $this->render('dish_menu/new.html.twig', [
+                        'dish_menu' => $dishMenu,
+                        'form'      => $form,
+                        'active'    => "administration",
+                    ]);
+                }
+
+                // Check if the category exists
+                if($dishMenuRepository->findOneBy(['menuCategory' => $dishMenu->getMenuCategory()]) != null) {
+                    $this->addFlash('danger', 'The category already exist.');
+
+                    return $this->render('dish_menu/new.html.twig', [
+                        'dish_menu' => $dishMenu,
+                        'form'      => $form,
+                        'active'    => "administration",
+                    ]);
+                }
+
+                // Save the new category
+                $this->addFlash('success', 'The category has been created successfully.');
                 $dishMenuRepository->save($dishMenu, true);
 
                 return $this->redirectToRoute('app_dish_menu_index', [], Response::HTTP_SEE_OTHER);

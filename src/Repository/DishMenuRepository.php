@@ -39,6 +39,16 @@ class DishMenuRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneBySomeField($value): ?DishMenu
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 //    /**
 //     * @return DishMenu[] Returns an array of DishMenu objects
 //     */
