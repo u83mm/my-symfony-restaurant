@@ -1,0 +1,38 @@
+welcome: 'welcome'
+loged as: 'loged as'
+
+# Header links
+english: 'english'
+spanish: 'spanish'
+
+# Menus
+home: 'home'
+menu: 'menu'
+reservations: 'reservations'
+registration: 'registration'
+administration: 'administration'
+order: 'order'
+logout: 'logout'
+
+# Day's menu
+menu_of_the_day: "day's menu"
+main_corses: 'main corses'
+second_plates: 'second plates'
+desserts: 'desserts'
+price: 'price'
+days_menu_footer_text: 'select a drink: water, wine or refresh drink.'
+
+### Menus's dishes ###
+# Salads
+ensalada mixta: 'mixt salad'
+ensalada catalana: 'catalan salad'
+
+# Starters
+espaguetis a la carbonara: 'spaghetti carbonara'
+
+# Rices
+paella valenciana: 'valencian paella'
+bistec con patatas: 'steak with potatoes'
+
+# Desserts
+crema catalana: 'catalan cream'

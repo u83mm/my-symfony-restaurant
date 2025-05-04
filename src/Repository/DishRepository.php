@@ -131,7 +131,7 @@ class DishRepository extends ServiceEntityRepository
         return new Paginator($query);
     }
 
-    public function getDishPaginator(int $offset, string $field = null, string|int $value = null): Paginator
+    public function getDishPaginator(int $offset, ?string $field = null, mixed $value = null): Paginator
     {        
         if(isset($field) && isset($value)) {
             $query = $this->createQueryBuilder('d')
