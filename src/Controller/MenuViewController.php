@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MenuViewController extends AbstractController
 {
-    #[Route('/menu/view', name: 'app_menu_view')]
+    #[Route('/{_locale}/menu/view', name: 'app_menu_view')]
     public function index(ManagerRegistry $mr, DishRepository $dishRepository): Response
     {       
         try {

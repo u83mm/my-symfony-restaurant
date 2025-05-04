@@ -1,0 +1,23 @@
+welcome: 'bienvenido'
+loged as: 'logeado como'
+
+# Header links
+english: 'inglés'
+spanish: 'español'
+
+# Menus
+home: 'inicio'
+menu: 'carta'
+reservations: 'reservas'
+registration: 'registro'
+administration: 'administración'
+order: 'pedir'
+logout: 'salir'
+
+# Day's menu
+menu_of_the_day: "menú del día"
+main_corses: 'primeros platos'
+second_plates: 'segundos platos'
+desserts: 'postres'
+price: 'precio'
+days_menu_footer_text: 'bebida a elegir: agua, vino o refresco.'
