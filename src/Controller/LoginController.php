@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-    #[Route('/login', name: 'app_login')]
+    #[Route('/{_locale}/login', name: 'app_login', requirements: ['_locale' => 'en|es'])]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         try {
