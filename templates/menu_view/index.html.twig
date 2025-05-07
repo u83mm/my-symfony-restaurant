@@ -10,11 +10,11 @@
             <div class="col-12 col-md-3 col-lg-2 col-xl-1 d-flex justify-content-center align-items-center">            
                 <figure class="figure">							
                     <a href="{{ path('app_pdf_generator_menu') }}" target="_blank"><img class="figure-img img-fluid mainLogo" src="{{ asset("images/menu.png") }}" alt="logo"></a>                            
-                    <figcaption class="figure-caption text-center">Carta</figcaption>
+                    <figcaption class="figure-caption text-center">{{ 'menu'|trans|capitalize }}</figcaption>
                 </figure>               						
             </div>
             <div class="col-12 col-md-6 col-lg-8 col-xl-10 d-flex justify-content-center align-items-center">
-                <h2 class="m-0 me-2">Nuestra Carta</h2> 
+                <h2 class="m-0 me-2">{{ 'our menu'|trans|title }}</h2> 
             </div>           
         </div>
         <div class="row">
@@ -25,7 +25,7 @@
                 {% for id, section in sections|slice(k * elements, elements * i) %}
                     {% if id < elements  %}
                     <li class="showMenuCategories">
-                        <a class="btn btn-outline-secondary text-start" href="{{ path('app_dishes_category', {'category': section|lower}) }}"><span class='px-2 float-start'>{{ section.menuEmoji|raw }}</span>{{ section }}</a>
+                        <a class="btn btn-outline-secondary text-start" href="{{ path('app_dishes_category', {'category': section|lower}) }}"><span class='px-2 float-start'>{{ section.menuEmoji|raw }}</span>{{ section|lower|trans|capitalize }}</a>
                     </li> 
                     {% endif %}                                                                                                          
                 {% endfor %}
