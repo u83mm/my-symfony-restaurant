@@ -1,5 +1,6 @@
 welcome: 'welcome'
 loged as: 'loged as'
+our menu: 'our menu'
 
 # Header links
 english: 'english'
@@ -36,3 +37,21 @@ bistec con patatas: 'steak with potatoes'
 
 # Desserts
 crema catalana: 'catalan cream'
+
+
+# Menu categories
+aperitivos: 'snaks'
+entrantes: 'starters'
+ensaladas: 'salads'
+carnes: 'meats'
+pescados: 'fishes'
+arroces: 'rices'
+postres: 'desserts'
+cafés: 'coffees'
+tintos: 'red wines'
+blancos: 'white wines'
+rosados: 'rosé wines'
+cavas: 'sparkling wines'
+champagne: 'champagne'
+bebidas: 'drinks'
+licores: 'liquors'
