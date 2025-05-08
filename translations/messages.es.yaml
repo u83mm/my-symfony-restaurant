@@ -1,6 +1,7 @@
 welcome: 'bienvenido'
 loged as: 'logeado como'
 our menu: 'nuestra carta'
+go back: 'volver'
 
 # Header links
 english: 'inglés'
@@ -22,3 +23,39 @@ second_plates: 'segundos platos'
 desserts: 'postres'
 price: 'precio'
 days_menu_footer_text: 'bebida a elegir: agua, vino o refresco.'
+
+### Menus's dishes ###
+# Salads
+ensalada mixta: 'ensalada mixta'
+ensalada catalana: 'ensalada catalana'
+
+# Meats
+entrecot a la parrilla: 'entrecot a la parrilla'
+
+# Starters
+espaguetis a la carbonara: 'espaguetis a la carbonara'
+
+# Rices
+paella valenciana: 'paella valenciana'
+bistec con patatas: 'bistc con patatas'
+
+# Desserts
+crema catalana: 'crema catalana'
+
+
+# Menu categories
+aperitivos: 'aperitivos'
+entrantes: 'entrantes'
+ensaladas: 'ensaladas'
+carnes: 'carnes'
+pescados: 'pescados'
+arroces: 'arroces'
+postres: 'postres'
+cafés: 'cafés'
+tintos: 'vinos tintos'
+blancos: 'vinos blancos'
+rosados: 'vinos rosados'
+cavas: 'cavas'
+champagne: 'champagne'
+bebidas: 'bebidas'
+licores: 'licores'

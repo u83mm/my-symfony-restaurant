@@ -10,11 +10,11 @@
         <div class="col-12 col-md-3 col-lg-2 col-xl-1 d-flex justify-content-center align-items-center">            
             <figure class="figure">							
                 <a href="{{ path('app_pdf_generator_menu') }}" target="_blank"><img class="figure-img img-fluid menuLogo" src="{{ asset("images/menu.png") }}" alt="logo"></a>                            
-                <figcaption class="figure-caption text-center">Carta</figcaption>
+                <figcaption class="figure-caption text-center">{{ 'menu'|trans|capitalize }}</figcaption>
             </figure>						
         </div>
         <div class="col-12 col-md-6 col-lg-10 col-xl-11 d-flex justify-content-center align-items-center">
-            <h2 class="m-0 me-2">{{ category|capitalize }}</h2>
+            <h2 class="m-0 me-2">{{ category|trans|capitalize }}</h2>
         </div>	                
     </div>
     <div class="row">
@@ -25,7 +25,7 @@
                 {% for id, section in sections|slice(k * elements, elements * i) %}
                     {% if id < elements  %}
                     <li class="showMenuCategories">
-                        <a class="btn btn-outline-secondary" href="{{ path('app_dish_show', {'id': section.id|lower}) }}">{{ section.name|capitalize }}</a>
+                        <a class="btn btn-outline-secondary" href="{{ path('app_dish_show', {'id': section.id|lower}) }}">{{ section.name|trans|capitalize }}</a>
                     </li> 
                     {% endif %}                                                                                                          
                 {% endfor %}
@@ -35,7 +35,7 @@
     </div>
     <div class="row">
         <div class="mb-3 text-center text-lg-start">
-            <a class="btn btn-primary" href="{{ path('app_menu_view') }}">Volver</a>
+            <a class="btn btn-primary" href="{{ path('app_menu_view') }}">{{ 'go back'|trans|capitalize }}</a>
         </div>
     </div>              		     
 </section>

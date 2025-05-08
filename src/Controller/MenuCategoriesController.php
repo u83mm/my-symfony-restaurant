@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/menu/categories')]
+#[Route('/{_locale}/menu/categories')]
 class MenuCategoriesController extends AbstractController
 {  
     #[Route('/{category}', name: 'app_dishes_category')]
