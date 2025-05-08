@@ -1,6 +1,7 @@
 welcome: 'welcome'
 loged as: 'loged as'
 our menu: 'our menu'
+go back: 'go back'
 
 # Header links
 english: 'english'
@@ -28,15 +29,23 @@ days_menu_footer_text: 'select a drink: water, wine or refresh drink.'
 ensalada mixta: 'mixt salad'
 ensalada catalana: 'catalan salad'
 
+# Meats
+entrecot a la parrilla: 'grilled entrecote'
+bistec con patatas: 'steak with potatoes'
+
 # Starters
 espaguetis a la carbonara: 'spaghetti carbonara'
+macarrones a la boloñesa: 'macaroni bolognese'
 
 # Rices
 paella valenciana: 'valencian paella'
-bistec con patatas: 'steak with potatoes'
+arroz con setas: 'rice with mushrooms'
 
 # Desserts
 crema catalana: 'catalan cream'
+
+# Drinks
+jarra de cerveza: 'beer mug'
 
 
 # Menu categories
