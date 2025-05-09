@@ -17,6 +17,8 @@ class HomeController extends AbstractController
     public function index(DishRepository $dishRepository, ManagerRegistry $mr, Request $request, TranslatorInterface $translator): Response
     {                 
         try {
+            $request->getSession()->set('_locale', $this->getParameter('kernel.default_locale'));
+            
             /** Show diferent Day's menu dishes */            
             $menuDayElements = $dishRepository->getMenuDayElements();                        
             
