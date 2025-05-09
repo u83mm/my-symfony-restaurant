@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/dish')]
+#[Route('/{_locale}/dish')]
 class DishController extends AbstractController
 {
     #[IsGranted('ROLE_ADMIN')]
