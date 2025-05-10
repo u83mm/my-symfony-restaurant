@@ -4,52 +4,66 @@
 
 {% block main %}
 <div class="row">
-    <h3 class="text-center pb-2">MAIN MENU</h3>
+    <h3 class="text-center pb-2">{{ 'main menu'|trans|upper }}</h3>
     
+                            <!-- DISHES -->
+
     <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <h4 class="text-center">DISHES</h4>
+        <h4 class="text-center">{{ 'dishes'|trans|upper }}</h4>
         <div class="shadow rounded adminMenus">               
-            <a class="btn btn-primary mb-5" href="{{ path('app_dish_index') }}">Index</a>
-            <a class="btn btn-primary mb-5" href="{{ path('app_admin_search') }}">Search</a>
-            <a class="btn btn-primary mb-5" href="{{ path('app_dish_new') }}">Create new</a>
+            <a class="btn btn-primary mb-5" href="{{ path('app_dish_index') }}">{{ 'index'|trans|capitalize }}</a>
+            <a class="btn btn-primary mb-5" href="{{ path('app_admin_search') }}">{{ 'search'|trans|capitalize }}</a>
+            <a class="btn btn-primary mb-5" href="{{ path('app_dish_new') }}">{{ 'create new dish'|trans|capitalize }}</a>
             <hr />
-            <h4 class="text-center">MENU'S DAY PRICE</h4>
+            <h4 class="text-center">{{ 'admin panel menuday price'|trans|upper}}</h4>
             <div class="row mb-3">
                {% include "/menu_day_price/_form.html.twig" %}                                           
             </div>            
         </div> 
     </div>
+
+                            <!-- USERS -->
+
     <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <h4 class="text-center">USERS</h4>
+        <h4 class="text-center">{{ 'users'|trans|upper }}</h4>
         <div class="shadow rounded adminMenus">        
-            <a class="btn btn-primary mb-5" href="{{ path('app_user_index') }}">Index</a>
+            <a class="btn btn-primary mb-5" href="{{ path('app_user_index') }}">{{ 'index'|trans|capitalize }}</a>
         </div> 
     </div>
+
+                            <!-- CATEGORIES -->
+
     <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <h4 class="text-center">CATEGORIES</h4>
+        <h4 class="text-center">{{ 'categories'|trans|upper }}</h4>
         <div class="shadow rounded adminMenus">        
-            <a class="btn btn-primary mb-5" href="{{ path('app_dish_menu_index') }}">Dish categories</a>
-            <a class="btn btn-primary mb-5" href="{{ path('app_dish_day_index') }}">Dish options</a>
+            <a class="btn btn-primary mb-5" href="{{ path('app_dish_menu_index') }}">{{ 'index'|trans|capitalize }}</a>
+            <a class="btn btn-primary mb-5" href="{{ path('app_dish_day_index') }}">{{ 'dish options'|trans|capitalize }}</a>
         </div> 
     </div>                                                                          
-</div> 
+</div>
+
+                            <!-- ORDERS -->
+
 <div class="row">
     <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <h4 class="text-center">ORDERS</h4>
+        <h4 class="text-center">{{ 'orders'|trans|upper }}</h4>
         <div class="shadow rounded adminMenus">
-            <a class="btn btn-primary mb-5" href="{{ path('app_order') }}">Index</a>                                    
+            <a class="btn btn-primary mb-5" href="{{ path('app_order') }}">{{ 'index'|trans|capitalize }}</a>                                    
         </div> 
     </div>
+
+                            <!-- RESERVATIONS -->
+
     <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <h4 class="text-center">RESERVATIONS</h4>
+        <h4 class="text-center">{{ 'reservations'|trans|upper }}</h4>
         <div class="shadow rounded adminMenus">        
-            <a class="btn btn-primary mb-5" href="{{ path('app_reservation_search') }}">Search</a>
+            <a class="btn btn-primary mb-5" href="{{ path('app_reservation_search') }}">{{ 'search'|trans|capitalize }}</a>
         </div> 
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-4">
         <h4 class="text-center">NEW SECTION</h4>
         <div class="shadow rounded adminMenus">        
-            <a class="btn btn-primary mb-5" href="#">Index</a>
+            <a class="btn btn-primary mb-5" href="#">{{ 'index'|trans|capitalize }}</a>
         </div> 
     </div>  
 </div>

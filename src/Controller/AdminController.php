@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Require ROLE_ADMIN for this actions
  */ 
 #[IsGranted('ROLE_ADMIN')]
-#[Route('/admin')]
+#[Route('/{_locale}/admin')]
 class AdminController extends AbstractController
 {
     /** Show main admin view */  

@@ -22,6 +22,16 @@ register form: 'register form'
 userName: 'user name:'
 plainPassword: 'password:'
 email: 'email:'
+main menu: 'main menu'
+dishes: 'dishes'
+users: 'users'
+categories: 'categories'
+admin panel menuday price: "day's menu price"
+index: 'index'
+search: 'search'
+create new dish: 'create new dish'
+dish options: 'dish options'
+admin: 'admin'
 
 # Header links
 english: 'english'
@@ -34,6 +44,7 @@ reservations: 'reservations'
 registration: 'registration'
 administration: 'administration'
 order: 'order'
+orders: 'orders'
 logout: 'logout'
 
 # Day's menu

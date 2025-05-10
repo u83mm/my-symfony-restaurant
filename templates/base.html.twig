@@ -86,7 +86,7 @@
 				</div>				
 			</nav>			
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}					
-				<p class="text-end pe-2">{{ 'loged as'|trans|capitalize }}: <strong>{{ app.user.userName|capitalize }}</strong></p>									
+				<p class="text-end pe-2">{{ 'loged as'|trans|capitalize }}: <strong>{{ app.user.userName|trans|capitalize }}</strong></p>									
 			{% endif %}
 			{% endblock %}
 			{% block flash %}
