@@ -13,15 +13,21 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddToOrderType extends AbstractType
-{
-    private array $select = [];    
+{     
+    private array $select = [];
+    private Session $session;
+    
+    public function __construct()
+    {
+        // Set up the select options   
+        $this->session = new Session();         
+        $this->select = $this->setup();              
+    }
 
     public function setup() : array
     {
-        // Get the locale from the session
-        $session = new Session();                 
-
-        $this->select = $session->get('_locale') == 'en' ? [
+        // Get the locale from the session                       
+        $this->select = $this->session->get('_locale') == 'en' ? [
             'Select' => "",
                 'Aperitifs'         => 'aperitifs',
                 'Firsts'            => 'firsts',
@@ -40,13 +46,7 @@ class AddToOrderType extends AbstractType
             ];
 
         return $this->select;
-    }
-    public function __construct()
-    {
-        // Set up the select options        
-        $this->select = $this->setup();
-        
-    }
+    }    
    
     public function buildForm(FormBuilderInterface $builder, array $options) : void
     {        

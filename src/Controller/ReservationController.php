@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ReservationController extends AbstractController
 {
-    #[Route('/reservation', name: 'app_reservation')]
+    #[Route('/{_locale}/reservation', name: 'app_reservation')]
     public function index(DishRepository $dishRepository, ManagerRegistry $mr, Request $request, ReservationRepository $reservationRepository): Response
     {
         try {
