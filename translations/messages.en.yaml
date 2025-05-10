@@ -16,6 +16,12 @@ name: 'name:'
 comment: 'comment:'
 comment_placeholder: 'write your comment here...'
 send: 'send'
+strength password: 'Strength Password'
+login: 'login'
+register form: 'register form'
+userName: 'user name:'
+plainPassword: 'password:'
+email: 'email:'
 
 # Header links
 english: 'english'
