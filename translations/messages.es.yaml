@@ -22,6 +22,16 @@ register form: 'formulario de registro'
 userName: 'nombre de usuario:'
 plainPassword: 'contraseña:'
 email: 'email:'
+main menu: 'menú principal'
+dishes: 'platos'
+users: 'usuarios'
+categories: 'categorías'
+admin panel menuday price: 'precio del menú del día'
+index: 'listado'
+search: 'buscar'
+create new dish: 'crear nuevo plato'
+dish options: 'opciones de plato'
+admin: 'administrador'
 
 
 # Header links
@@ -35,6 +45,7 @@ reservations: 'reservas'
 registration: 'registro'
 administration: 'administración'
 order: 'pedir'
+orders: 'pedidos'
 logout: 'salir'
 
 # Day's menu
