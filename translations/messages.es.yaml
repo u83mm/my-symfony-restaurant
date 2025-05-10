@@ -16,6 +16,12 @@ name: 'nombre:'
 comment: 'comentario:'
 comment_placeholder: 'escribe tu comentario...'
 send: 'enviar'
+strength password: 'robustez de contraseña'
+login: 'logeate'
+register form: 'formulario de registro'
+userName: 'nombre de usuario:'
+plainPassword: 'contraseña:'
+email: 'email:'
 
 
 # Header links
