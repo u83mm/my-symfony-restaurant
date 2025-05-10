@@ -8,8 +8,14 @@ no: 'no'
 go to list: 'listado de platos'
 edit: 'editar'
 delete: 'eliminar'
-qty: 'cant'
+qty: 'cant.:'
 select: 'selecciona'
+date: 'fecha:'
+time: 'hora:'
+name: 'nombre:'
+comment: 'comentario:'
+comment_placeholder: 'escribe tu comentario...'
+send: 'enviar'
 
 
 # Header links
