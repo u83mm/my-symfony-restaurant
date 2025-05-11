@@ -31,7 +31,16 @@ index: 'listado'
 search: 'buscar'
 create new dish: 'crear nuevo plato'
 dish options: 'opciones de plato'
+dish index: 'índice de platos'
 admin: 'administrador'
+new dish: 'nuevo plato'
+next: 'sig.'
+previous: 'ant.'
+picture: 'foto'
+dish index name: 'nombre'
+category: 'categoría'
+options: 'opciones'
+show: 'ver'
 
 
 # Header links
