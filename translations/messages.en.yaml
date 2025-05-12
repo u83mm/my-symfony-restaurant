@@ -45,6 +45,13 @@ carta: 'menu'
 primero: 'first'
 segundo: 'second'
 postre: 'dessert'
+edit dish: 'edit dish'
+description: 'description:'
+dishDay: "Day's dish:"
+dishMenu: 'category:'
+select_picture: 'select picture'
+update: 'update'
+save: 'save'
 
 
 # Header links

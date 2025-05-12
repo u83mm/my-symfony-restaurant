@@ -41,6 +41,13 @@ dish index name: 'nombre'
 category: 'categoría'
 options: 'opciones'
 show: 'ver'
+edit dish: 'editar plato'
+description: 'descripción:'
+dishDay: 'en menu del día:'
+dishMenu: 'categoría:'
+select_picture: 'selecciona imagen'
+update: 'actualizar'
+save: 'guardar'
 
 
 # Header links
