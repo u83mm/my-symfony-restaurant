@@ -42,7 +42,7 @@ class DishMenuController extends AbstractController
     public function new(Request $request, DishMenuRepository $dishMenuRepository): Response
     {
         try {
-            $dishMenu = new DishMenu();
+            $dishMenu = new_dishMenu();
             $form = $this->createForm(DishMenuType::class, $dishMenu);
             $form->handleRequest($request);
 

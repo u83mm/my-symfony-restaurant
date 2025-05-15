@@ -232,7 +232,7 @@ class CartController extends AbstractController
                 return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
             }
             
-            // Adds new dishes to an existing order, updates table number or people quantity
+            // Adds new_dishes to an existing order, updates table number or people quantity
             if($oldOrder = $request->getSession()->get('order')) {
                 $order = $orderRepository->findOneBy(['id' => $oldOrder->getId()]);
                 $order->setTableNumber(0);
@@ -248,7 +248,7 @@ class CartController extends AbstractController
                     return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
                 }
 
-                // Adds new dishes to an existing order
+                // Adds new_dishes to an existing order
                 if($dishes) $orderRepository->addDishesToAnExistingOrder($dishes, $order);         
 
                 $orderRepository->update($order, true);

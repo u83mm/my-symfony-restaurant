@@ -71,7 +71,7 @@ class DishController extends AbstractController
     public function new(Request $request, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
         try {
-            $dish = new Dish();
+            $dish = new_dish();
             $form = $this->createForm(DishType::class, $dish);
             $form->handleRequest($request);
 
