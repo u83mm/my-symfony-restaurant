@@ -5,7 +5,7 @@
 {% block main %}    
     <div class="row">
         <div class="col-12 col-md-6 mx-auto credentials">
-            <h3 class="text-center">{{ 'register form'|trans|upper }}</h3>
+            <h3 class="text-center">{{ 'register_form'|trans|upper }}</h3>
             {{ form_start(registrationForm) }}
                 {% for field in registrationForm.children %}
                     <div class="row mb-3 {% if not field.vars.valid %}has-error{% endif %}">
@@ -36,7 +36,7 @@
                 {% endfor %}
                 
                 <div class="row mb-3">
-                    <label class="col-12 text-center col-form-label" for="strength">{{ 'strength password'|trans|capitalize }}</label>
+                    <label class="col-12 text-center col-form-label" for="strength">{{ 'strength_password'|trans|capitalize }}</label>
                     <div id="strength" class="col-12 strength">                                        
                         <div class="strength_bar" id="strength_bar"></div>                                    
                     </div>

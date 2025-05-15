@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dish index{% endblock %}
+{% block title %}dish_index{% endblock %}
 
 {% block main %}
-    <h1>{{ 'dish index'|trans|capitalize }}</h1>
+    <h1>{{ 'dish_index'|trans|capitalize }}</h1>
 
     <div class="col-12 col-xl-9 mx-auto table-responsive">
         <table id="dishesIndex" class="table table-bordered">
@@ -11,7 +11,7 @@
                 <tr>
                     <th>Id</th>
                     <th>{{ 'picture'|trans|capitalize }}</th>
-                    <th>{{ 'dish index name'|trans|capitalize }}</th>
+                    <th>{{ 'dish_index_name'|trans|capitalize }}</th>
                     <th>{{ 'menu_of_the_day'|trans|capitalize }}</th>
                     <th>{{ 'category'|trans|capitalize }}</th>                             
                     <th>{{ 'price'|trans|capitalize }}</th>
@@ -69,6 +69,6 @@
             {% endif %}
         </div>        
     </div>    
-    <a class="btn btn-primary" href="{{ path('app_dish_new') }}">{{ 'new dish'|trans|capitalize }}</a>
+    <a class="btn btn-primary" href="{{ path('app_dish_new') }}">{{ 'new_dish'|trans|capitalize }}</a>
     <a class="btn btn-primary" href="{{ path('app_admin_search') }}">{{ 'search'|trans|capitalize }}</a>
 {% endblock %}

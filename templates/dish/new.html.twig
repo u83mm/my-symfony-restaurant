@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'new dish'|trans|capitalize }}{% endblock %}
+{% block title %}{{ 'new_dish'|trans|capitalize }}{% endblock %}
 
 {% block main %}    
     <div class="row">
-        <h1>{{ 'new dish'|trans|title }}</h1>
+        <h1>{{ 'new_dish'|trans|title }}</h1>
         <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto">
                 
             {{ include('dish/_form.html.twig') }}
             
-            <a class="btn btn-primary" href="{{ path('app_dish_index') }}">{{ 'go back'|trans|capitalize }}</a>            
+            <a class="btn btn-primary" href="{{ path('app_dish_index') }}">{{ 'go_back'|trans|capitalize }}</a>            
         </div>
     </div>   
 {% endblock %}
