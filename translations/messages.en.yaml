@@ -52,6 +52,18 @@ dishMenu: 'category:'
 select_picture: 'select picture'
 update: 'update'
 save: 'save'
+dish_search: 'dish search'
+availables: 'availables'
+not_availables: 'not availables'
+search_critery: 'search critery'
+by_name: 'by name'
+by_availability: 'by availability'
+by_category: 'by category'
+dish_name: 'dish name'
+macaroni: 'macaroni'
+beer: 'beer'
+
+
 
 
 # Header links
@@ -82,12 +94,18 @@ ensalada mixta: 'mixt salad'
 ensalada catalana: 'catalan salad'
 
 # Meats
-entrecot a la_parrilla: 'grilled entrecote'
+entrecot a la parrilla: 'grilled entrecote'
 bistec con patatas: 'steak with potatoes'
 
 # Starters
 espaguetis a la carbonara: 'spaghetti carbonara'
+spaghetti carbonara: 'spaghetti carbonara'
 macarrones a la boloñesa: 'macaroni bolognese'
+macaroni bolognese: 'macaroni bolognese'
+Los macarrones a la boloñesa es un plato típico del norte de Italia, originado en Bolonia. Se trata de una preparación que consiste en cocinar la pasta de macarrón con una salsa hecha a partir de carne molida, tomate y especias. El resultado es un plato sabroso y reconfortante que se disfruta en muchos restaurantes.: 
+  'The macaroni bolognese is a typical dish from northern Italy, originating in Bologna. It consists of cooking pasta macaroni with a sauce made from ground meat, tomatoes, and spices. The result is a delicious and comforting meal that many restaurants enjoy.'
+The macaroni bolognese is a typical dish from northern Italy, originating in Bologna. It consists of cooking pasta macaroni with a sauce made from ground meat, tomatoes, and spices. The result is a delicious and comforting meal that many restaurants enjoy.:
+  'The macaroni bolognese is a typical dish from northern Italy, originating in Bologna. It consists of cooking pasta macaroni with a sauce made from ground meat, tomatoes, and spices. The result is a delicious and comforting meal that many restaurants enjoy.'
 
 # Rices
 paella valenciana: 'valencian paella'

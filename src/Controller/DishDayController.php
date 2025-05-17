@@ -37,7 +37,7 @@ class DishDayController extends AbstractController
     public function new(Request $request, DishDayRepository $dishDayRepository): Response
     {
         try {
-            $dishDay = new_dishDay();
+            $dishDay = new dishDay();
             $form = $this->createForm(DishDayType::class, $dishDay);
             $form->handleRequest($request);
 

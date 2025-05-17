@@ -1,11 +1,11 @@
 <form action="{{ path('app_dish_search') }}" method="post" class="mb-3">
     <input type="hidden" name="field" value="available">
-    <button class="btn btn-primary">Buscar</button>
+    <button class="btn btn-primary">{{ 'search'|trans|capitalize }}</button>
     <div class="col-4 col-md-3 col-lg-8 text-center text-sm-start d-inline-block ms-2">
         <select name="critery" id="available" required>
-            <option value="">- Selecciona -</option>
-            <option value="1">Disponibles</option>
-            <option value="0">NO disponibles</option>
+            <option value="">- {{ 'select'|trans|capitalize }} -</option>
+            <option value="1">{{ 'availables'|trans|capitalize }}</option>
+            <option value="0">{{ 'not_availables'|trans|capitalize }}</option>
         </select> 
     </div>                  
 </form>
