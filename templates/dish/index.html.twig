@@ -28,7 +28,7 @@
                             <img class="img-fluid" type="image" src="{{ asset('uploads/dishes_pictures/' ~ dish.picture) }}" alt="dish_image">
                         </a>                        
                     </td>
-                    <td>{{ dish.name|trans|capitalize }}</td>
+                    <td>{{ dish.name|lower|trans|capitalize }}</td>
                     <td>{{ dish.dishday|lower|trans|capitalize }}</td>
                     <td>{{ dish.dishmenu|lower|trans|capitalize }}</td>                             
                     <td class="text-center">{{ dish.price }}</td>
