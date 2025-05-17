@@ -33,10 +33,19 @@
             {# Render field "price" #}
             <div class="col-8 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-check-input' }}) }} 
-            </div>             
+            </div>
+        {% elseif field.vars.name == "description" %}
+            {# Render field "price" #}
+            <div class="col-8 mb-3">
+                {{ form_widget(field, { 'attr': { 'class': 'form-control', 'readonly': true, 'data': 'macaroni_description' }}) }} 
+            </div>
+        {% elseif field.vars.name == "name" %}
+            <div class="col-sm-8 mb-3">
+                {{ form_widget(field, { 'attr': { 'class': 'form-control', 'value': field.vars.value|lower|trans|capitalize }}) }} 
+            </div>                     
         {% else %}
             <div class="col-sm-8 mb-3">
-                {{ form_widget(field, { 'attr': { 'class': 'form-control', 'value': field.vars.value|trans|capitalize }}) }} 
+                {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }} 
             </div>                
         {% endif %}
         
