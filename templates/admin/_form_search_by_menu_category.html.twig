@@ -1,11 +1,11 @@
 <form action="{{ path('app_dish_index') }}" method="post" class="mb-3">
     <input type="hidden" name="field" value="dishMenu">
-    <button class="btn btn-primary">Buscar</button>
+    <button class="btn btn-primary">{{ 'search'|trans|capitalize }}</button>
     <div class="col-4 col-md-3 col-lg-8 text-center text-sm-start d-inline-block ms-2">
         <select name="critery" id="category" required>
-            <option value="">- Selecciona -</option>
+            <option value="">- {{ 'select'|trans|capitalize }} -</option>
         {% for category in menu_categories %}
-            <option value="{{ category.id }}">{{ category }}</option>
+            <option value="{{ category.id }}">{{ category|lower|trans|capitalize }}</option>
         {% endfor %}                                                     
         </select> 
     </div>                  

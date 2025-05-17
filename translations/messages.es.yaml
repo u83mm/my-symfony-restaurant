@@ -48,6 +48,16 @@ dishMenu: 'categoría:'
 select_picture: 'selecciona imagen'
 update: 'actualizar'
 save: 'guardar'
+dish_search: 'búsqueda de platos'
+availables: 'disponibles'
+not_availables: 'no disponibles'
+search_critery: 'criterios de búsqueda'
+by_name: 'por nombre'
+by_availability: 'por disponibilidad'
+by_category: 'por categoría'
+dish_name: 'nombre del plato'
+macaroni: 'macarrones'
+beer: 'cerveza'
 
 
 # Header links
@@ -74,14 +84,17 @@ days_menu_footer_text: 'bebida a elegir: agua, vino o refresco.'
 
 ### Menus's dishes ###
 # Salads
-ensalada_mixta: 'ensalada_mixta'
-ensalada_catalana: 'ensalada_catalana'
+ensalada_mixta: 'ensalada mixta'
+catalan salad: 'ensalada catalana'
 
 # Meats
 entrecot_a_la_parrilla: 'entrecot_a_la_parrilla'
 
 # Starters
-espaguetis_a_la_carbonara: 'espaguetis_a_la_carbonara'
+spaghetti carbonara: 'espaguetis a la carbonara'
+macaroni bolognese: 'macarrones a la boloñesa'
+The macaroni bolognese is a typical dish from northern Italy, originating in Bologna. It consists of cooking pasta macaroni with a sauce made from ground meat, tomatoes, and spices. The result is a delicious and comforting meal that many restaurants enjoy.: 
+  'Los macarrones a la boloñesa es un plato típico del norte de Italia, originado en Bolonia. Se trata de una preparación que consiste en cocinar la pasta de macarrón con una salsa hecha a partir de carne molida, tomate y especias. El resultado es un plato sabroso y reconfortante que se disfruta en muchos restaurantes.'
 
 # Rices
 paella_valenciana: 'paella_valenciana'

@@ -117,10 +117,8 @@ class DishRepository extends ServiceEntityRepository
     /**
      * @return Dish[] Returns an array of Dish objects
      */
-    public function selectDishesByCritery(int $offset, string $field, string $value): Paginator
-    {
-        $searchTerm = $value;
-
+    public function selectDishesByCritery(int $offset, string $field, string $searchTerm): Paginator
+    {        
         $query = $this->createQueryBuilder('d')        
         ->where("d.$field LIKE :searchTerm")
         ->setParameter('searchTerm', '%'.$searchTerm.'%')
