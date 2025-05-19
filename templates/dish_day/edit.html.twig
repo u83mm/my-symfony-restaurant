@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}edit_dishDay{% endblock %}
+{% block title %}{{ 'dish_options'|trans|capitalize }}{% endblock %}
 
 {% block main %}
-    <h1>edit_dishDay</h1>
+    <h1>{{ 'edit'|trans|capitalize }}</h1>
     
     <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto mb-3">
 
-        {{ include('dish_day/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('dish_day/_form.html.twig', {'button_label': 'update'|trans|capitalize}) }}
         
     </div>
     <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto">
         <div class="col-2 d-inline-block float-start">
-            <a class="btn btn-primary" href="{{ path('app_dish_day_index') }}">back to list</a>
+            <a class="btn btn-primary" href="{{ path('app_dish_day_index') }}">{{ 'go_back'|trans|capitalize }}</a>
         </div>
         <div class="col-2 d-inline-block float-start">
             {{ include('dish_day/_delete_form.html.twig') }}

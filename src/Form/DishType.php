@@ -28,7 +28,9 @@ class DishType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {       
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'label' => ucfirst($this->translator->trans('name')) . ":"
+            ])
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'cols'  => "30",
@@ -42,7 +44,8 @@ class DishType extends AbstractType
                     'step' => '0.01',
                     'min' =>    "0",
                     'max' =>    "5000",
-                ],               
+                ],
+                'label' => ucfirst($this->translator->trans('price')) . ":"              
             ])
             ->add('image', null, [
                 'mapped'    => false,

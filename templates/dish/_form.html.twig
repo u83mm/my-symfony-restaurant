@@ -5,9 +5,13 @@
             <div class="{% if field.vars.name == 'available' %} col-3 {% else %} col-sm-3 {% endif %} mb-3 text-center text-sm-end {% if field.vars.name == 'image' %} d-none d-sm-block{% endif %}">
                 {% if field.vars.name == "available" %}
                     {{ form_label(form, "available"|trans|capitalize, {'label_attr': {'class': 'text-md-end'}}) }}
+                {% elseif field.vars.name == 'name' %}
+                    {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }}
                 {% elseif field.vars.name == "image" %}
                     {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }}
                 {% elseif field.vars.name == "picture" %}
+                    {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }}
+                {% elseif field.vars.name == "price" %}
                     {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }}
                 {% else %}
                     {{ form_label(field, field.vars.name|trans|capitalize, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }} 

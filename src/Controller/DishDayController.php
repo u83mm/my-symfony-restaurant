@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/dishday')]
+#[Route('/{_locale}/dishday')]
 class DishDayController extends AbstractController
 {
     #[Route('/', name: 'app_dish_day_index', methods: ['GET'])]
