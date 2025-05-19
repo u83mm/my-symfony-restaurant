@@ -1,27 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin | dish_options{% endblock %}
+{% block title %}Admin | {{ 'dish_options'|trans|capitalize }}{% endblock %}
 
 {% block main %}
-    <h1>dish_options index</h1>
+    <h1>{{ 'index'|trans|capitalize }}</h1>
 
     <div class="col-12 col-xl-9 mx-auto table-responsive">
         <table class="table table-bordered table-striped">
             <thead class="text-center">
                 <tr>
                     <th>Id</th>
-                    <th>Dish option</th>
-                    <th>Actions</th>
+                    <th>{{ 'index_name'|trans|capitalize }}</th>
+                    <th>{{ 'options'|trans|capitalize }}</th>
                 </tr>
             </thead>
             <tbody>
             {% for dish_day in dish_days %}
                 <tr>
                     <td>{{ dish_day.id }}</td>
-                    <td>{{ dish_day.categoryName }}</td>
+                    <td>{{ dish_day.categoryName|trans|capitalize }}</td>
                     <td class="text-center">
-                        <a class="btn btn-outline-success" href="{{ path('app_dish_day_show', {'id': dish_day.id}) }}">show</a>
-                        <a class="btn btn-outline-success" href="{{ path('app_dish_day_edit', {'id': dish_day.id}) }}">edit</a>
+                        <a class="btn btn-outline-success" href="{{ path('app_dish_day_show', {'id': dish_day.id}) }}">{{ 'show'|trans|capitalize }}</a>
+                        <a class="btn btn-outline-success" href="{{ path('app_dish_day_edit', {'id': dish_day.id}) }}">{{ 'edit'|trans|capitalize }}</a>
                     </td>
                 </tr>
             {% else %}
@@ -33,6 +33,6 @@
         </table>    
     </div>
     
-    <a class="btn btn-primary" href="{{ path('app_dish_day_new') }}">Create new</a>
-    <a class="btn btn-primary" href="{{ path('app_admin') }}">go_back</a>
+    <a class="btn btn-primary" href="{{ path('app_dish_day_new') }}">{{ 'new'|trans|capitalize }}</a>
+    <a class="btn btn-primary" href="{{ path('app_admin') }}">{{ 'go_back'|trans|capitalize }}</a>
 {% endblock %}

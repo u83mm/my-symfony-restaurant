@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
  * Require ROLE_ADMIN for this actions
  */ 
 #[IsGranted('ROLE_ADMIN')]
-#[Route('/dishmenu')]
+#[Route('{_locale}/dishmenu')]
 class DishMenuController extends AbstractController
 {
     #[Route('/', name: 'app_dish_menu_index', methods: ['GET'])]

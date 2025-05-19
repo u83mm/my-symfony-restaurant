@@ -2,9 +2,15 @@
     {% for field in form.children %}
     <div class="row {% if not field.vars.valid %}has-error{% endif %}">
         {% if field.vars.name != "_token" %}
+            {% if field.vars.name == 'userName' or field.vars.name == 'password' %}
+            <div class="col-sm-3 mb-3">
+                {{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }}                 
+            </div>                
+            {% else %}
             <div class="col-sm-3 mb-3">
                 {{ form_label(field, field.vars.name|trans|capitalize, {'label_attr': {'class': 'form-label'}}) }}                 
-            </div>               
+            </div> 
+            {% endif %}              
         {% endif %}
 
         <div class="col-sm-8 mb-3">
