@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ReservationsType extends AbstractType
 {        
@@ -51,7 +52,7 @@ class ReservationsType extends AbstractType
     private string $timeSelectPlaceholder = '';
     private string $peopleSelectPlaceholder = '';
 
-    public function __construct()
+    public function __construct(private TranslatorInterface $translator)
     {
         // Set up the session
         $this->session = new Session();
@@ -72,7 +73,9 @@ class ReservationsType extends AbstractType
                 'choices' => $this->timeSelect,
                 'placeholder' => $this->timeSelectPlaceholder,
             ])
-            ->add('name')
+            ->add('name', null, [
+                'label' => ucfirst($this->translator->trans('name')) . ":"
+            ])
             ->add('peopleQty', ChoiceType::class, [
                 'choices' => $this->peopleSelect,
                 'placeholder' => $this->peopleSelectPlaceholder,

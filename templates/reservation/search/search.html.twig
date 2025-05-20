@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}My Restaurant | Reservations Search{% endblock %}
+{% block title %}My Restaurant | {{ 'reservations search'|trans|title }}{% endblock %}
 
 {% block main %}
 <section class="row w-100">
-    <h3 class="text-center pb-2">RESERVATIONS SEARCH</h3>
+    <h3 class="text-center pb-2">{{ 'reservations search'|trans|upper }}</h3>
     <div class="col-12 col-md-6 col-lg-4 mb-4 shadow rounded adminMenus">
-        <h4 class="text-center">Search's critery</h4>
-        <p class="text-center">By date</p>
+        <h4 class="text-center">{{ 'search critery'|trans|capitalize }}</h4>
+        <p class="text-center">{{ 'by date'|trans|capitalize }}</p>
         {% include "reservation/search/_form_search_by_date.html.twig" %}                       
         <hr \>
-        <h4 class="text-center">All reservations</h4>
-        <a class="btn btn-primary mb-5" href="{{ path('app_reservation_all') }}">Find all</a>
+        <h4 class="text-center">{{ 'all reservations'|trans|capitalize }}</h4>
+        <a class="btn btn-primary mb-5" href="{{ path('app_reservation_all') }}">{{ 'find all'|trans|capitalize }}</a>
     </div>
 </section>
 {% endblock %}
