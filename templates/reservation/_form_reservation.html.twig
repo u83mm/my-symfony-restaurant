@@ -18,7 +18,7 @@
 <!-- Name and people quantity -->
 <div class="row mb-0 mb-md-3 d-flex">
     <div class="col-12 col-md-6">
-        {{ form_label(form.name, 'name'|trans|capitalize, {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
+        {{ form_label(form.name, null, {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
         <div class="col-8 col-md-7 d-inline-block mb-2 mb-md-0">
             {{ form_widget(form.name, { 'attr': { 'class': 'form-control blockBefore', 'required': 'required'}}) }}
         </div>

@@ -37,7 +37,7 @@ class AdminController extends AbstractController
         
     }
 
-    /** Show serch dish view */
+    /** Show search dish view */
     #[Route('/search', name: 'app_admin_search')]
     public function dishSearchView(DishMenuRepository $dishMenuRepository): Response
     {
