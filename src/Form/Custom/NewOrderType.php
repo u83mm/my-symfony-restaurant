@@ -9,16 +9,17 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class NewOrderType extends AbstractType
 {
    private int|string $tableNumber;
    private int|string $peopleQty;
 
-    public function __construct() 
+    public function __construct(private TranslatorInterface $translator) 
     {
-        $this->tableNumber = isset($_SESSION['_sf2_attributes']['data']['tableNumber']) ? $_SESSION['_sf2_attributes']['data']['tableNumber'] : "Select";
-        $this->peopleQty = isset($_SESSION['_sf2_attributes']['data']['peopleQty']) ? $_SESSION['_sf2_attributes']['data']['peopleQty'] : "Select";
+        $this->tableNumber = isset($_SESSION['_sf2_attributes']['data']['tableNumber']) ? $_SESSION['_sf2_attributes']['data']['tableNumber'] : ucfirst($translator->trans('select'));
+        $this->peopleQty = isset($_SESSION['_sf2_attributes']['data']['peopleQty']) ? $_SESSION['_sf2_attributes']['data']['peopleQty'] : ucfirst($translator->trans('select'));
     }    
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -38,6 +39,7 @@ class NewOrderType extends AbstractType
                     '9'      => 9,
                     '10'     => 10,
                 ],
+                'label' => ucfirst($this->translator->trans('table')) . ":"
             ])
             ->add('peopleQty', ChoiceType::class, [
                 'choices' => [
@@ -57,7 +59,8 @@ class NewOrderType extends AbstractType
                     '13'     => 13,
                     '14'     => 14,
                     '15'     => 15,
-                ]
+                ],
+                'label' => ucfirst($this->translator->trans('people qty')) . ".:"
             ])            
             ->add('order', SubmitType::class, [
                 'attr' => [

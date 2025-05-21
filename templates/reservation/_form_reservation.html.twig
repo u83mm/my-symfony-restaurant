@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="col-12 col-md-6">
-        {{ form_label(form.time, 'time'|trans|capitalize, {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
+        {{ form_label(form.time, null, {'label_attr': {'class': 'col-3 col-md-4 form-label mb-2 mb-md-0'}}) }}
         <div class="col-8 col-md-7 col-lg-4 d-inline-block mb-2 mb-md-0">
             {{ form_widget(form.time, { 'attr': { 'required': 'required'}}) }}
         </div>
@@ -44,7 +44,7 @@
 <!-- Comment -->
 <div class="row mb-0 mb-md-3 d-flex">
     <div class="col-12">
-        {{ form_label(form.comment, 'comment'|trans|capitalize, {'label_attr': {'class': 'col-2 col-md-2 form-label mb-2 mb-md-0'}}) }}
+        {{ form_label(form.comment, null, {'label_attr': {'class': 'col-2 col-md-2 form-label mb-2 mb-md-0'}}) }}
         <div class="col-12 col-md-9 d-inline-block mb-2 mb-md-0">
             {{ form_widget(form.comment, { 'attr': { 'class': 'form-control blockBefore', 'required': 'required', 'placeholder': 'comment_placeholder'|trans|capitalize}}) }}
         </div>

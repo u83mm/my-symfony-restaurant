@@ -11,11 +11,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[IsGranted(new Expression('is_granted("ROLE_ADMIN") or is_granted("ROLE_WAITER")'))]
-#[Route('/order')]
+#[Route('/{_locale}/order')]
 class OrderController extends AbstractController
 {
+    public function __construct(private TranslatorInterface $translator)
+    {
+        
+    }
     #[Route('/', name: 'app_order')]
     public function index(ManagerRegistry $mr): Response
     {
@@ -66,7 +71,7 @@ class OrderController extends AbstractController
         try {
             if ($this->isCsrfTokenValid('edit'.$order->getId(), $request->request->get('_token'))) {
                 $orderRepository->update($order, true);
-                $this->addFlash('success', 'Order updated successfully.');                        
+                $this->addFlash('success', ucfirst($this->translator->trans('updated order')));                        
                 
                 return $this->redirectToRoute('app_order_show', ['id' => $order->getId()]);
             }
@@ -83,12 +88,10 @@ class OrderController extends AbstractController
     #[Route('/{id}/delete', name: 'app_order_delete', methods: ['POST'])]
     public function delete(Request $request, Order $order, OrderRepository $orderRepository): Response
     {
-        try {
-            //if(!IsGranted('ROLE_ADMIN')) {throw new \Exception("You don't have permission", 1);}
-           
+        try {                       
             if ($this->isCsrfTokenValid('delete'.$order->getId(), $request->request->get('_token'))) {
                 $orderRepository->remove($order, true);
-                $this->addFlash('success', 'Order deleted successfully.');
+                $this->addFlash('success', ucfirst($this->translator->trans('delected order')));
 
                 return $this->redirectToRoute('app_order', [], Response::HTTP_SEE_OTHER);
             }

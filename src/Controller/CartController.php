@@ -12,13 +12,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[IsGranted(new Expression(
     'is_granted("ROLE_ADMIN") or 
     is_granted("ROLE_WAITER")'))]
-#[Route('/cart')]
+#[Route('/{_locale}/cart')]
 class CartController extends AbstractController
 {
+    public function __construct(private TranslatorInterface $translator)
+    {
+        
+    }
     #[Route('/', name: 'app_cart')]
     public function index(): Response
     {  
@@ -159,7 +164,8 @@ class CartController extends AbstractController
 
                 if(isset($dishes)) $dishes = array_values($dishes);
                 
-                $request->getSession()->set('dishes', $dishes);                        
+                $request->getSession()->set('dishes', $dishes);
+                $this->addFlash('success', ucfirst($this->translator->trans('updated order')));                        
             }
 
             return $this->render('cart/new.html.twig', [
@@ -180,7 +186,7 @@ class CartController extends AbstractController
         }        
     }
 
-    public function addDishToCart(Dish $dish, array $data, Request $request): Response
+    public function addDishToCart(Dish $dish, array $data, Request $request)
     {
         try {
             $dishes = $request->getSession()->get('dishes') ?? [];                        
@@ -228,7 +234,7 @@ class CartController extends AbstractController
 
             // Test if data are selected
             if(!$data) {
-                $this->addFlash('danger', 'Please select table number and people quantity');
+                $this->addFlash('danger', ucfirst($this->translator->trans('select table and people')));
                 return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
             }
             
@@ -244,7 +250,7 @@ class CartController extends AbstractController
 
                 // Test if the table is bussy
                 if($orderRepository->testIfTheTableIsBussy($data['tableNumber'])) {
-                    $this->addFlash('danger', 'The table is bussy');
+                    $this->addFlash('danger', ucfirst($this->translator->trans('bussy table')));
                     return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
                 }
 
@@ -252,7 +258,7 @@ class CartController extends AbstractController
                 if($dishes) $orderRepository->addDishesToAnExistingOrder($dishes, $order);         
 
                 $orderRepository->update($order, true);
-                $this->addFlash('success', 'Order updated successfully.');
+                $this->addFlash('success', ucfirst($this->translator->trans('updated order')));
                 $request->getSession()->remove('order');
                 $request->getSession()->remove('dishes');
                 $request->getSession()->remove('data');
@@ -265,13 +271,13 @@ class CartController extends AbstractController
 
             // Test if the table is bussy
             if($orderRepository->testIfTheTableIsBussy($data['tableNumber'])) {
-                $this->addFlash('danger', 'The table is bussy');
+                $this->addFlash('danger', ucfirst($this->translator->trans('bussy table')));
                 return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
             }
             
             // Test if the order is empty
             if(!$dishes) {
-                $this->addFlash('danger', 'Select a dish from the menu');
+                $this->addFlash('danger', ucfirst($this->translator->trans('empty order')));
                 return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
             }
             
@@ -294,7 +300,7 @@ class CartController extends AbstractController
             $orderRepository->save($order, true);
             $request->getSession()->remove('dishes');
             $request->getSession()->remove('data');
-            $this->addFlash('success', 'Order created successfully.');
+            $this->addFlash('success', ucfirst($this->translator->trans('saved order')));
             
             return $this->redirectToRoute('app_cart_new', [], Response::HTTP_SEE_OTHER);
 
