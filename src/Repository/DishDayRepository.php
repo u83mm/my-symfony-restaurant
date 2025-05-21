@@ -37,7 +37,7 @@ class DishDayRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
-    }
+    }   
 
 //    /**
 //     * @return DishDay[] Returns an array of DishDay objects

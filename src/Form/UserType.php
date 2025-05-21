@@ -4,21 +4,27 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserType extends AbstractType
 {
+    public function __construct(private TranslatorInterface $translator)
+    {
+        
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('userName', null, [
-                'label' => 'Name',
+                'label' => ucfirst($this->translator->trans('user name')) . ":"
             ])
             ->add('email')
             //->add('roles')
-            ->add('password')
+            ->add('password', null, [
+                'label' => ucfirst($this->translator->trans('password')) . ":"
+            ])
         ;
     }
 

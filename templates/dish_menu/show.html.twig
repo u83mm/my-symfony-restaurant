@@ -3,7 +3,7 @@
 {% block title %}Admin | Dish categories{% endblock %}
 
 {% block main %}
-    <h1>Dish category</h1>
+    <h1>{{ 'category'|trans|capitalize }}</h1>
 
     <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto">
         <table class="table">
@@ -13,8 +13,8 @@
                     <td>{{ dish_menu.id }}</td>
                 </tr>
                 <tr>
-                    <th>Category</th>
-                    <td>{{ dish_menu.menuCategory|capitalize }}</td>
+                    <th>{{ 'category'|trans|capitalize }}</th>
+                    <td>{{ dish_menu.menuCategory|trans|capitalize }}</td>
                 </tr>
                 <tr>
                     <th>Emoji</th>
@@ -23,9 +23,9 @@
             </tbody>
         </table>
     
-        <a class="btn btn-primary" href="{{ path('app_dish_menu_index') }}">back to list</a>
+        <a class="btn btn-primary" href="{{ path('app_dish_menu_index') }}">{{ 'go_back'|trans|capitalize }}</a>
     
-        <a class="btn btn-primary" href="{{ path('app_dish_menu_edit', {'id': dish_menu.id}) }}">edit</a>
+        <a class="btn btn-primary" href="{{ path('app_dish_menu_edit', {'id': dish_menu.id}) }}">{{ 'edit'|trans|capitalize }}</a>
     
         {{ include('dish_menu/_delete_form.html.twig') }}
     </div>

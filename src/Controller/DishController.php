@@ -17,8 +17,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Route('/dish')]
+#[Route('/{_locale}/dish')]
 class DishController extends AbstractController
 {
     #[IsGranted('ROLE_ADMIN')]
@@ -71,7 +72,7 @@ class DishController extends AbstractController
     public function new(Request $request, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
         try {
-            $dish = new Dish();
+            $dish = new dish();
             $form = $this->createForm(DishType::class, $dish);
             $form->handleRequest($request);
 
@@ -206,7 +207,7 @@ class DishController extends AbstractController
                     // instead of its contents
                     $dish->setPicture($newFilename);               
                 }                           
-                
+                $dish->setName(strtolower($dish->getName()));
                 $dishRepository->save($dish, true);
 
                 return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);
@@ -215,8 +216,9 @@ class DishController extends AbstractController
             return $this->render('dish/edit.html.twig', [
                 'dish'      => $dish,
                 'form'      => $form,
-                'active'    => "administration",
+                'active'    => "administration",                
             ]);
+
         } catch (\Throwable $th) {
             if ($this->isGranted('ROLE_ADMIN')) {
                 $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
@@ -253,7 +255,7 @@ class DishController extends AbstractController
 
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/search/dishes/names', name: 'app_dish_search', methods: ['GET', 'POST'])]
-    public function searchDishesName(Request $request, DishRepository $dishRepository): Response
+    public function searchDishesName(Request $request, DishRepository $dishRepository, TranslatorInterface $translator): Response
     {  
         try {
             /** We get "critery" and "field" if necessary */         
@@ -262,7 +264,7 @@ class DishController extends AbstractController
             
             /** We obtain the paginator */
             $offset = max(0, $request->query->getInt('offset', 0));
-            $paginator = $dishRepository->selectDishesByCritery($offset, $field, $critery);
+            $paginator = $dishRepository->selectDishesByCritery($offset, $field, $translator->trans($critery, locale: 'sp_SP'));
             
             /** We calculate total pages and how many pages show in each pagination */
             $pages = ceil(count($paginator) / DishRepository::PAGINATOR_PER_PAGE);

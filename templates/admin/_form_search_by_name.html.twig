@@ -1,7 +1,7 @@
 <form action="{{ path('app_dish_search') }}" method="post">
     <input type="hidden" name="field" value="name">
-    <button class="btn btn-primary">Buscar</button>
+    <button class="btn btn-primary">{{ 'search'|trans|capitalize }}</button>
     <div class="col-4 col-md-3 col-lg-7 text-center text-sm-start d-inline-block ms-2">
-        <input class="form-control" type="text" name="critery" id="critery" placeholder="Nombre del plato" required>
+        <input class="form-control" type="text" name="critery" id="critery" placeholder="{{ 'dish_name'|trans|capitalize }}" required>
     </div>                  
 </form> 

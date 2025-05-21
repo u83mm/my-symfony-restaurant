@@ -5,7 +5,7 @@
 {% block main %}    
     <div class="row">
         <div class="col-12 col-md-6 mx-auto credentials">
-            <h3 class="text-center">FORMULARIO DE REGISTRO</h3>
+            <h3 class="text-center">{{ 'register_form'|trans|upper }}</h3>
             {{ form_start(registrationForm) }}
                 {% for field in registrationForm.children %}
                     <div class="row mb-3 {% if not field.vars.valid %}has-error{% endif %}">
@@ -15,9 +15,14 @@
                                 <div class="col-12 col-md-8">
                                     {{ form_label(field, null, {'label_attr': {'class': 'col-12 col-md-3 text-center text-md-end form-check-label'}}) }}              
                                     {{ form_widget(field, { 'attr': { 'class': 'form-check-input' }}) }} 
-                                </div>                                
+                                </div> 
+                            {% elseif field.vars.name == 'userName' %}
+                                {{ form_label(field, null, {'label_attr': {'class': 'col-12 col-md-3 text-center text-md-end col-form-label'}}) }}
+                                <div class="col-12 col-md-7">
+                                    {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }} 
+                                </div>                                              
                             {% else %}
-                                {{ form_label(field, null, {'label_attr': {'class': 'col-12 col-md-3 text-center text-md-end col-form-label'}}) }}               
+                                {{ form_label(field, field.vars.name|trans|capitalize, {'label_attr': {'class': 'col-12 col-md-3 text-center text-md-end col-form-label'}}) }}               
                                 {% if field.vars.name == "plainPassword" %}
                                 <div class="col-12 col-md-7">
                                     {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }} 
@@ -36,7 +41,7 @@
                 {% endfor %}
                 
                 <div class="row mb-3">
-                    <label class="col-12 text-center col-form-label" for="strength">Strength Password:</label>
+                    <label class="col-12 text-center col-form-label" for="strength">{{ 'strength_password'|trans|capitalize }}</label>
                     <div id="strength" class="col-12 strength">                                        
                         <div class="strength_bar" id="strength_bar"></div>                                    
                     </div>
@@ -48,7 +53,7 @@
                 <div class="row mb-3">
                     <label class="col-12 col-md-3" for="none">&nbsp;</label>
                     <div class="col-12 col-md-8 text-center text-md-start">
-                        <input type="submit" value="Register">
+                        <input type="submit" value="{{ 'send'|trans|capitalize }}">
                     </div>                    
                 </div>
             {{ form_end(registrationForm) }}

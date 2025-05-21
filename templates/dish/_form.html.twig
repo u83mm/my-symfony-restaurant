@@ -4,17 +4,25 @@
         {% if field.vars.name != "_token" %}
             <div class="{% if field.vars.name == 'available' %} col-3 {% else %} col-sm-3 {% endif %} mb-3 text-center text-sm-end {% if field.vars.name == 'image' %} d-none d-sm-block{% endif %}">
                 {% if field.vars.name == "available" %}
-                    {{ form_label(form, "Available", {'label_attr': {'class': 'text-md-end'}}) }}
+                    {{ form_label(form, "available"|trans|capitalize, {'label_attr': {'class': 'text-md-end'}}) }}
+                {% elseif field.vars.name == 'name' %}
+                    {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }}
+                {% elseif field.vars.name == "image" %}
+                    {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }}
+                {% elseif field.vars.name == "picture" %}
+                    {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }}
+                {% elseif field.vars.name == "price" %}
+                    {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }}
                 {% else %}
-                    {{ form_label(field, null, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }} 
+                    {{ form_label(field, field.vars.name|trans|capitalize, {'label_attr': {'class': 'col-form-label text-center text-md-end'}}) }} 
                 {% endif %}                
             </div>               
         {% endif %}
                 
         {% if field.vars.name == "price" %}
-            {# Render field "price" #}
+            {# Render field "price" #}             
             <div class="col-sm-2 mb-3">
-                {{ form_widget(field, { 'attr': { 'class': 'form-control col-2' }}) }} 
+                {{ form_widget(field, { 'attr': { 'class': 'form-control col-2'}}) }} 
             </div>
         {% elseif field.vars.name == "image" %} 
             <div class="col-8 col-sm-5 mb-3 mx-auto mx-sm-0">
@@ -29,7 +37,16 @@
             {# Render field "price" #}
             <div class="col-8 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-check-input' }}) }} 
-            </div>             
+            </div>
+        {% elseif field.vars.name == "description" %}
+            {# Render field "price" #}
+            <div class="col-8 mb-3">
+                {{ form_widget(field, { 'attr': { 'class': 'form-control', 'readonly': true, 'data': 'macaroni_description' }}) }} 
+            </div>
+        {% elseif field.vars.name == "name" %}
+            <div class="col-sm-8 mb-3">
+                {{ form_widget(field, { 'attr': { 'class': 'form-control', 'value': field.vars.value|lower|trans|capitalize }}) }} 
+            </div>                     
         {% else %}
             <div class="col-sm-8 mb-3">
                 {{ form_widget(field, { 'attr': { 'class': 'form-control' }}) }} 
@@ -43,7 +60,7 @@
     <div class="row">
         <div class="col-sm-4 mb-3">&nbsp;</div>
         <div class="col-sm-8 ma-3">
-            <button class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+            <button class="btn btn-outline-primary">{{ button_label|default('save'|trans|capitalize) }}</button>
         </div>  
     </div>       
 {{ form_end(form) }}

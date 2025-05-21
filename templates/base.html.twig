@@ -26,20 +26,17 @@
         {% endblock %}
     </head>
     <body class="ps-md-3 pe-md-3">
-    	<header class="d-md-flex header">					
-			<div class="col-12 col-md-10 col-xl-11 d-flex justify-content-center align-items-end justify-content-md-end align-items-xl-center pt-5 p-xl-0">
-				<h2 class="pt-5 p-xl-0">Restaurant Your House</h2>
-			</div>
-			<div class="col-12 col-md-2 col-xl-1 d-md-flex justify-content-center align-items-end pb-2 pe-1 text-end">
-				<form action="#" method="post">
-					<input type="hidden" name="action" value="">
-					<input type="hidden" name="date" value="">													
-					<button id="language" class="btn btn-link" type="submit" name="language" value="english"><img class="me-xl-1 languageFlag" src="{{ asset('images/english-flag.svg') }}" alt="Language flag">English</button>
-				</form>										
-			</div>																				
+    	<header class="d-flex header">					
+			<div class="col-12 d-flex justify-content-center justify-content-md-end align-items-center p-xl-0">
+				<h2 class="p-2 m-md-0 me-lg-2">Restaurant Your House</h2>
+			</div>																							
 		</header>					
 		<main class="container-fluid">
-			{% block nav %}			
+			{% block nav %}
+			<div class="col-12 pe-1 text-end language-switcher">				
+				<a class="p-1" href="{{ path('app_change_locale', { 'locale': 'en' }) }}"><img class="me-xl-1 languageFlag" src="{{ asset('images/english-flag.svg') }}" alt="English flag">{{ 'english'|trans|capitalize }}</a>
+				<a class="p-1" href="{{ path('app_change_locale', { 'locale': 'es' }) }}"><img class="me-xl-1 languageFlag" src="{{ asset('images/spanish-flag.svg') }}" alt="Spanish flag">{{ 'spanish'|trans|capitalize }}</a>
+			</div>			
 			<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">				
 				<div class="container-fluid">					
 					<div class="col-5 col-sm-1 col-md-3 col-lg-2 col-xl-1">
@@ -51,20 +48,20 @@
 					<div class="collapse navbar-collapse" id="my_nav">
 						<ul class="nav navbar-nav justify-content-center w-100">							
 							<li class="nav-item d-lg-inline-block">
-								<a class="nav-link {% if active is defined and active == 'home' %}active{% endif %}" aria-current="page" href="{{ path("app_home") }}">Home</a>
+								<a class="nav-link {% if active is defined and active == 'home' %}active{% endif %}" aria-current="page" href="{{ path("app_home") }}">{{ 'home'|trans|capitalize }}</a>
 							</li>
 							<li class="nav-item d-lg-inline-block">
-								<a class="nav-link {% if active is defined and active == 'menu' %}active{% endif %}" aria-current="page"  href="{{ path("app_menu_view") }}">Menu</a>
+								<a class="nav-link {% if active is defined and active == 'menu' %}active{% endif %}" aria-current="page"  href="{{ path("app_menu_view") }}">{{ 'menu'|trans|capitalize }}</a>
 							</li>
 							<li class="nav-item d-lg-inline-block">
-								<a class="nav-link {% if active is defined and active == 'reservation' %}active{% endif %}" aria-current="page"  href="{{ path("app_reservation") }}">Reservations</a>
+								<a class="nav-link {% if active is defined and active == 'reservation' %}active{% endif %}" aria-current="page"  href="{{ path("app_reservation") }}">{{ 'reservations'|trans|capitalize }}</a>
 							</li>
 							{% if is_granted('ROLE_ADMIN') %}
 							<li class="nav-item d-lg-inline-block">
-								<a class="nav-link {% if active is defined and active == 'registration' %}active{% endif %}" aria-current="page"  href="{{ path('app_register') }}">Registration</a>
+								<a class="nav-link {% if active is defined and active == 'registration' %}active{% endif %}" aria-current="page"  href="{{ path('app_register') }}">{{ 'registration'|trans|capitalize }}</a>
 							</li>
 							<li class="nav-item d-lg-inline-block">							
-								<a class="nav-link {% if active is defined and active == 'administration' %}active{% endif %}" aria-current="page" href="{{ path('app_admin') }}">Administration</a>							
+								<a class="nav-link {% if active is defined and active == 'administration' %}active{% endif %}" aria-current="page" href="{{ path('app_admin') }}">{{ 'administration'|trans|capitalize }}</a>							
 							</li>							
 							{% endif %}
 							{% if is_granted('ROLE_WAITER') %}
@@ -74,14 +71,14 @@
 							{% endif %}
 							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_WAITER') %}							
 							<li class="nav-item d-lg-inline-block">
-								<a class="nav-link {% if active is defined and active == 'order' %}active{% endif %}" aria-current="page" href="{{ path('app_cart_new') }}">Order</a>
+								<a class="nav-link {% if active is defined and active == 'order' %}active{% endif %}" aria-current="page" href="{{ path('app_cart_new') }}">{{ 'order'|trans|capitalize }}</a>
 							</li>
 							{% endif %}
 							<li class="nav-item d-lg-inline-block">
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-								<a class="nav-link" aria-current="page"  href="{{ path('app_logout') }}">Logout</a>								
+								<a class="nav-link" aria-current="page"  href="{{ path('app_logout') }}">{{ 'logout'|trans|capitalize }}</a>								
 							{% else %}								
-								<a class="nav-link {% if active is defined and active == 'login' %}active{% endif %}" aria-current="page"  href="{{ path('app_login') }}">Login</a>
+								<a class="nav-link {% if active is defined and active == 'login' %}active{% endif %}" aria-current="page"  href="{{ path('app_login') }}">{{ 'login'|trans|capitalize }}</a>
 							{% endif %}
 							</li>
 						</ul>						
@@ -89,7 +86,7 @@
 				</div>				
 			</nav>			
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}					
-				<p class="text-end pe-2">Loged as: <strong>{{ app.user.userName|capitalize }}</strong></p>									
+				<p class="text-end pe-2">{{ 'loged_as'|trans|capitalize }}: <strong>{{ app.user.userName|trans|capitalize }}</strong></p>									
 			{% endif %}
 			{% endblock %}
 			{% block flash %}
@@ -110,38 +107,38 @@
 				<aside class="col-12 col-lg-3 mb-5 menuDia">		
 					<div class="row text-center mb-3">
 						<div class="col d-flex justify-content-center align-items-center">
-							<h2>Menú del día</h2>
+							<h2>{{ 'menu_of_the_day'|trans|capitalize }}</h2>
 							<img class="img-fluid" src="{{ asset("/images/menu_dia_logo.png") }}" alt="menu-logo">
 						</div>				
 					</div>
 					<hr>	
 					<div class="row mb-3">
-						<h4 class="text-center"><strong>PRIMEROS PLATOS</strong></h4>
+						<h4 class="text-center"><strong>{{ 'main_corses'|trans|upper }}</strong></h4>
 						<ul class="ps-4">
 							{% for dish in menuDayElements.primeros %}
-								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
+								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|trans|capitalize }}</a></em></li>
 							{% endfor %}
 						</ul>
 					</div>
 					<div class="row mb-3">
-						<h4 class="text-center"><strong>SEGUNDOS PLATOS</strong></h4>
+						<h4 class="text-center"><strong>{{ 'second_plates'|trans|upper }}</strong></h4>
 						<ul class="ps-4">
 							{% for dish in menuDayElements.segundos %}
-								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
+								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|trans|capitalize }}</a></em></li>
 							{% endfor %}
 						</ul>
 					</div>
 					<div class="row mb-3">
-						<h4 class="text-center"><strong>POSTRE</strong></h4>
+						<h4 class="text-center"><strong>{{ 'desserts'|trans|upper }}</strong></h4>
 						<ul class="ps-4">
 							{% for dish in menuDayElements.postres %}
-								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|capitalize }}</a></em></li>
+								<li><em><a href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ dish.name|trans|capitalize }}</a></em></li>
 							{% endfor %}
 						</ul>
 					</div>
 					<hr>					
-					<h4><strong>PRECIO: {{ price|format_currency('EUR', locale='es') }}</strong></h4>
-					<p>*Bebida a elegir, agua, vino o refresco</p>
+					<h4><strong>{{ 'price'|trans|upper }}: {{ price|format_currency('EUR', locale='es') }}</strong></h4>
+					<p>*{{ 'days_menu_footer_text'|trans|capitalize }}</p>
 				</aside>
 				{% endblock aside %}					
 			{% endblock %}
@@ -183,4 +180,3 @@
 		</footer>       
     </body>
 </html>
-
