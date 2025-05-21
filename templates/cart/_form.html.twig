@@ -2,7 +2,7 @@
     <div class="row mb-4 col-12 col-md-8 mx-auto justify-content-center">
         <!-- Table -->
         <div class="col-6 col-lg-4">
-            {{ form_label(form.tableNumber, 'Table:', {'label_attr': {'class': 'col-12 col-md-4 col-form-label text-center text-md-end'}}) }}
+            {{ form_label(form.tableNumber, null, {'label_attr': {'class': 'col-12 col-md-4 col-form-label text-center text-md-end'}}) }}
             <div class="col-12 col-md-7 d-inline-block text-center text-md-start">
                 {{ form_widget(form.tableNumber) }}
             </div>
@@ -10,7 +10,7 @@
 
         <!-- People -->
         <div class="col-6 col-lg-4">
-            {{ form_label(form.peopleQty, 'People:', {'label_attr': {'class': 'col-12 col-md-4 col-form-label text-center text-md-end'}}) }}
+            {{ form_label(form.peopleQty, null, {'label_attr': {'class': 'col-12 col-md-4 col-form-label text-center text-md-end'}}) }}
             <div class="col-12 col-md-7 d-inline-block text-center text-md-start">
                 {{ form_widget(form.peopleQty) }}
             </div>
@@ -21,14 +21,14 @@
     <div class="row mb-3">
         <!-- Aperitiffs -->
         <div class="col-12 col-md-6 col-lg-4 mb-5">
-            <h3 class="text-center">Aperitiffs</h3>
+            <h3 class="text-center">{{ 'snaks'|trans|capitalize }}</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
                    {% for dish in dishes %}
                         {% if dish.category == 'aperitifs' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ dish.name|capitalize }}
+                                    {{ dish.name|trans|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
                                     <input class="numberQty" type="number" name="aperitifs_qty[]" id="" value="{{ dish.qty }}">
@@ -42,14 +42,14 @@
 
         <!-- Firsts -->
         <div class="col-12 col-md-6 col-lg-4 mb-5">
-            <h3 class="text-center">Firsts Dishes</h3>
+            <h3 class="text-center">{{ 'main_corses'|trans|title }}</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
                     {% for dish in dishes %}
                         {% if dish.category == 'firsts' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ dish.name|capitalize }}
+                                    {{ dish.name|trans|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">                                    
                                     <input class="numberQty" type="number" name="firsts_qty[]" id="" value="{{ dish.qty }}">
@@ -63,14 +63,14 @@
 
         <!-- Seconds -->
         <div class="col-12 col-md-6 col-lg-4 mb-5">
-            <h3 class="text-center">Seconds Dishes</h3>
+            <h3 class="text-center">{{ 'seconds dishes'|trans|title }}</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
                     {% for dish in dishes %}
                         {% if dish.category == 'seconds' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ dish.name|capitalize }}
+                                    {{ dish.name|trans|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">                                                                        
                                     <input class="numberQty" type="number" name="seconds_qty[]" id="" value="{{ dish.qty }}">
@@ -84,14 +84,14 @@
 
         <!-- Desserts -->
         <div class="col-12 col-md-6 col-lg-4 mb-5">
-            <h3 class="text-center">Drinks</h3>
+            <h3 class="text-center">{{ 'drinks'|trans|title }}</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
                     {% for dish in dishes %}
                         {% if dish.category == 'drinks' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ dish.name|capitalize }}
+                                    {{ dish.name|trans|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
                                     <input class="numberQty" type="number" name="drinks_qty[]" id="" value="{{ dish.qty }}">
@@ -105,14 +105,14 @@
 
         <!-- Coffees -->
         <div class="col-12 col-md-6 col-lg-4 mb-5">
-            <h3 class="text-center">Desserts</h3>
+            <h3 class="text-center">{{ 'desserts'|trans|title }}</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
                     {% for dish in dishes %}
                         {% if dish.category == 'desserts' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ dish.name|capitalize }}
+                                    {{ dish.name|trans|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
                                     <input class="numberQty" type="number" name="desserts_qty[]" id="" value="{{ dish.qty }}">
@@ -126,14 +126,14 @@
 
         <!-- Aperitiffs -->
         <div class="col-12 col-md-6 col-lg-4 mb-5">
-            <h3 class="text-center">Coffees / Liquors</h3>
+            <h3 class="text-center">{{ 'coffees'|trans|capitalize }} / {{ 'liquors'|trans|capitalize }}</h3>
             <div class="w-100 adminMenus menuDia">
                 <ul class="ps-4">
                     {% for dish in dishes %}
                         {% if dish.category == 'coffees' %}
                             <li>
                                 <div class="col-9 d-inline-block">
-                                    {{ dish.name|capitalize }}
+                                    {{ dish.name|trans|capitalize }}
                                 </div>
                                 <div class="col-2 d-inline-block">
                                     <input class="numberQty" type="number" name="coffees_qty[]" id="" value="{{ dish.qty }}">
@@ -149,9 +149,9 @@
     <div class="row mb-5">
         <div class="col-12 text-center">
             <!-- <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button> -->
-            <a class="btn btn-outline-success" href="{{ path('app_save_cart') }}">Save</a>
-            <a class="btn btn-outline-primary" href="{{ path('app_reset_order') }}">New Order</a>
-            <button class="btn btn-outline-primary">Update</button>            
+            <a class="btn btn-outline-success" href="{{ path('app_save_cart') }}">{{ 'save'|trans|capitalize }}</a>
+            <a class="btn btn-outline-primary" href="{{ path('app_reset_order') }}">{{ 'new order'|trans|title }}</a>
+            <button class="btn btn-outline-primary">{{ 'update'|trans|capitalize }}</button>            
         </div>
     </div>  
     {{ form_row(form._token) }}      

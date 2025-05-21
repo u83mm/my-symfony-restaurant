@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}My Restaurant | Comandas{% endblock %}
+{% block title %}My Restaurant | {{ 'orders'|trans|capitalize }}{% endblock %}
 
 {% block main %}
 <section class="col-12 p-sm-0 pe-lg-3">
-    <h2 class="text-center m-0 me-2 mb-5">Table {{ order.tableNumber }}</h2>
+    <h2 class="text-center m-0 me-2 mb-5">{{ 'table'|trans|capitalize }} {{ order.tableNumber }}</h2>
     <div class="row d-flex justify-content-evenly">
         <div class="col-12 col-md-6 col-xl-4 mb-5">
             <div class="w-100 menuDia">
                 <form action="{{ path('app_order_edit', {'id': order.id}) }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ order.id) }}">
                     <div class="row justify-content-center text-center">
-                        <h4 class="col-5 d-inline-block"><strong>Table:</strong> {{ order.tableNumber }}</h4>
-                        <h4 class="col-5 d-inline-block"><strong>Quantity:</strong> {{ order.peopleQty }}</strong></h4>
+                        <h4 class="col-5 d-inline-block"><strong>{{ 'table'|trans|capitalize }}:</strong> {{ order.tableNumber }}</h4>
+                        <h4 class="col-5 d-inline-block"><strong>{{ 'qty'|trans|capitalize }}</strong> {{ order.peopleQty }}</strong></h4>
                     </div>                
                     <hr>
                     {% if order.aperitifs is defined and order.aperitifs is not null %}
                         <div class="col">
-                            <h4 class="text-center"><strong>APERITIFS</strong></h4>
+                            <h4 class="text-center"><strong>{{ 'snaks'|trans|upper }}</strong></h4>
                             <ul>
                                 {% for aperitif in order.aperitifs %}
                                 <li>
                                     <div class="col-9 d-inline-block">
                                         <input class="item_finished" type="hidden" name="aperitifs_finished[]" id="aperitifs_finished" value="{% if aperitif.finished is defined %}{{ aperitif.finished }}{% endif %}">
                                         <div id="aperitifs_check{{ aperitif.id }}" class="finished">
-                                            {{ aperitif.name|capitalize }}
+                                            {{ aperitif.name|trans|capitalize }}
                                         </div>                                    
                                     </div>
                                     <div class="col-2 d-inline-block">
@@ -38,14 +38,14 @@
                     {% endif %}
                     {% if order.firsts is defined and order.firsts is not null %}
                         <div class="col">
-                            <h4 class="text-center"><strong>FIRSTS</strong></h4>
+                            <h4 class="text-center"><strong>{{ 'firsts'|trans|upper }}</strong></h4>
                             <ul>
                                 {% for first in order.firsts %}
                                 <li>
                                     <div class="col-9 d-inline-block">
                                         <input class="item_finished" type="hidden" name="firsts_finished[]" id="firsts_finished" value="{% if first.finished is defined %}{{ first.finished }}{% endif %}">
                                         <div id="firsts_check{{ first.id }}" class="finished">
-                                            {{ first.name|capitalize }}
+                                            {{ first.name|trans|capitalize }}
                                         </div>                                    
                                     </div>
                                     <div class="col-2 d-inline-block">
@@ -59,14 +59,14 @@
                     {% endif %}
                     {% if order.seconds is defined and order.seconds is not null %}
                         <div class="col">
-                            <h4 class="text-center"><strong>SECONDS</strong></h4>
+                            <h4 class="text-center"><strong>{{ 'seconds'|trans|upper }}</strong></h4>
                             <ul>
                                 {% for second in order.seconds %}
                                 <li>
                                     <div class="col-9 d-inline-block">
                                         <input class="item_finished" type="hidden" name="seconds_finished[]" id="seconds_finished" value="{% if second.finished is defined %}{{ second.finished }}{% endif %}">
                                         <div id="seconds_check{{ second.id }}" class="finished">
-                                            {{ second.name|capitalize }}
+                                            {{ second.name|trans|capitalize }}
                                         </div>                                    
                                     </div>
                                     <div class="col-2 d-inline-block">
@@ -80,14 +80,14 @@
                     {% endif %}
                     {% if order.drinks is defined and order.drinks is not null %}
                         <div class="col">
-                            <h4 class="text-center"><strong>DRINKS</strong></h4>
+                            <h4 class="text-center"><strong>{{ 'drinks'|trans|upper }}</strong></h4>
                             <ul>
                                 {% for drink in order.drinks %}
                                 <li>
                                     <div class="col-9 d-inline-block">
                                         <input class="item_finished" type="hidden" name="drinks_finished[]" id="drinks_finished" value="{% if drink.finished is defined %}{{ drink.finished }}{% endif %}">
                                         <div id="drinks_check{{ drink.id }}" class="finished">
-                                            {{ drink.name|capitalize }}
+                                            {{ drink.name|lower|trans|capitalize }}
                                         </div>                                    
                                     </div>
                                     <div class="col-2 d-inline-block">
@@ -101,14 +101,14 @@
                     {% endif %}
                     {% if order.desserts is defined and order.desserts is not null %}
                         <div class="col">
-                            <h4 class="text-center"><strong>DESSERTS</strong></h4>
+                            <h4 class="text-center"><strong>{{ 'desserts'|trans|upper }}</strong></h4>
                             <ul>
                                 {% for dessert in order.desserts %}
                                 <li>
                                     <div class="col-9 d-inline-block">
                                         <input class="item_finished" type="hidden" name="desserts_finished[]" id="desserts_finished" value="{% if dessert.finished is defined %}{{ dessert.finished }}{% endif %}">
                                         <div id="desserts_check{{ dessert.id }}" class="finished">
-                                            {{ dessert.name|capitalize }}
+                                            {{ dessert.name|trans|capitalize }}
                                         </div>                                    
                                     </div>
                                     <div class="col-2 d-inline-block">
@@ -122,7 +122,7 @@
                     {% endif %}
                     {% if order.coffees is defined and order.coffees is not null %}
                         <div class="col">
-                            <h4 class="text-center"><strong>COFFEES</strong></h4>
+                            <h4 class="text-center"><strong>{{ 'cafés'|trans|upper }}</strong></h4>
                             <ul>
                                 {% for coffee in order.coffees %}
                                 <li>
@@ -141,9 +141,9 @@
                         </div>
                     {% endif %}
                     <div class="col text-center">
-                        <a class="btn btn-outline-success" href="{{ path('app_order') }}">Back to list</a>
-                        <button class="btn btn-outline-success" type="submit">Update</button> 
-                        <a class="btn btn-outline-primary" href="{{ path('app_order_add', {'id': order.id}) }}">Add to Order</a>                                        
+                        <a class="btn btn-outline-success" href="{{ path('app_order') }}">{{ 'go_back'|trans|capitalize }}</a>
+                        <button class="btn btn-outline-success" type="submit">{{ 'update'|trans|capitalize }}</button> 
+                        <a class="btn btn-outline-primary" href="{{ path('app_order_add', {'id': order.id}) }}">{{ 'add to order'|trans|capitalize }}</a>                                        
                     </div>
                 </form>
                 {% if is_granted('ROLE_ADMIN') %}

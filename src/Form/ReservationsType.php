@@ -70,18 +70,21 @@ class ReservationsType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('time', ChoiceType::class, [
-                'choices' => $this->timeSelect,
-                'placeholder' => $this->timeSelectPlaceholder,
+                'choices'       => $this->timeSelect,
+                'placeholder'   => $this->timeSelectPlaceholder,
+                'label'         => ucfirst($this->translator->trans('time')) . ":"
             ])
             ->add('name', null, [
                 'label' => ucfirst($this->translator->trans('name')) . ":"
             ])
             ->add('peopleQty', ChoiceType::class, [
-                'choices' => $this->peopleSelect,
-                'placeholder' => $this->peopleSelectPlaceholder,
+                'choices'       => $this->peopleSelect,
+                'placeholder'   => $this->peopleSelectPlaceholder,
             ])
             ->add('email')
-            ->add('comment')
+            ->add('comment', null, [
+                'label' => ucfirst($this->translator->trans('comment')) . ":"
+            ])
             ->add('send', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-outline-secondary',
