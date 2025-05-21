@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin | Dish categories{% endblock %}
+{% block title %}Admin | {{ 'dish categories'|trans|capitalize }}{% endblock %}
 
 {% block main %}
-    <h1>Dish category index</h1>
+    <h1>{{ 'index'|trans|capitalize }}</h1>
 
     <div class="col-12 col-xl-9 mx-auto table-responsive">
         <table id="categoriesIndex" class="table table-striped table-bordered">
             <thead class="text-center">
                 <tr>
                     <th>Id</th>
-                    <th>Category</th>
+                    <th>{{ 'category'|trans|capitalize }}</th>
                     <th>Emoji</th>
-                    <th>Actions</th>
+                    <th>{{ 'actions'|trans|capitalize }}</th>
                 </tr>
             </thead>
             <tbody>
             {% for dish_menu in dish_menus %}
                 <tr>
                     <td>{{ dish_menu.id }}</td>
-                    <td>{{ dish_menu.menuCategory|capitalize }}</td>
+                    <td>{{ dish_menu.menuCategory|trans|capitalize }}</td>
                     <td class="text-center emoji-size">{{ dish_menu.menuEmoji|raw }}</td>
                     <td class="text-center options">
-                        <a class="btn btn-outline-success" href="{{ path('app_dish_menu_show', {'id': dish_menu.id}) }}">show</a>
-                        <a class="btn btn-outline-success" href="{{ path('app_dish_menu_edit', {'id': dish_menu.id}) }}">edit</a>
+                        <a class="btn btn-outline-success" href="{{ path('app_dish_menu_show', {'id': dish_menu.id}) }}">{{ 'show'|trans|capitalize }}</a>
+                        <a class="btn btn-outline-success" href="{{ path('app_dish_menu_edit', {'id': dish_menu.id}) }}">{{ 'edit'|trans|capitalize }}</a>
                     </td>
                 </tr>
             {% else %}
@@ -35,6 +35,6 @@
         </table>
     </div>
     
-    <a class="btn btn-primary" href="{{ path('app_dish_menu_new') }}">Create new</a>
-    <a class="btn btn-primary" href="{{ path('app_admin') }}">Go back</a>
+    <a class="btn btn-primary" href="{{ path('app_dish_menu_new') }}">{{ 'new'|trans|capitalize }}</a>
+    <a class="btn btn-primary" href="{{ path('app_admin') }}">{{ 'go_back'|trans|capitalize }}</a>
 {% endblock %}

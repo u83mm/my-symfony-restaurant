@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ResetOrderController extends AbstractController
 {
-    #[Route('/reset/order', name: 'app_reset_order')]
+    #[Route('/{_locale}/reset/order', name: 'app_reset_order')]
     public function resetOrders(Request $request): Response    
     {
         try {

@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dish index{% endblock %}
+{% block title %}dish_index{% endblock %}
 
 {% block main %}
-    <h1>Dish index</h1>
+    <h1>{{ 'dish_index'|trans|capitalize }}</h1>
 
     <div class="col-12 col-xl-9 mx-auto table-responsive">
         <table id="dishesIndex" class="table table-bordered">
             <thead class="text-center">
                 <tr>
                     <th>Id</th>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Day's menu</th>
-                    <th>Category</th>                             
-                    <th>Price</th>
-                    <th>Available</th>
-                    <th>Options</th>
+                    <th>{{ 'picture'|trans|capitalize }}</th>
+                    <th>{{ 'index_name'|trans|capitalize }}</th>
+                    <th>{{ 'menu_of_the_day'|trans|capitalize }}</th>
+                    <th>{{ 'category'|trans|capitalize }}</th>                             
+                    <th>{{ 'price'|trans|capitalize }}</th>
+                    <th>{{ 'available'|trans|capitalize }}</th>
+                    <th>{{ 'options'|trans|capitalize }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,14 +28,14 @@
                             <img class="img-fluid" type="image" src="{{ asset('uploads/dishes_pictures/' ~ dish.picture) }}" alt="dish_image">
                         </a>                        
                     </td>
-                    <td>{{ dish.name|capitalize }}</td>
-                    <td>{{ dish.dishday }}</td>
-                    <td>{{ dish.dishmenu }}</td>                             
-                    <td>{{ dish.price }}</td>
+                    <td>{{ dish.name|lower|trans|capitalize }}</td>
+                    <td>{{ dish.dishday|lower|trans|capitalize }}</td>
+                    <td>{{ dish.dishmenu|lower|trans|capitalize }}</td>                             
+                    <td class="text-center">{{ dish.price }}</td>
                     <td class="text-center">{% if dish.available %} ✅️ {% else %} ❌️ {% endif %}</td>
                     <td class="text-center options">
-                        <a class="btn btn-outline-success" href="{{ path('app_dish_show', {'id': dish.id}) }}">show</a>
-                        <a class="btn btn-outline-success" href="{{ path('app_dish_edit', {'id': dish.id}) }}">edit</a>
+                        <a class="btn btn-outline-success" href="{{ path('app_dish_show', {'id': dish.id}) }}">{{ 'show'|trans|capitalize }}</a>
+                        <a class="btn btn-outline-success" href="{{ path('app_dish_edit', {'id': dish.id}) }}">{{ 'edit'|trans|capitalize }}</a>
                     </td>
                 </tr>
             {% else %}
@@ -50,7 +50,7 @@
                                                         <!-- SHOW PAGINATION -->
 
             {% if previous >= 0 %}                                
-                <a href="{{ path(route, {offset: previous, 'field': field, 'critery': critery}) }}">Previous</a> 
+                <a href="{{ path(route, {offset: previous, 'field': field, 'critery': critery}) }}">{{ 'previous'|trans|capitalize }}</a> 
                 <a href="{{ path(route, {offset: 0, 'field': field, 'critery': critery}) }}"><<</a>               
             {% endif %}
 
@@ -65,10 +65,10 @@
 
             {% if next < dishes|length %}
                 <a href="{{ path(route, {offset: last_page_offset, 'field': field, 'critery': critery}) }}">>></a>
-                <a href="{{ path(route, {offset: next, 'field': field, 'critery': critery}) }}">Next</a>                
+                <a href="{{ path(route, {offset: next, 'field': field, 'critery': critery}) }}">{{ 'next'|trans|capitalize }}</a>                
             {% endif %}
         </div>        
     </div>    
-    <a class="btn btn-primary" href="{{ path('app_dish_new') }}">Create new</a>
-    <a class="btn btn-primary" href="{{ path('app_admin_search') }}">Search</a>
+    <a class="btn btn-primary" href="{{ path('app_dish_new') }}">{{ 'new_dish'|trans|capitalize }}</a>
+    <a class="btn btn-primary" href="{{ path('app_admin_search') }}">{{ 'search'|trans|capitalize }}</a>
 {% endblock %}

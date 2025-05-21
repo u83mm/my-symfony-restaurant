@@ -13,10 +13,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
+#[Route('/{_locale}/reservation')]
 class ReservationController extends AbstractController
-{
-    #[Route('/reservation', name: 'app_reservation')]
+{    
+    #[Route('/', name: 'app_reservation')]
     public function index(DishRepository $dishRepository, ManagerRegistry $mr, Request $request, ReservationRepository $reservationRepository): Response
     {
         try {
@@ -58,7 +61,7 @@ class ReservationController extends AbstractController
         }        
     }
 
-    #[Route('/reservation/search', name: 'app_reservation_search')]
+    #[Route('/search', name: 'app_reservation_search')]
     public function search(Request $request): Response
     {
         try {
@@ -134,7 +137,7 @@ class ReservationController extends AbstractController
         ReservationRepository $reservationRepository, 
         DishRepository $dishRepository, Request $request, 
         ManagerRegistry $mr, 
-        string $time = null
+        ?string $time = null
     ): Response
     {
         try {

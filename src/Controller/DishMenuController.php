@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
  * Require ROLE_ADMIN for this actions
  */ 
 #[IsGranted('ROLE_ADMIN')]
-#[Route('/dishmenu')]
+#[Route('{_locale}/dishmenu')]
 class DishMenuController extends AbstractController
 {
     #[Route('/', name: 'app_dish_menu_index', methods: ['GET'])]
@@ -42,7 +42,7 @@ class DishMenuController extends AbstractController
     public function new(Request $request, DishMenuRepository $dishMenuRepository): Response
     {
         try {
-            $dishMenu = new DishMenu();
+            $dishMenu = new dishMenu();
             $form = $this->createForm(DishMenuType::class, $dishMenu);
             $form->handleRequest($request);
 

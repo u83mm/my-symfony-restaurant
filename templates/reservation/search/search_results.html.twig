@@ -5,24 +5,24 @@
 {% block section %}
 <section class="col-12 col-lg-9 p-sm-0 pe-lg-3 mb-5">
     <div class="col mb-3 reservations"></div>
-    <h3 class="text-center pb-2">SEARCH RESULTS</h3>
+    <h3 class="text-center pb-2">{{ 'search results'|trans|upper }}</h3>
 
     {% for reservation in dates %}
         <table class="table table-striped table-bordered mb-5">
-            <h4 class="mb-0"><strong>Date: {{ reservation.date|date("d/m/Y") }}</strong></h4>
+            <h4 class="mb-0"><strong>{{ 'date'|trans|capitalize }} {{ reservation.date|date("d/m/Y") }}</strong></h4>
             <thead class="text-center">
-                <th>Name</th>
-                <th>People qty.</th>
-                <th>Time</th>
-                <th>Comment</th>
+                <th>{{'name'|trans|capitalize}}</th>
+                <th>{{ 'people qty'|trans|capitalize }}.</th>
+                <th>{{ 'time'|trans|capitalize }}</th>
+                <th>{{ 'comment'|trans|capitalize }}</th>
             </thead>
             <tbody>
             {% for row in reservations %}
                 {% if row.date == reservation.date %}
                 <tr>
                     <td>{{ row.name }}</td>
-                    <td>{{ row.peopleQty }}</td>
-                    <td>{{ row.time }}</td>
+                    <td class="text-center">{{ row.peopleQty }}</td>
+                    <td class="text-center">{{ row.time }}</td>
                     <td>{{ row.comment }}</td>
                 </tr>   
                 {% endif %}                                                      
@@ -32,6 +32,6 @@
     {% endfor %}
     
         
-    <a href="{{ path('app_reservation_search') }}" class="btn btn-primary">Go back</a>
+    <a href="{{ path('app_reservation_search') }}" class="btn btn-primary">{{ 'go_back'|trans|capitalize }}</a>
 </section>
 {% endblock %}

@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}My Restaurant | Reservations{% endblock %}
+{% block title %}My Restaurant | {{ 'reservations'|trans|capitalize }}{% endblock %}
 
 {% block section %}
 <section class="col-12 col-lg-9 p-sm-0 pe-lg-3">
     <div class="col mb-3 reservations"></div>
     <div class="col d-flex justify-content-center align-items-center mb-3">
-        <h2 class="m-0 me-2">Reservations</h2>        
+        <h2 class="m-0 me-2">{{ 'reservations'|trans|capitalize }}</h2>        
     </div>
     <div class="clear-fix">
         {% include "/reservation/_form_reservation.html.twig" %}

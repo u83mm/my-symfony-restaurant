@@ -9,28 +9,55 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddToOrderType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options) : void
+{     
+    private array $select = [];
+    private Session $session;
+    
+    public function __construct()
     {
+        // Set up the select options   
+        $this->session = new Session();         
+        $this->select = $this->setup();              
+    }
+
+    public function setup() : array
+    {
+        // Get the locale from the session                       
+        $this->select = $this->session->get('_locale') == 'en' ? [
+            'Select' => "",
+                'Aperitifs'         => 'aperitifs',
+                'Firsts'            => 'firsts',
+                'Seconds'           => 'seconds',
+                'Desserts'          => 'desserts',
+                'Drinks'            => 'drinks',
+                'Coffees / Liquors' => 'coffees',
+            ] : [                                        
+            'Seleccionar' => "",
+                'Aperitivos'        => 'aperitifs', 
+                'Primeros'          => 'firsts',
+                'Segundos'          => 'seconds',
+                'Postres'           => 'desserts',
+                'Bebidas'           => 'drinks',
+                'Cafés / Licores'   => 'coffees',
+            ];
+
+        return $this->select;
+    }    
+   
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    {        
         $builder
-            ->add('qty', IntegerType::class, [
+                ->add('qty', IntegerType::class, [
                 'attr' => [
                     'min' => 0,                    
                 ]
             ])
             ->add('category', ChoiceType::class, [
-                'choices' => [
-                    'Select'            => "",
-                    'Aperitifs'         => 'aperitifs',
-                    'Firsts'            => 'firsts',
-                    'Seconds'           => 'seconds',
-                    'Desserts'          => 'desserts',
-                    'Drinks'            => 'drinks',
-                    'Coffees / Liquors' => 'coffees',
-                ]              
+                'choices' => $this->select,             
             ])
             ->add('order', SubmitType::class, [
                 'attr' => [

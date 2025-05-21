@@ -8,7 +8,7 @@
             {% endif %}
             
             <div class="col-sm-8 mb-3">
-                {{ form_widget(field) }}
+                {{ form_widget(field, { 'value': field.vars.value|trans }) }}
             </div>            
 
             <div class="error">{{ form_errors(field) }}</div> 
@@ -17,7 +17,7 @@
 
     <div class="row">
         <div class="col-sm-3 mb-3">
-            <label for="emoji">Select an Emoji:</label>
+            <label for="emoji">{{ 'select an emoji'|trans|capitalize }}:</label>
         </div>        
         <div id="emoji-container" class="col-sm-8 mb-3">
             <!-- Emojis will be dynamically inserted here -->
@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-sm-3 mb-3">&nbsp;</div>
         <div class="col-sm-8 mb-3">
-            <button class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+            <button class="btn btn-outline-primary">{{ button_label|default('save'|trans|capitalize) }}</button>
         </div>
     </div>   
 {{ form_end(form) }}
