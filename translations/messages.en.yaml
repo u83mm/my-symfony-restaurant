@@ -106,6 +106,7 @@ empty order: 'select a dish from the menu'
 updated order: 'order updated successfully.'
 select table and people: 'please select table number and people quantity'
 delected order: 'order deleted successfully.'
+our menu: 'our menu'
 
 
 # Header links
