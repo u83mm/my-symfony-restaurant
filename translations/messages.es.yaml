@@ -102,6 +102,7 @@ empty order: 'selecciona un plato'
 updated order: 'pedido actualizado.'
 select table and people: 'Selecciona número de mesa y personas'
 delected order: 'pedido eliminado con éxito.'
+our menu: 'nuestra carta'
 
 
 # Header links
