@@ -269,26 +269,26 @@
 		text-decoration: line-through;
 	}
 	
-	/*.alert-success {	
+	.success {	
 		animation-name: fadeOut;
 		animation-duration: 3s;
 		animation-delay: 4s;
 		animation-fill-mode: forwards;
 	}
 	
-	.alert-warning {	
+	.warning {	
 		animation-name: fadeOut;
 		animation-duration: 3s;
 		animation-delay: 4s;
 		animation-fill-mode: forwards;
 	}
 	
-	.alert-danger {	
+	.danger {	
 		animation-name: fadeOut;
 		animation-duration: 3s;
 		animation-delay: 4s;
 		animation-fill-mode: forwards;
-	}*/
+	}
 	
 	.languageFlag {
 		width: 1.5em;

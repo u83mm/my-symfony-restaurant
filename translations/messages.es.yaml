@@ -103,6 +103,9 @@ updated order: 'pedido actualizado.'
 select table and people: 'Selecciona número de mesa y personas'
 delected order: 'pedido eliminado con éxito.'
 our menu: 'nuestra carta'
+row updated: 'registro actualizado correctamente'
+row delected: 'registro eliminado correctamente'
+row saved: 'registro guardado correctamente!'
 
 
 # Header links
