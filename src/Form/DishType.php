@@ -12,21 +12,26 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DishType extends AbstractType
-{        
+{       
+    private Session $session;   
+
     public function __construct(
-        private TranslatorInterface $translator,                                          
+        private TranslatorInterface $translator,                                
     )   
-    {             
+    {  
+        $this->session = new Session();       
     }
    
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {       
+    {  
+        
         $builder
             ->add('name', null, [
                 'label' => ucfirst($this->translator->trans('name')) . ":"
@@ -35,8 +40,7 @@ class DishType extends AbstractType
                 'attr' => [
                     'cols'  => "30",
                     'rows'  => "10",
-                ],
-                'data' => $this->translator->trans($options['data']->getDescription() ?? '')               
+                ],                
             ])            
             ->add('price', NumberType::class, [
                 'html5' => true,
