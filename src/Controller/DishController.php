@@ -7,7 +7,6 @@ use App\Entity\DishDescription;
 use App\Entity\MenuDayPrice;
 use App\Form\Custom\AddToOrderType;
 use App\Form\DishType;
-use App\Repository\DishDescriptionRepository;
 use App\Repository\DishRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -78,8 +77,7 @@ class DishController extends AbstractController
     public function new(Request $request, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
         try {
-            // Depending on the current locale, build the method to use.
-            $getDescriptionLocale = "get" . ucfirst($request->getLocale()) . "Description";
+            // Depending on the current locale, build the method to use.            
             $setDescriptionLocale = "set" . ucfirst($request->getLocale()) . "Description";
 
             $dish = new dish();
@@ -100,8 +98,8 @@ class DishController extends AbstractController
                             $this->getParameter('dishes_pictures_directory'),
                             $newFilename
                         );
-                    } catch (FileException $e) {
-                        echo "The image can't be uploaded.";
+                    } catch (FileException $e) {                       
+                        $this->addFlash('warning', "The image can't be uploaded.");
                     }
 
                     // updates the 'image' property to store the IMG file name
@@ -212,8 +210,8 @@ class DishController extends AbstractController
                     if($imgToRemove) {
                         try {
                             $filesystem->remove($this->getParameter('dishes_pictures_directory') . "/". $imgToRemove);
-                        } catch (IOExceptionInterface $exception) {
-                            echo "An error occurred while delecting image at " . $exception->getPath();
+                        } catch (IOExceptionInterface $exception) {                           
+                            $this->addFlash('danger', "An error occurred while delecting image at " . $exception->getPath());
                         }
                     }                                                
 
@@ -228,8 +226,8 @@ class DishController extends AbstractController
                             $newFilename
                         );                                  
 
-                    } catch (FileException $e) {
-                        echo "The image can't be uploaded.";
+                    } catch (FileException $e) {                        
+                        $this->addFlash('warning', "The image can't be uploaded.");
                     }        
 
                     // updates the 'image' property to store the IMG file name
@@ -242,26 +240,24 @@ class DishController extends AbstractController
                 $dish->getDishDescription()->$setDescriptionLocale($dish->getDescription());
                 $dishRepository->save($dish, true);
 
-                $this->addFlash('success', ucfirst($this->translator->trans('row updated')));
-
-                return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', ucfirst($this->translator->trans('row updated')));                
             }
 
-            return $this->render('dish/edit.html.twig', [
-                'dish'      => $dish,
-                'form'      => $form,
-                'active'    => "administration",                
-            ]);
+            
 
         } catch (\Throwable $th) {
             if ($this->isGranted('ROLE_ADMIN')) {
                 $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
             } else {
                 $this->addFlash('danger', $th->getMessage());
-            }
-
-            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
-        }        
+            }           
+        } 
+        
+        return $this->render('dish/edit.html.twig', [
+            'dish'      => $dish,
+            'form'      => $form,
+            'active'    => "administration",                
+        ]);
     }
 
     #[IsGranted('ROLE_ADMIN')]
