@@ -531,6 +531,10 @@
 	}
 
 	tr:nth-child(odd) {background-color: #f2f2f2;}
+
+	.not-records-found {
+		text-align: center;
+	}
 	
 	/***************** Configuración para móviles **********************/	
 	@media (max-width:480px) {
