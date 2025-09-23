@@ -106,6 +106,7 @@ our menu: 'nuestra carta'
 row updated: 'registro actualizado correctamente'
 row delected: 'registro eliminado correctamente'
 row saved: 'registro guardado correctamente!'
+language: 'idioma'
 
 
 # Header links
