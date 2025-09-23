@@ -110,6 +110,7 @@ our menu: 'our menu'
 row updated: 'row updated successfully.'
 row delected: 'row delected succesfully.'
 row saved: 'row saved succesfully.'
+language: 'language'
 
 
 # Header links

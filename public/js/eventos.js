@@ -50,4 +50,13 @@ window.addEventListener('DOMContentLoaded', () => {
 			finish.addEventListener("click", setFinishDishValue);
 		});
     }
+
+	/** Add event "click" to the 'select-language' menu */
+	let selectLanguage = document.querySelector("#select-language");
+	if(selectLanguage) {
+		selectLanguage.addEventListener("click", () => {
+			let languageList = document.querySelector("#language-list");
+			languageList.classList.toggle("hidden");
+		});
+	}
 });

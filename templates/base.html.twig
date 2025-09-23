@@ -32,11 +32,14 @@
 			</div>																							
 		</header>					
 		<main class="container-fluid">
-			{% block nav %}
-			<div class="col-12 pe-1 text-end language-switcher">				
-				<a class="p-1" href="{{ path('app_change_locale', { 'locale': 'en' }) }}"><img class="me-xl-1 languageFlag" src="{{ asset('images/english-flag.svg') }}" alt="English flag">{{ 'english'|trans|capitalize }}</a>
-				<a class="p-1" href="{{ path('app_change_locale', { 'locale': 'es' }) }}"><img class="me-xl-1 languageFlag" src="{{ asset('images/spanish-flag.svg') }}" alt="Spanish flag">{{ 'spanish'|trans|capitalize }}</a>
-			</div>			
+			{% block nav %}						
+			<nav>
+				<div><a id="select-language" href="#">{{ 'language'|trans|capitalize }}</a></div>
+				<ul id="language-list" class="hidden">					
+					<li><a href="{{ path('app_change_locale', { 'locale': 'en' }) }}"><img class="me-xl-1 languageFlag" src="{{ asset('images/english-flag.svg') }}" alt="English flag">{{ 'english'|trans|capitalize }}</a></li>
+					<li><a href="{{ path('app_change_locale', { 'locale': 'es' }) }}"><img class="me-xl-1 languageFlag" src="{{ asset('images/spanish-flag.svg') }}" alt="Spanish flag">{{ 'spanish'|trans|capitalize }}</a></li>
+				</ul>
+			</nav>			
 			<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">				
 				<div class="container-fluid">					
 					<div class="col-5 col-sm-1 col-md-3 col-lg-2 col-xl-1">
