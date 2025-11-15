@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DishRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,10 +18,7 @@ class Dish
 
     #[ORM\Column(length: 100)]
     private ?string $name = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
-
+    
     #[ORM\Column(length: 200, nullable: true)]
     private ?string $picture = null;
 
@@ -36,6 +35,12 @@ class Dish
 
     #[ORM\Column(length: 1)]
     private ?bool $available = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'dishes', cascade: ['persist'])]    
+    private ?DishDescription $dishDescription = null;      
 
     public function __toString()
     {
@@ -57,19 +62,7 @@ class Dish
         $this->name = $name;
 
         return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    }    
 
     public function getPicture(): ?string
     {
@@ -129,5 +122,29 @@ class Dish
         $this->available = $available;
 
         return $this;
-    } 
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDishDescription(): ?DishDescription
+    {
+        return $this->dishDescription;
+    }
+
+    public function setDishDescription(?DishDescription $dishDescription): static
+    {
+        $this->dishDescription = $dishDescription;
+
+        return $this;
+    }         
 }

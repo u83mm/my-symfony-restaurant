@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Dish;
+use App\Entity\DishDescription;
 use App\Entity\MenuDayPrice;
 use App\Form\Custom\AddToOrderType;
 use App\Form\DishType;
@@ -22,6 +23,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/{_locale}/dish')]
 class DishController extends AbstractController
 {
+    public function __construct(private TranslatorInterface $translator)
+    {
+        
+    }
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'app_dish_index', methods: ['GET', 'POST'])]
     public function index(DishRepository $dishRepository, Request $request): Response
@@ -72,6 +77,9 @@ class DishController extends AbstractController
     public function new(Request $request, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
         try {
+            // Depending on the current locale, build the method to use.            
+            $setDescriptionLocale = "set" . ucfirst($request->getLocale()) . "Description";
+
             $dish = new dish();
             $form = $this->createForm(DishType::class, $dish);
             $form->handleRequest($request);
@@ -90,16 +98,24 @@ class DishController extends AbstractController
                             $this->getParameter('dishes_pictures_directory'),
                             $newFilename
                         );
-                    } catch (FileException $e) {
-                        echo "The image can't be uploaded.";
+                    } catch (FileException $e) {                       
+                        $this->addFlash('warning', "The image can't be uploaded.");
                     }
 
                     // updates the 'image' property to store the IMG file name
                     // instead of its contents
                     $dish->setPicture($newFilename);
                 }                
-                        
+                
+                $dish->setName(strtolower($dish->getName()));                
+
+                $dish->setDishDescription(new DishDescription());
+
+                // Save the dish description depending the current locale
+                $dish->getDishDescription()->$setDescriptionLocale($dish->getDescription());
+
                 $dishRepository->save($dish, true);
+                $this->addFlash('success', ucfirst($this->translator->trans('row saved')));
 
                 return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);
             }
@@ -134,6 +150,11 @@ class DishController extends AbstractController
             
             /** We obtain the dish category */
             $category = $dish->getDishMenu()->getMenuCategory();
+
+            /** We obtain the dish description */
+            // Depending on the current locale, build the method to use.
+            $getDescription = "get" . ucfirst($request->getLocale()) . "Description";
+            $dish->setDescription($dish->getDishDescription()->$getDescription());
 
             $form = $this->createForm(AddToOrderType::class, null);
             $form->handleRequest($request);
@@ -170,9 +191,15 @@ class DishController extends AbstractController
     public function edit(Request $request, Dish $dish, DishRepository $dishRepository, SluggerInterface $slugger): Response
     {
         try {
+            // Depending on the current locale, build the method to use.
+            $getDescriptionLocale = "get" . ucfirst($request->getLocale()) . "Description";
+            $setDescriptionLocale = "set" . ucfirst($request->getLocale()) . "Description";
+
+            $dish->setDescription($dish->getDishDescription()->$getDescriptionLocale());
+
             $form = $this->createForm(DishType::class, $dish);
-            $form->handleRequest($request);                  
-                        
+            $form->handleRequest($request);
+                                                
             if ($form->isSubmitted() && $form->isValid()) {
                 $img = $form->get('select_picture')->getData();
                                                                                         
@@ -183,8 +210,8 @@ class DishController extends AbstractController
                     if($imgToRemove) {
                         try {
                             $filesystem->remove($this->getParameter('dishes_pictures_directory') . "/". $imgToRemove);
-                        } catch (IOExceptionInterface $exception) {
-                            echo "An error occurred while delecting image at " . $exception->getPath();
+                        } catch (IOExceptionInterface $exception) {                           
+                            $this->addFlash('danger', "An error occurred while delecting image at " . $exception->getPath());
                         }
                     }                                                
 
@@ -199,8 +226,8 @@ class DishController extends AbstractController
                             $newFilename
                         );                                  
 
-                    } catch (FileException $e) {
-                        echo "The image can't be uploaded.";
+                    } catch (FileException $e) {                        
+                        $this->addFlash('warning', "The image can't be uploaded.");
                     }        
 
                     // updates the 'image' property to store the IMG file name
@@ -208,36 +235,43 @@ class DishController extends AbstractController
                     $dish->setPicture($newFilename);               
                 }                           
                 $dish->setName(strtolower($dish->getName()));
+
+                // Save the dish description depending the current locale
+                $dish->getDishDescription()->$setDescriptionLocale($dish->getDescription());
                 $dishRepository->save($dish, true);
 
-                return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', ucfirst($this->translator->trans('row updated')));                
             }
 
-            return $this->render('dish/edit.html.twig', [
-                'dish'      => $dish,
-                'form'      => $form,
-                'active'    => "administration",                
-            ]);
+            
 
         } catch (\Throwable $th) {
             if ($this->isGranted('ROLE_ADMIN')) {
                 $this->addFlash('danger', sprintf('Error in %s on line %d: %s', $th->getFile(), $th->getLine(), $th->getMessage()));
             } else {
                 $this->addFlash('danger', $th->getMessage());
-            }
-
-            return $this->redirectToRoute('app_error', [], Response::HTTP_SEE_OTHER);
-        }        
+            }           
+        } 
+        
+        return $this->render('dish/edit.html.twig', [
+            'dish'      => $dish,
+            'form'      => $form,
+            'active'    => "administration",                
+        ]);
     }
 
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/{id}', name: 'app_dish_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'app_dish_delete', methods: ['POST'])]
     public function delete(Request $request, Dish $dish, DishRepository $dishRepository): Response
     {
-        try {
-            
-            if ($this->isCsrfTokenValid('delete'.$dish->getId(), $request->request->get('_token'))) {            
-                $dishRepository->remove($dish, true);
+        try {            
+            if ($this->isCsrfTokenValid('delete'.$dish->getId(), $request->request->get('_token'))) {
+                $fileSystem = new Filesystem();
+                $fileSystem->remove($this->getParameter('dishes_pictures_directory') . "/" . $dish->getPicture());
+               
+                $dishRepository->remove($dish, true); 
+                
+                $this->addFlash('success', ucfirst($this->translator->trans('row delected')));
             }
 
             return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);

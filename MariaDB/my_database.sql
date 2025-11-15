@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: May 15, 2025 at 05:04 PM
+-- Generation Time: Jun 06, 2025 at 07:42 PM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.23
 
@@ -30,29 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `dish` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `description` longtext NOT NULL,
+  `description` longtext DEFAULT NULL,
   `picture` varchar(200) DEFAULT NULL,
   `price` decimal(6,2) NOT NULL,
   `dish_day_id` int(11) NOT NULL,
   `dish_menu_id` int(11) NOT NULL,
-  `available` tinyint(1) NOT NULL
+  `available` tinyint(1) NOT NULL,
+  `dish_description_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `dish`
 --
 
-INSERT INTO `dish` (`id`, `name`, `description`, `picture`, `price`, `dish_day_id`, `dish_menu_id`, `available`) VALUES
-(1, 'macarrones a la boloñesa', 'Suspendisse bibendum velit at ex interdum lacinia. Nam bibendum tortor nisl, vel ultricies risus semper sed. Praesent efficitur tortor in pretium maximus. Sed nec mattis nulla. Donec eleifend in lectus in accumsan. Integer semper finibus sapien, lacinia aliquam leo varius in. Vivamus imperdiet lectus a massa imperdiet sollicitudin. \r\n\r\nSed pellentesque, mauris ut tempor dictum, libero ex malesuada ante, a commodo sem risus non felis. Maecenas venenatis pellentesque turpis eu suscipit.', 'macarrones-bolognesa-6404fe2603f1f.png', 11.75, 4, 2, 1),
-(2, 'ensalada catalana', 'Suspendisse bibendum velit at ex interdum lacinia. Nam bibendum tortor nisl, vel ultricies risus semper sed. Praesent efficitur tortor in pretium maximus. Sed nec mattis nulla. \r\n\r\nDonec eleifend in lectus in accumsan. Integer semper finibus sapien, lacinia aliquam leo varius in. Vivamus imperdiet lectus a massa imperdiet sollicitudin. Sed pellentesque, mauris ut tempor dictum, libero ex malesuada ante, a commodo sem risus non felis. Maecenas venenatis pellentesque turpis eu suscipit.', 'ensalada-catalana-640513571a216.png', 8.20, 4, 3, 1),
-(3, 'ensalada mixta', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'ensalada-mixta-6408f148d4d27.png', 8.50, 1, 3, 1),
-(4, 'paella valenciana', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'paella-valenciana-jpg-6408f190f338b.png', 11.25, 2, 6, 1),
-(5, 'bistec con patatas', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'bistec-patatas-6408f2785ab36.png', 9.50, 2, 4, 1),
-(6, 'arroz con setas', 'nteger malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'arroz-setas-6408f2c3eac89.png', 12.00, 4, 6, 1),
-(7, 'espaguetis a la carbonara', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'espagueti-carbo-6408f30e586cb.png', 8.50, 1, 2, 1),
-(8, 'crema catalana', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'crema-catalana-6408f362b203c.png', 6.00, 3, 7, 1),
-(9, 'entrecot a la parrilla', 'Integer malesuada pellentesque ligula, ac elementum mi porttitor sed. Vestibulum ullamcorper velit a dui dignissim consectetur. In ut odio sed ex pulvinar condimentum eget et turpis. Nunc felis nunc, venenatis ut dui eu, eleifend lacinia ante. Praesent non pharetra libero. Integer eu pretium nunc, venenatis interdum tellus. Ut pretium ligula vitae mauris dictum lacinia. Aenean malesuada euismod lectus quis volutpat. Suspendisse nec tempor nisi.', 'entrecote-6408f396812a4.png', 12.30, 4, 4, 1),
-(10, 'jarra de cerveza', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at ipsum et enim euismod congue. Cras dictum auctor finibus. Ut et ultrices tellus. Maecenas tempus et ligula a fermentum. Maecenas lacinia ultricies quam ac posuere. Nam placerat lacus suscipit lectus venenatis scelerisque. Quisque tristique faucibus pretium.', 'beer-676535c3d060b.webp', 3.50, 4, 14, 1);
+INSERT INTO `dish` (`id`, `name`, `description`, `picture`, `price`, `dish_day_id`, `dish_menu_id`, `available`, `dish_description_id`) VALUES
+(13, 'macaroni bolognese', 'Macaroni Bolognese is a hearty pasta dish made with tender macaroni noodles and a rich, savory meat sauce. The Bolognese sauce, typically made with ground beef, tomatoes, onions, garlic, and herbs, is slowly simmered to bring out deep flavors. This comforting meal is perfect for family dinners and pairs well with a sprinkle of Parmesan cheese on top.', 'macarrones-bolognesa-68433ee0c51ec.webp', 8.50, 1, 2, 1, 13);
 
 -- --------------------------------------------------------
 
@@ -74,6 +66,26 @@ INSERT INTO `dish_day` (`id`, `category_name`) VALUES
 (2, 'segundo'),
 (3, 'postre'),
 (4, 'carta');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dish_description`
+--
+
+CREATE TABLE `dish_description` (
+  `id` int(11) NOT NULL,
+  `es_description` longtext DEFAULT NULL,
+  `en_description` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `dish_description`
+--
+
+INSERT INTO `dish_description` (`id`, `es_description`, `en_description`) VALUES
+(12, 'Spanish', 'English'),
+(13, 'Los macarrones a la boloñesa son un plato de pasta contundente elaborado con tiernos macarrones y una rica salsa de carne sabrosa. La salsa boloñesa, que generalmente se prepara con carne molida, tomates, cebolla, ajo y hierbas, se cocina a fuego lento para resaltar sabores profundos. Esta comida reconfortante es ideal para cenas en familia y combina perfectamente con un poco de queso parmesano rallado por encima.', 'Macaroni Bolognese is a hearty pasta dish made with tender macaroni noodles and a rich, savory meat sauce. The Bolognese sauce, typically made with ground beef, tomatoes, onions, garlic, and herbs, is slowly simmered to bring out deep flavors. This comforting meal is perfect for family dinners and pairs well with a sprinkle of Parmesan cheese on top.');
 
 -- --------------------------------------------------------
 
@@ -146,7 +158,7 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20250104165133', '2025-01-04 17:51:46', 48),
 ('DoctrineMigrations\\Version20250126114931', '2025-01-26 12:49:55', 37),
 ('DoctrineMigrations\\Version20250127100244', '2025-01-27 11:02:59', 75),
-('DoctrineMigrations\\Version20250127101912', '2025-01-27 11:19:15', 64);
+('DoctrineMigrations\\Version20250605190623', '2025-06-05 21:06:28', 71);
 
 -- --------------------------------------------------------
 
@@ -205,8 +217,7 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id`, `table_number`, `people_qty`, `aperitifs`, `firsts`, `seconds`, `drinks`, `desserts`, `coffees`) VALUES
-(1, 1, 2, NULL, '[{\"id\":3,\"name\":\"ensalada mixta\",\"picture\":\"ensalada-mixta-6408f148d4d27.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"firsts\",\"finished\":\"1\"},{\"id\":7,\"name\":\"espaguetis a la carbonara\",\"picture\":\"espagueti-carbo-6408f30e586cb.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"firsts\",\"finished\":\"1\"}]', '[{\"id\":4,\"name\":\"paella valenciana\",\"picture\":\"paella-valenciana-jpg-6408f190f338b.png\",\"price\":\"11.25\",\"qty\":\"1\",\"category\":\"seconds\",\"finished\":\"\"},{\"id\":5,\"name\":\"bistec con patatas\",\"picture\":\"bistec-patatas-6408f2785ab36.png\",\"price\":\"9.50\",\"qty\":\"1\",\"category\":\"seconds\",\"finished\":\"\"}]', '[{\"id\":10,\"name\":\"Jarra de Cerveza\",\"picture\":\"beer-676535c3d060b.webp\",\"price\":\"3.50\",\"qty\":\"2\",\"category\":\"drinks\",\"finished\":\"\"}]', '[{\"id\":8,\"name\":\"crema catalana\",\"picture\":\"crema-catalana-6408f362b203c.png\",\"price\":\"6.00\",\"qty\":\"2\",\"category\":\"desserts\",\"finished\":\"\"}]', NULL),
-(10, 2, 4, '[{\"id\":3,\"name\":\"ensalada mixta\",\"picture\":\"ensalada-mixta-6408f148d4d27.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"aperitifs\",\"finished\":\"0\"},{\"id\":7,\"name\":\"espaguetis a la carbonara\",\"picture\":\"espagueti-carbo-6408f30e586cb.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"aperitifs\",\"finished\":\"1\"}]', '[{\"id\":7,\"name\":\"espaguetis a la carbonara\",\"picture\":\"espagueti-carbo-6408f30e586cb.png\",\"price\":\"8.50\",\"qty\":\"1\",\"category\":\"firsts\",\"finished\":\"1\"},{\"id\":4,\"name\":\"paella valenciana\",\"picture\":\"paella-valenciana-jpg-6408f190f338b.png\",\"price\":\"11.25\",\"qty\":\"1\",\"category\":\"firsts\",\"finished\":\"1\"}]', '[{\"id\":4,\"name\":\"paella valenciana\",\"picture\":\"paella-valenciana-jpg-6408f190f338b.png\",\"price\":\"11.25\",\"qty\":\"1\",\"category\":\"seconds\",\"finished\":\"\"},{\"id\":5,\"name\":\"bistec con patatas\",\"picture\":\"bistec-patatas-6408f2785ab36.png\",\"price\":\"9.50\",\"qty\":\"1\",\"category\":\"seconds\",\"finished\":\"\"}]', NULL, '[{\"id\":8,\"name\":\"crema catalana\",\"picture\":\"crema-catalana-6408f362b203c.png\",\"price\":\"6.00\",\"qty\":\"2\",\"category\":\"desserts\",\"finished\":\"\"}]', NULL);
+(12, 1, 2, NULL, '[{\"id\":13,\"name\":\"macaroni bolognese\",\"picture\":\"macarrones-bolognesa-68433ee0c51ec.webp\",\"price\":\"8.50\",\"qty\":2,\"category\":\"firsts\"}]', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -297,12 +308,19 @@ INSERT INTO `user` (`id`, `user_name`, `email`, `roles`, `password`) VALUES
 ALTER TABLE `dish`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_957D8CB81C54629` (`dish_day_id`),
-  ADD KEY `IDX_957D8CB85C60F384` (`dish_menu_id`);
+  ADD KEY `IDX_957D8CB85C60F384` (`dish_menu_id`),
+  ADD KEY `IDX_957D8CB83C6DC130` (`dish_description_id`);
 
 --
 -- Indexes for table `dish_day`
 --
 ALTER TABLE `dish_day`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dish_description`
+--
+ALTER TABLE `dish_description`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -365,13 +383,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `dish_day`
 --
 ALTER TABLE `dish_day`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `dish_description`
+--
+ALTER TABLE `dish_description`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `dish_menu`
@@ -395,7 +419,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `reservation`
@@ -424,6 +448,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `dish`
   ADD CONSTRAINT `FK_957D8CB81C54629` FOREIGN KEY (`dish_day_id`) REFERENCES `dish_day` (`id`),
+  ADD CONSTRAINT `FK_957D8CB83C6DC130` FOREIGN KEY (`dish_description_id`) REFERENCES `dish_description` (`id`),
   ADD CONSTRAINT `FK_957D8CB85C60F384` FOREIGN KEY (`dish_menu_id`) REFERENCES `dish_menu` (`id`);
 COMMIT;
 

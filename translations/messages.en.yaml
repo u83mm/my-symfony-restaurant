@@ -107,6 +107,10 @@ updated order: 'order updated successfully.'
 select table and people: 'please select table number and people quantity'
 delected order: 'order deleted successfully.'
 our menu: 'our menu'
+row updated: 'row updated successfully.'
+row delected: 'row delected succesfully.'
+row saved: 'row saved succesfully.'
+language: 'language'
 
 
 # Header links
