@@ -9,3 +9,9 @@ change_locale:
     controller: App\Controller\LocaleController::change
     requirements:
         locale: en|es  # Add all your supported locales here
+
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+    requirements:
+        _locale: en|es

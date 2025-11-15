@@ -1,4 +1,5 @@
 import { finishDish, setFinishDishValue, testDishesStriked, showEmoji } from "./dishesFunctions.js";
+import { languageList } from "./app_functions.js";
 
 "use strict"; 
 
@@ -50,4 +51,18 @@ window.addEventListener('DOMContentLoaded', () => {
 			finish.addEventListener("click", setFinishDishValue);
 		});
     }
+
+	/** Add event "click" to the 'select-language' menu */
+	let selectLanguage = document.querySelector("#select-language");
+	if(selectLanguage) {
+		selectLanguage.addEventListener("click", languageList); // show or hide language list
+		
+		// hide language list when click outside
+		document.addEventListener('click', (e) => {
+			if (e.target.id !== 'select-language' && e.target.id !== 'language-list') {
+				let languageList = document.querySelector("#language-list");
+				languageList.classList.add("hidden");
+			}
+		});
+	}		
 });
