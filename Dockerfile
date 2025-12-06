@@ -32,6 +32,8 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 # Install PHP extensions Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo_mysql intl gd
 
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 # Install Xdebug
 RUN pecl install xdebug && \
     docker-php-ext-enable xdebug
