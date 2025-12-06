@@ -23,16 +23,14 @@ http://localhost:8080/
 user: admin
 passwd: admin
 ```
-6.- Select "my_database", go to "import" menu and search my_database.sql file in your "directoryName".
-
-7.- Go to PHP container and install the project.
+6.- Go to PHP container and install the project.
 ```
 docker exec -it php bash
 composer install
 exit
 ```
 
-8.- Go to your localhost in the browser and you can do login.
+7.- Go to your localhost in the browser and you can do login.
 ```
 http://localhost/
 user: admin@admin.com
