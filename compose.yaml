@@ -20,7 +20,8 @@ services:
 
   phpmyadmin:    
     image: phpmyadmin
-    container_name: phpmyadmin    
+    container_name: phpmyadmin
+    command: ["apache2-foreground"]    
     ports:
       - "8080:80"
     environment:
