@@ -6,7 +6,6 @@
 parameters:
     dishes_pictures_directory: '%kernel.project_dir%/public/uploads/dishes_pictures'
     pdf_fonts: '%kernel.project_dir%/src/Entity/fpdf/font'
-
 services:
     # default configuration for services in *this* file
     _defaults:
