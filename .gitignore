@@ -30,3 +30,5 @@ phpstan.neon
 ###< phpstan/phpstan ###
 
 .codegpt
+.aider*
+.env

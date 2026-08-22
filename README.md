@@ -1,4 +1,10 @@
 ### RESTAURANT SITE
+## Project Overview
+This is a restaurant management system built using Symfony and Docker. It allows users to manage reservations, view menus, and handle orders for a modern dining establishment.
+
+## How to Use the Application
+Follow the steps below to set up and run the application locally:
+
 1.- Clone the repository in a new directory of your choice ("directoryName").
 ```
 git clone https://github.com/u83mm/my-symfony-restaurant.git "directoryName"
